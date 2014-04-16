@@ -1,13 +1,17 @@
-# 少し凝った zshrc
+#! /usr/bin/zsh
+# -*- mode: sh ; coding: utf-8 -*-
  
 ########################################
-# 環境変数
+# LANG
 export LANG=ja_JP.UTF-8
 export LC_ALL=ja_JP.URF-8 
 
 # PATH設定
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/bin:$PATH
+export PATH="$HOME/.linuxbrew/bin:$PATH"
+export LD_LIBRARY_PATH="$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH"
+
 
 # 色を使用出来るようにする
 autoload -Uz colors
@@ -195,5 +199,5 @@ esac
 # 他のファイルの読み込み
 
 # terminal-notifierの設定
-export SYS_NOTIFIER='terminal-notifier'
-source ~/.zsh.d/zsh-notify/notify.plugin.zsh
+# export SYS_NOTIFIER='terminal-notifier'
+# source ~/.zsh.d/zsh-notify/notify.plugin.zsh
