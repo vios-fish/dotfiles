@@ -1,6 +1,7 @@
 (source gnu)
 (source marmalade)
 (source melpa)
+(source org)
 
 (depends-on "auto-complete")
 (depends-on "buffer-move")
