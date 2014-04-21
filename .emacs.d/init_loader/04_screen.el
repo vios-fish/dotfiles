@@ -12,3 +12,6 @@
 	'(alpha . (80 60 40 40))
 	)
 	default-frame-alist))
+
+(setq custom-theme-directory (concat my/dropbox-dir "/themes/"))
+(load-theme 'molokai t)
