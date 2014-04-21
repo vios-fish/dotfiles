@@ -72,7 +72,7 @@
 
 (defun ac-cc-init ()
   (ac-cc-mode-setup)
-  (setq ac-clang-prefix-header (format "%s/elisp/auto-complete/dict/stdafx.pch" my/dropbox-dir))
+  (setq ac-clang-prefix-header (format "%s/dict/stdafx.pch" my/dropbox-dir))
   (setq ac-clang-flags
 		'("-std=c++11" "-w" "-Wc++11-extension"))
 ;        '("-std=c++11" "-w" "-ferror-limit" "1")) ; C++11の場合
