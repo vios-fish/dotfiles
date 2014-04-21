@@ -91,22 +91,22 @@
 
 ;; 何故かplatex等が使えなかったので(platex: command not foundとか表示される)pathを通す。
 ;; 必要なのは多分/usr/texbinだけだけど、コピペ元の設定をそのまま流用する。
-(dolist (dir (list
-              "/sbin"
-              "/usr/sbin"
-              "/bin"
-              "/usr/bin"
-              "/opt/local/bin"
-              "/sw/bin"
-              "/usr/local/bin"
-              "/usr/texbin"
-              (expand-file-name "~/bin")
-              (expand-file-name "~/.emacs.d/bin")
-              ))
-;; PATH と exec-path に同じ物を追加します
-  (when (and (file-exists-p dir) (not (member dir exec-path)))
-     (setenv "PATH" (concat dir ":" (getenv "PATH")))
-  	  (setq exec-path (append (list dir) exec-path))))
+;; (dolist (dir (list
+;;               "/sbin"
+;;               "/usr/sbin"
+;;               "/bin"
+;;               "/usr/bin"
+;;               "/opt/local/bin"
+;;               "/sw/bin"
+;;               "/usr/local/bin"
+;;               "/usr/texbin"
+;;               (expand-file-name "~/bin")
+;;               (expand-file-name "~/.emacs.d/bin")
+;;               ))
+;; ;; PATH と exec-path に同じ物を追加します
+;;   (when (and (file-exists-p dir) (not (member dir exec-path)))
+;;      (setenv "PATH" (concat dir ":" (getenv "PATH")))
+;;   	  (setq exec-path (append (list dir) exec-path))))
 	  
 
 (add-hook 'yatex-mode-hook

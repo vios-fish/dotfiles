@@ -11,10 +11,11 @@ export LANG=ja_JP.UTF-8
 export LC_ALL=ja_JP.URF-8 
 
 # PATH設定
-export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/bin:$PATH
-export PATH="$HOME/.linuxbrew/bin:$PATH"
-export LD_LIBRARY_PATH="$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH"
+export PATH=/usr/local/sbin:$PATH
+export PATH=/usr/local/bin:$PATH
+#export PATH="$HOME/.linuxbrew/bin:$PATH"
+#export LD_LIBRARY_PATH="$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH"
 
 # 色を使用出来るようにする
 autoload -Uz colors

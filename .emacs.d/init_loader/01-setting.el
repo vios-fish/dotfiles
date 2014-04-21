@@ -163,3 +163,8 @@
 
 ;; 問い合わせを簡略化 yes/no を y/n
 (fset 'yes-or-no-p 'y-or-n-p)
+
+;;; emacsclient
+(require 'server)
+(unless (server-running-p)
+  (server-start))
