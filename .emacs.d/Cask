@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 (source marmalade)
 (source melpa)
 (source gnu)
+=======
+(source gnu)
+(source marmalade)
+(source melpa)
+>>>>>>> 2d36fee8445df79fb79db3d3cf785db3b1a23640
 
 (depends-on "auto-complete")
 (depends-on "buffer-move")
