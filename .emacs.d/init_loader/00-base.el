@@ -14,12 +14,8 @@
       emacs23-p (string-match "^23" emacs-version)
       emacs23.0-p (string-match "^23\.0" emacs-version)
       emacs23.1-p (string-match "^23\.1" emacs-version)
-<<<<<<< HEAD
-      emacs23.2-p (string-match "^23\.2" emacs-version))
-=======
       emacs23.2-p (string-match "^23\.2" emacs-version)
 	  emacs24-p (string-match "^24" emacs-version))
->>>>>>> 2d36fee8445df79fb79db3d3cf785db3b1a23640
 
 ;; system-type predicates
 (setq darwin-p  (eq system-type 'darwin)

@@ -1,27 +1,20 @@
-<<<<<<< HEAD
 # 少し凝った zshrc
  
 ########################################
 # 環境変数
-=======
 #! /usr/bin/zsh
 # -*- mode: sh ; coding: utf-8 -*-
  
 ########################################
 # LANG
->>>>>>> 2d36fee8445df79fb79db3d3cf785db3b1a23640
 export LANG=ja_JP.UTF-8
 export LC_ALL=ja_JP.URF-8 
 
 # PATH設定
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/bin:$PATH
-<<<<<<< HEAD
-=======
 export PATH="$HOME/.linuxbrew/bin:$PATH"
 export LD_LIBRARY_PATH="$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH"
-
->>>>>>> 2d36fee8445df79fb79db3d3cf785db3b1a23640
 
 # 色を使用出来るようにする
 autoload -Uz colors
@@ -209,10 +202,5 @@ esac
 # 他のファイルの読み込み
 
 # terminal-notifierの設定
-<<<<<<< HEAD
-#export SYS_NOTIFIER='terminal-notifier'
-#source ~/.zsh.d/zsh-notify/notify.plugin.zsh
-=======
 # export SYS_NOTIFIER='terminal-notifier'
 # source ~/.zsh.d/zsh-notify/notify.plugin.zsh
->>>>>>> 2d36fee8445df79fb79db3d3cf785db3b1a23640

@@ -12,11 +12,7 @@
 
 This is particularly useful under Mac OSX, where GUI apps are not started from a shell."
   (interactive)
-<<<<<<< HEAD
-  (let ((path-from-shell (replace-regexp-in-string "[ \t\n]*$" "" (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'")))) 
-=======
   (let ((path-from-shell (replace-regexp-in-string "[ \t\n]*$" "" (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
->>>>>>> 2d36fee8445df79fb79db3d3cf785db3b1a23640
     (setenv "PATH" path-from-shell)
     (setq exec-path (split-string path-from-shell path-separator))))
 
@@ -94,12 +90,6 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
     htmlize
 	direx
 
-<<<<<<< HEAD
-=======
-	;;; git
-	magit
-
->>>>>>> 2d36fee8445df79fb79db3d3cf785db3b1a23640
     ;;; programming
     smart-compile
 ;	auto-complete-clang
@@ -111,7 +101,6 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 	ess
 	ess-R-object-popup
 
-<<<<<<< HEAD
     ;;; syntacks check
     flycheck
 
@@ -121,8 +110,6 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
 	;;; git
 	magit
-
-=======
 	
     ;;; syntacks check
     flycheck
@@ -130,7 +117,6 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 	;;; thema
 	powerline
 	
->>>>>>> 2d36fee8445df79fb79db3d3cf785db3b1a23640
     ;;; vim
     ;evil
     )
@@ -175,10 +161,8 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
   (setq package-user-dir "~/.emacs.d/elpa")
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
   (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
-<<<<<<< HEAD
+
   (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-=======
->>>>>>> 2d36fee8445df79fb79db3d3cf785db3b1a23640
   (package-initialize)
   
   ;; my/favorite-packagesのパッケージをインストールする
