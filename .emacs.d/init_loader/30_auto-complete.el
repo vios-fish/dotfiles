@@ -28,6 +28,7 @@
                 fundamental-mode
                 org-mode
                 text-mode
+				python-mode
 				matlab-mode))
   (add-to-list 'ac-modes mode))
 
@@ -46,9 +47,12 @@
   (setq-default ac-sources my-ac-sources))
 (defun ac-coffee-mode-setup ()
   (setq-default ac-sources my-ac-sources))
+(defun ac-python-mode-setup ()
+  (setq-default ac-sources my-ac-sources))
 (add-hook 'scss-mode-hook 'ac-scss-mode-setup)
 (add-hook 'web-mode-hook 'ac-web-mode-setup)
 (add-hook 'coffee-mode-hook 'ac-coffee-mode-setup)
+(add-hook 'python-mode-hook 'ac-python-mode-setup)
 
 (require 'auto-complete-clang)
 
