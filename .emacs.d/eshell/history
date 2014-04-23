@@ -1,0 +1,26 @@
+mkdir emacs
+ls
+emacs
+./emacs
+..
+mkdir emacs/
+./emacs
+git init
+..
+mv Dropbox/emacs.d/ emacs/
+ls emacs/
+ls emacs/emacs.d/
+rm *.el~
+ls
+rm emacs/emacs.d/*.el~
+rm *.el~
+ls emacs/emacs.d/
+vim
+brew update
+brew doctor
+./dp_matching 
+./dp_matching 
+./dp_matching 
+./dp_matching 
+./dp_matching 
+./dp_matching > output.txt
