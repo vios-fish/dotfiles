@@ -8,7 +8,7 @@
 ########################################
 # LANG
 export LANG=ja_JP.UTF-8
-export LC_ALL=ja_JP.URF-8
+export LC_ALL=ja_JP.UTF-8
 
 # PATH設定
 export PATH=/usr/bin:$PATH
