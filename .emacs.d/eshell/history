@@ -24,3 +24,11 @@ brew doctor
 ./dp_matching 
 ./dp_matching 
 ./dp_matching > output.txt
+cd Programing/AOJ/
+ls
+./0015
+./0015
+./0015
+./0015
+./0015
+./0015
