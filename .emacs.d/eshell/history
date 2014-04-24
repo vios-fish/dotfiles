@@ -32,3 +32,85 @@ ls
 ./0015
 ./0015
 ./0015
+../Programing/AOJ/
+0015
+./0015 
+./0015 
+clang
+which clang
+clang -v
+clang 0015.cpp
+clang++ 0015.cpp
+which clang
+clang++ 0015.cpp -v
+find /usr -name iostream
+/usr/bin/clang 0015.cpp -v
+clang++ 0015.cpp -v -std=c++11
+clang++ 0015.cpp -v -std=c++11 -Xclang
+clang++ -v -std=c++11 -Xclang 0015.cpp 
+find /usr -name iostream
+clang++ 0015.cpp -v
+/usr/local/Cellar/llvm/HEAD/lib/clang/3.5/include/
+ls
+..
+..
+..
+..
+include
+ls
+..clang  clang-c  llvm  llvm-c
+..
+lib
+ls
+c++
+ls
+c++
+./c++
+ls
+v1
+ls
+/usr/local/includecerrno                cwctype             queue             vector
+/usr/local/include/
+lls
+ls
+..
+ls
+bin
+ls
+../include/
+ls
+aquaterm
+ls
+../
+llvm
+ls
+..
+clang
+./clang
+ls
+Driver
+ls
+..
+..
+gcc
+./gcc
+ls
+darwin
+ls
+4.2
+ls
+/usr/include/
+ls
+ls
+c++
+./c++
+ls
+4.2.1
+ls
+gcc -v
+which gcc
+/usr/local/bin/gcc -v
+gcc-4.8
+clang-check
+clang-check -h
+clang-check -help
