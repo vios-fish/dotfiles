@@ -109,6 +109,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
     ;;; syntacks check
     flycheck
+	flycheck-pos-tip
 
 	;;; org
 	org
