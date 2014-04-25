@@ -8,12 +8,24 @@
 ########################################
 # LANG
 export LANG=ja_JP.UTF-8
-export LC_ALL=ja_JP.URF-8 
+export LC_ALL=ja_JP.UTF-8
 
 # PATH設定
-export PATH=/usr/bin:$PATH
-export PATH=/usr/local/sbin:$PATH
-export PATH=/usr/local/bin:$PATH
+
+case ${OSTYPE} in
+    darwin*)
+        #ここにMac向けの設定
+		export PATH=/usr/bin:$PATH
+		export PATH=/usr/local/sbin:$PATH
+		export PATH=/usr/local/bin:$PATH
+		;;
+	linux*)
+        #ここにLinux向けの設定
+		export PATH=/usr/local/sbin:$PATH
+		export PATH=/usr/local/bin:$PATH
+		export PATH=/usr/bin:$PATH
+		;;
+esac
 #export PATH="$HOME/.linuxbrew/bin:$PATH"
 #export LD_LIBRARY_PATH="$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH"
 
