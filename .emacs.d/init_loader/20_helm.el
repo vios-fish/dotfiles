@@ -26,9 +26,11 @@
 ;;;
 
 (require 'helm-config)
+(require 'helm-migemo)
+(require 'helm-ag)
+
 (helm-mode t)
 (helm-descbinds-mode)
-(require 'helm-migemo)
 (setq helm-nestmigemo t)
 
 ;; Emulate 'kill-line' in helm minibuffer
@@ -66,7 +68,7 @@
   (let ((topdir (helm-git-project-topdir)))
     (unless (file-directory-p topdir)
       (error "I'm not in Git Repository!!"))
-    (let* ((default-directory topdir)
+    (let* ((default-directory topdir)
            (sources (helm-c-sources-git-project-for default-directory)))
       (helm-other-buffer sources "*helm git project*"))))
 
@@ -83,9 +85,26 @@
     ad-do-it))
 
 ;; helmの設定
+;; set helm-command-prefix-key to "C-z"
+(progn
+  (require 'helm-config)
+  (global-unset-key (kbd "C-z"))
+  (custom-set-variables
+   '(helm-command-prefix-key "C-z")))
+
+(define-key helm-command-map (kbd "d") 'helm-descbinds)
+(define-key helm-command-map (kbd "g") 'helm-ag)
+(define-key helm-command-map (kbd "o") 'helm-occur)
+(define-key helm-command-map (kbd "y") 'yas/insert-snippet)
+(define-key helm-command-map (kbd "M-/") 'helm-dabbrev)
+
 (define-key global-map (kbd "M-x") 'helm-M-x)
 (define-key global-map (kbd "C-x b") 'helm-buffers-list)
 (define-key global-map (kbd "C-x C-f") 'helm-find-files)
 (define-key global-map (kbd "C-x C-r") 'helm-recentf)
 (define-key global-map (kbd "M-y") 'helm-show-kill-ring)
 (define-key global-map (kbd "C-c i") 'helm-imenu)
+(define-key global-map (kbd "M-g .") 'helm-ag)
+(define-key global-map (kbd "C-M-s") 'helm-ag-this-file)
+(define-key global-map (kbd "C-q") 'helm-mini)
+

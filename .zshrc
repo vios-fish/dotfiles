@@ -35,6 +35,8 @@ colors
  
 # emacs 風キーバインドにする
 bindkey -e
+
+xmodmap $HOME/.xmodmap
  
 # ヒストリの設定
 HISTFILE=~/.zsh_history

@@ -114,3 +114,5 @@ gcc-4.8
 clang-check
 clang-check -h
 clang-check -help
+clang 2014-04-30-125727.cpp -std=c++11
+clang++ 2014-04-30-125727.cpp -std=c++11

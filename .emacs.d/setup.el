@@ -83,6 +83,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
     smartrep
     yasnippet
 	migemo
+	all-ext
 
     ;;; buffer utils
     popwin
