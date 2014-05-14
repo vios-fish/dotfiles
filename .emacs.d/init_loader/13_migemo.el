@@ -1,6 +1,6 @@
 (cond ((eq linux-p t)
 	   (setq migemo-dictionary "/usr/share/migemo/utf-8/migemo-dict"))
-	  ((eq carbon-p t)
+	  ((eq ns-p t)
 	   (setq migemo-directory "/usr/local/share/migemo/utf-8/migemo-dict")
 	  ))
 (setq migemo-command "cmigemo")
