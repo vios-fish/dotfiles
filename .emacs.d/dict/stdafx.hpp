@@ -1,4 +1,4 @@
-// clang -cc1 -emit-pch -x c++-header ./stdafx.hpp -o stdafx.pch -std=c++11
+// clang -Xclang -emit-pch -x c++-header ./stdafx.hpp -o stdafx.pch -std=c++11 `pkg-config --cflags opencv`
 #include <cstdlib>
 #include <csignal>
 #include <csetjmp>
@@ -101,3 +101,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <tgmath.h>
+
+#include "opencv/cv.h"
+#include "opencv2/core/core.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/highgui/highgui.hpp"

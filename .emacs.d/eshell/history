@@ -1,118 +1,128 @@
-mkdir emacs
+/usr/bin/clang++ -std=c++11 main.cpp
+/usr/bin/clang++ -std=c++11 main.cpp
+/usr/bin/clang++ -std=c++11 main.cpp
+/usr/bin/clang++ -std=c++11 main.cpp
+/usr/bin/clang++ -std=c++11 main.cpp
+/usr/bin/clang++ -std=c++11 main.cpp
+/usr/bin/clang++ -std=c++11 main.cpp
+./a
+./a.out
+./a.out
+/usr/bin/clang++ -std=c++11 main.cpp
+../Step03_TemplateMatching/
 ls
-emacs
-./emacs
-..
-mkdir emacs/
-./emacs
-git init
-..
-mv Dropbox/emacs.d/ emacs/
-ls emacs/
-ls emacs/emacs.d/
-rm *.el~
+../Step03_TemplateMatching/
+/usr/bin/clang++ -std=c++11 main.cpp
+ls ..
+ls ..
+/usr/bin/clang++ -std=c++11 main.cpp
+/usr/bin/clang++ -std=c++11 main.cpp
+/usr/bin/clang++ -std=c++11 main.cpp
+/usr/bin/clang++ -std=c++11 main.cpp
+./a.out 
 ls
-rm emacs/emacs.d/*.el~
-rm *.el~
-ls emacs/emacs.d/
-vim
-brew update
-brew doctor
-./dp_matching 
-./dp_matching 
-./dp_matching 
-./dp_matching 
-./dp_matching 
-./dp_matching > output.txt
-cd Programing/AOJ/
+cat result-training_02000-test_10000.txt
+cat result-training_01000-test_10000.txt
+./a.out 
+/usr/bin/clang++ -std=c++11 main.cpp
+/usr/bin/clang++ -std=c++11 main.cpp
+./a.out 
 ls
-./0015
-./0015
-./0015
-./0015
-./0015
-./0015
-../Programing/AOJ/
-0015
-./0015 
-./0015 
+cat result-training_02000-test_10000.txt
+cat result-training_01000-test_10000.txt
+../Step05_kNearestNeighbor/
+../Step04_Binarization/
+ls
+/usr/bin/clang++ -std=c++11 main.cpp
+/usr/bin/clang++ -std=c++11 main.cpp
+/usr/bin/clang++ -std=c++11 main.cpp
+./a
+./a.out 
+ls
+../Step05_kNearestNeighbor/
+ls
+/usr/bin/clang++ -std=c++11 main.cpp
+/usr/bin/clang++ -std=c++11 main.cpp
+./a.out 
+/usr/bin/clang++ -std=c++11 main.cpp
+./a.out 
+ls
 clang
-which clang
-clang -v
-clang 0015.cpp
-clang++ 0015.cpp
-which clang
-clang++ 0015.cpp -v
-find /usr -name iostream
-/usr/bin/clang 0015.cpp -v
-clang++ 0015.cpp -v -std=c++11
-clang++ 0015.cpp -v -std=c++11 -Xclang
-clang++ -v -std=c++11 -Xclang 0015.cpp 
-find /usr -name iostream
-clang++ 0015.cpp -v
-/usr/local/Cellar/llvm/HEAD/lib/clang/3.5/include/
+./a
+git pull
+git config --list
+make
+make main
 ls
-..
-..
-..
-..
-include
+./a
+./a.out 
+mv ~/Desktop/20120426.wmv ./
 ls
-..clang  clang-c  llvm  llvm-c
-..
-lib
+make main
+make
+make main
+make all
+src
+make
 ls
-c++
+make all
+pkg-config --clags opencv
+pkg-config --cflags opencv
+readlink -f ..
+readlink
+man readlink
+readlink --f ..
+readlink -f ..
+source ~/.zshrc
+source ~/.zshrc
 ls
-c++
-./c++
+make
+readlink -f
 ls
-v1
+make
 ls
-/usr/local/includecerrno                cwctype             queue             vector
-/usr/local/include/
-lls
-ls
-..
-ls
-bin
-ls
-../include/
-ls
-aquaterm
+make 
 ls
 ../
-llvm
 ls
-..
+bin
+./bin 
+make clean
+ls
+rm main.o
+ls
+rm main
+ls
+make
 clang
-./clang
+which clang++
+clang++ --v
+clang++ --version
+make
+../
 ls
-Driver
+mkdir bin
+src
+make
+../bin/opencvtest 
+make
+../bin/opencvtest 
+make
+../bin/opencvtest 
+make
+../bin/opencvtest 
+../bin/opencvtest 
+make
+../bin/opencvtest 
+make
+../bin/opencvtest 
+../bin/opencvtest 
 ls
-..
-..
-gcc
-./gcc
-ls
-darwin
-ls
-4.2
-ls
-/usr/include/
-ls
-ls
-c++
-./c++
-ls
-4.2.1
-ls
-gcc -v
-which gcc
-/usr/local/bin/gcc -v
-gcc-4.8
-clang-check
-clang-check -h
-clang-check -help
-clang 2014-04-30-125727.cpp -std=c++11
-clang++ 2014-04-30-125727.cpp -std=c++11
+make
+make
+../bin/opencvtest 
+make
+make
+../bin/opencvtest 
+make 
+../bin/opencvtest 

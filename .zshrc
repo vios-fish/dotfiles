@@ -18,6 +18,7 @@ case ${OSTYPE} in
 		export PATH=/usr/bin:$PATH
 		export PATH=/usr/local/sbin:$PATH
 		export PATH=/usr/local/bin:$PATH
+		export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
 		;;
 	linux*)
         #ここにLinux向けの設定
@@ -203,6 +204,8 @@ case ${OSTYPE} in
         #Mac用の設定
         export CLICOLOR=1
         alias ls='ls -G -F'
+		alias clang++=/usr/bin/clang++
+		alias clang=/usr/bin/clang
         ;;
     linux*)
         #Linux用の設定
