@@ -78,7 +78,7 @@
   (ac-cc-mode-setup)
   (setq ac-clang-prefix-header (format "%s/dict/stdafx.pch" my/emacs-directory))
   (setq ac-clang-flags
-		'("-std=c++11" "-w" "-Wc++11-extension" "-ferror-limit" "1"))
+		'("-std=c++11" "-w" "-Wc++11-extension"))
 ;        '("-std=c++11" "-w" "-ferror-limit" "1")) ; C++11の場合
   (setq ac-clang-executable "/usr/bin/clang")
   (setq ac-sources (append '(ac-source-clang 

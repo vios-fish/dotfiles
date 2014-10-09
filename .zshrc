@@ -15,6 +15,7 @@ export LC_ALL=ja_JP.UTF-8
 case ${OSTYPE} in
     darwin*)
         #ここにMac向けの設定
+		export PATH=$HOME/.cabal/bin:$PATH
 		export PATH=/usr/bin:$PATH
 		export PATH=/usr/local/sbin:$PATH
 		export PATH=/usr/local/bin:$PATH
