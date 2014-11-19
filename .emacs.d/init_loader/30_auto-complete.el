@@ -15,10 +15,10 @@
 (require 'fuzzy)
 
 (require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/dotfiles/.emacs.d/ac-dict")
 (global-auto-complete-mode t)
 (setq ac-auto-start nil)
 (ac-config-default)
-
 
 ;; Enable auto-complete mode other than default enable modes
 (dolist (mode '(git-commit-mode
@@ -29,7 +29,8 @@
                 org-mode
                 text-mode
 				python-mode
-				matlab-mode))
+				matlab-mode
+				objc-mode))
   (add-to-list 'ac-modes mode))
 
 

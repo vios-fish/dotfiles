@@ -1,128 +1,128 @@
-/usr/bin/clang++ -std=c++11 main.cpp
-/usr/bin/clang++ -std=c++11 main.cpp
-/usr/bin/clang++ -std=c++11 main.cpp
-/usr/bin/clang++ -std=c++11 main.cpp
-/usr/bin/clang++ -std=c++11 main.cpp
-/usr/bin/clang++ -std=c++11 main.cpp
-/usr/bin/clang++ -std=c++11 main.cpp
-./a
-./a.out
-./a.out
-/usr/bin/clang++ -std=c++11 main.cpp
-../Step03_TemplateMatching/
+./c
+./c
+./d
+./d
+./d
+./d
+./d
+./c
+./c
+./c
+./c
+./c
+./c
+./d
+./d
+./d
+./d
+../../../AOJ
 ls
-../Step03_TemplateMatching/
-/usr/bin/clang++ -std=c++11 main.cpp
-ls ..
-ls ..
-/usr/bin/clang++ -std=c++11 main.cpp
-/usr/bin/clang++ -std=c++11 main.cpp
-/usr/bin/clang++ -std=c++11 main.cpp
-/usr/bin/clang++ -std=c++11 main.cpp
-./a.out 
+./2311 
+./2311 
+./2311 
+./2311 
+./2311 
+./2311 
+./2311 
+./2311 
+./2311 
+./2311 
+./2311 
+./2311 
+./10003
+./10005
+../../uchidalab/HigherMarkovTraking/src/
+../bin/research 
+../bin/research 
+../bin/research 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+la
 ls
-cat result-training_02000-test_10000.txt
-cat result-training_01000-test_10000.txt
-./a.out 
-/usr/bin/clang++ -std=c++11 main.cpp
-/usr/bin/clang++ -std=c++11 main.cpp
-./a.out 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+echo $CPATH
+echo $CPATH
+pkg-config --cfags boost
+pkg-config --cflags boost
+pkg-config --list-all
+which clang
+clang --version
+/usr/local/Cellar/llvm/3.5.0/bin/clang++ --version
+/usr/local/Cellar/llvm/3.5.0/include/
 ls
-cat result-training_02000-test_10000.txt
-cat result-training_01000-test_10000.txt
-../Step05_kNearestNeighbor/
-../Step04_Binarization/
+llvm
 ls
-/usr/bin/clang++ -std=c++11 main.cpp
-/usr/bin/clang++ -std=c++11 main.cpp
-/usr/bin/clang++ -std=c++11 main.cpp
-./a
-./a.out 
+../clang-c/
 ls
-../Step05_kNearestNeighbor/
-ls
-/usr/bin/clang++ -std=c++11 main.cpp
-/usr/bin/clang++ -std=c++11 main.cpp
-./a.out 
-/usr/bin/clang++ -std=c++11 main.cpp
-./a.out 
-ls
+../
 clang
-./a
-git pull
-git config --list
-make
-make main
+./clang/
 ls
-./a
-./a.out 
-mv ~/Desktop/20120426.wmv ./
-ls
-make main
-make
-make main
-make all
-src
-make
-ls
-make all
-pkg-config --clags opencv
-pkg-config --cflags opencv
-readlink -f ..
-readlink
-man readlink
-readlink --f ..
-readlink -f ..
-source ~/.zshrc
-source ~/.zshrc
-ls
-make
-readlink -f
-ls
-make
-ls
-make 
+../
+../
 ls
 ../
 ls
-bin
-./bin 
-make clean
+/usr/bin/
 ls
-rm main.o
+la clang
+la
+ls -a clang
+man ls
+ls -H
+which ./clang
+echo $CPATH
+~
 ls
-rm main
+./uchidalab/HigherMarkovTraking/
 ls
-make
-clang
-which clang++
-clang++ --v
-clang++ --version
-make
-../
-ls
-mkdir bin
 src
-make
-../bin/opencvtest 
-make
-../bin/opencvtest 
-make
-../bin/opencvtest 
-make
-../bin/opencvtest 
-../bin/opencvtest 
-make
-../bin/opencvtest 
-make
-../bin/opencvtest 
-../bin/opencvtest 
 ls
-make
-make
-../bin/opencvtest 
-make
-make
-../bin/opencvtest 
-make 
-../bin/opencvtest 
+~
+dotfiles
+ls
+.emacs.d
+dict
+ls
+clang -Xclang -emit-pch -x c++-header ./stdafx.hpp -o stdafx.pch -std=c++11 `pkg-config --cflags opencv`
+clang++ -Xclang -emit-pch -x c++-header ./stdafx.hpp -o stdafx.pch -std=c++11 `pkg-config --cflags opencv`
+which clang
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+../src/
+ls
+../bin
+ls
+rm matrix.out 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+rm matrix.out 
+../bin/HigherMarkovTraking 
+../bin/HigherMarkovTraking 
+rm matrix.out 
+../bin/HigherMarkovTraking 
+rm matrix.out 
+../bin/HigherMarkovTraking 

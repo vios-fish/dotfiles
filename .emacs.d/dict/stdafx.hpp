@@ -10,7 +10,7 @@
 #include <functional>
 #include <utility>
 #include <ctime>
-// #include <chrono>
+#include <chrono>
 #include <cstddef>
 #include <initializer_list>
 #include <tuple>
@@ -30,9 +30,9 @@
 #include <cctype>
 #include <cwctype>
 #include <cstring>
-// #include <cwstring>
+//#include <cwstring>
 #include <cwchar>
-// #include <cuchar>
+//#include <cuchar>
 #include <string>
 #include <array>
 #include <vector>
@@ -67,13 +67,13 @@
 #include <cstdio>
 #include <locale>
 #include <clocale>
-// #include <codecvt>
-// #include <regex>
-// #include <atomic>
-// #include <thread>
-// #include <mutex>
-// #include <future>
-// #include <condition_variable>
+#include <codecvt>
+#include <regex>
+#include <atomic>
+#include <thread>
+#include <mutex>
+#include <future>
+#include <condition_variable>
 #include <ciso646>
 #include <ccomplex>
 #include <ctgmath>
@@ -102,7 +102,31 @@
 #include <string.h>
 #include <tgmath.h>
 
+// opencv
 #include "opencv/cv.h"
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
+
+// boost
+#include <boost/assert.hpp>
+#include <boost/bind.hpp>
+#include <boost/format.hpp>
+#include <boost/function.hpp>
+#include <boost/multi_array.hpp>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/ini_parser.hpp>
+#include <boost/operators.hpp>
+#include <boost/optional.hpp>
+#include <boost/static_assert.hpp>
+#include <boost/assign/list_of.hpp>
+#include <boost/graph/adjacency_list.hpp>
+#include <boost/graph/dijkstra_shortest_paths.hpp>
+#include <boost/graph/graph_utility.hpp>
+#include <boost/graph/graphviz.hpp>
+#include <boost/graph/kruskal_min_spanning_tree.hpp>
+#include <boost/graph/topological_sort.hpp>
+#include <boost/range/algorithm/for_each.hpp>
+#include <boost/range/adaptor/reversed.hpp>
+#include <boost/type_traits/is_integral.hpp>
+//#include <bits/stdc++.h>

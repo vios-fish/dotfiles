@@ -1,11 +1,11 @@
 ;;; flycheck
 (require 'flycheck)
 
-(setq flycheck-clang-include-path '("/usr/local/Cellar/glpk/4.52/include" "/Users/tokunagamakoto/Programing/uchidalab/research/src/"))
+(setq flycheck-clang-include-path '("/usr/local/Cellar/glpk/4.52/include" "/Users/tokunagamakoto/Programing/uchidalab/HigherMarkovTracking/src/"))
 
 (flycheck-define-checker c/c++-clang
   "A C/C++ checker using clang."
-  :command ("/usr/bin/clang" "-Wall" "-Wextra" "-std=c++11"
+  :command ("clang" "-Wall" "-Wextra" "-std=c++11"
             (option-list "-I" flycheck-clang-include-path)
 			source)
   :error-patterns

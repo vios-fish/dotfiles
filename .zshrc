@@ -19,7 +19,15 @@ case ${OSTYPE} in
 		export PATH=/usr/bin:$PATH
 		export PATH=/usr/local/sbin:$PATH
 		export PATH=/usr/local/bin:$PATH
-		export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
+#		export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
+#		export CPATH=/usr/local/Cellar/gcc/4.9.2/lib/gcc/x86_64-apple-darwin14.0.0/4.9.2/include/c++:$CPATH
+#		export CPATH=/usr/local/Cellar/gcc/4.9.2/lib/gcc/x86_64-apple-darwin14.0.0/4.9.2/include/c++/x86_64-apple-darwin14.0.0:$CPATH
+#		export CPATH=/usr/local/Cellar/gcc/4.9.2/lib/gcc/x86_64-apple-darwin14.0.0/4.9.2/include/c++/backward:$CPATH
+#		export CPATH=/usr/local/Cellar/gcc/4.9.2/lib/gcc/x86_64-apple-darwin14.0.0/4.9.2/include:$CPATH
+#		export CPATH=/usr/local/Cellar/gcc/4.9.2/lib/gcc/x86_64-apple-darwin14.0.0/4.9.2/include-fixed:$CPATH
+#		export CPATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/usr/include:$CPATH
+#		export CPATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks:$CPATH
+		export CPATH=/usr/local/include:$CPATH
 		;;
 	linux*)
         #ここにLinux向けの設定
