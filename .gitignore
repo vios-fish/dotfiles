@@ -1,0 +1,11 @@
+/.emacs.d/elisps/auto-complete
+/.emacs.d/.cask/
+/.emacs.d/.DS_Store
+/.emacs.d/.python-environments/
+/.emacs.d/common.el~
+/.zshrc~
+/dotfilesLink.sh~
+/.emacs.d/ac-comphist.dat
+/.emacs.d/history
+/.emacs.d/dict/stdafx.pch
+/.emacs.d/dict/stdafx.hpp~
