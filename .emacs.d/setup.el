@@ -127,6 +127,9 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 	
     ;;; vim
     ;evil
+
+	;;; the-silver-search
+	ag
     )
   "起動時に自動的にインストールされるパッケージのリスト")
 

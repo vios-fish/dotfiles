@@ -196,6 +196,11 @@ fi
 # "~hoge" が特定のパス名に展開されるようにする（ブックマークのようなもの）
 # 例： cd ~hoge と入力すると /long/path/to/hogehoge ディレクトリに移動
 hash -d hoge=/long/path/to/hogehoge
+
+#######################################
+# ruby の設定
+export PATH=$HOME/.rbenv/bin:$PATH
+eval "$(rbenv init -)"
  
  
 ########################################
@@ -210,6 +215,7 @@ case ${OSTYPE} in
         ;;
     linux*)
         #Linux用の設定
+		alias pbcopy='xsel --clipboard --input'
 		xmodmap $HOME/.xmodmap
         ;;
 esac
