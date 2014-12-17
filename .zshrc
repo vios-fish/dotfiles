@@ -236,3 +236,7 @@ esac
 # terminal-notifierの設定
 # export SYS_NOTIFIER='terminal-notifier'
 # source ~/.zsh.d/zsh-notify/notify.plugin.zsh
+
+export GUROBI_HOME="/opt/gurobi600/linux64"
+export PATH="${PATH}:${GUROBI_HOME}/bin"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
