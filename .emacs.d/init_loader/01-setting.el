@@ -122,6 +122,9 @@
 (require 'saveplace)
 (setq-default save-place t)
 
+;; for tramp
+(require 'tramp)
+(setq tramp-default-method "ssh")
 
 ;;; 行
 ;; 行の先頭でC-kを一回押すだけで行全体を消去する

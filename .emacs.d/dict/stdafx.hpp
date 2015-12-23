@@ -111,6 +111,8 @@
 // boost
 #include <boost/assert.hpp>
 #include <boost/bind.hpp>
+#include <boost/filesystem.hpp>
+#include <boost/foreach.hpp>
 #include <boost/format.hpp>
 #include <boost/function.hpp>
 #include <boost/multi_array.hpp>

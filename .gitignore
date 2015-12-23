@@ -16,3 +16,6 @@
 /.emacs.d/image-dired/
 /.emacs.d/tramp
 /.emacs.d/bookmarks
+/.emacs.d/init_loader/workbench.xmi
+/.emacs.d/semanticdb/
+/.emacs.d/url/
