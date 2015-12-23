@@ -36,6 +36,9 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
   '(
 	;; cask
 	pallet
+
+	;; base
+	exec-path-from-shell
 	
 	;; libraly for elisp
 	dash ; list function API
