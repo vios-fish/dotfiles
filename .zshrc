@@ -20,14 +20,19 @@ case ${OSTYPE} in
 		export PATH=/usr/local/sbin:$PATH
 		export PATH=/usr/local/bin:$PATH
 #		export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
-#		export CPATH=/usr/local/Cellar/gcc/4.9.2/lib/gcc/x86_64-apple-darwin14.0.0/4.9.2/include/c++:$CPATH
-#		export CPATH=/usr/local/Cellar/gcc/4.9.2/lib/gcc/x86_64-apple-darwin14.0.0/4.9.2/include/c++/x86_64-apple-darwin14.0.0:$CPATH
-#		export CPATH=/usr/local/Cellar/gcc/4.9.2/lib/gcc/x86_64-apple-darwin14.0.0/4.9.2/include/c++/backward:$CPATH
-#		export CPATH=/usr/local/Cellar/gcc/4.9.2/lib/gcc/x86_64-apple-darwin14.0.0/4.9.2/include:$CPATH
-#		export CPATH=/usr/local/Cellar/gcc/4.9.2/lib/gcc/x86_64-apple-darwin14.0.0/4.9.2/include-fixed:$CPATH
-#		export CPATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/usr/include:$CPATH
-#		export CPATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks:$CPATH
+		# CPLEXのパスを設定
+		export PATH=$HOME/Applications/IBM/ILOG/CPLEX_Studio126/cplex/bin/x86-64_osx:$PATH
+
+		#clangのデフォルトインクルードパスの設定
 		export CPATH=/usr/local/include:$CPATH
+		export CPATH=$HOME/Applications/IBM/ILOG/CPLEX_Studio126/cplex/include:$CPATH
+		export CPATH=$HOME/Applications/IBM/ILOG/CPLEX_Studio126/concert/include:$CPATH
+		export CPATH=$HOME/Applications/IBM/ILOG/CPLEX_Studio126/cpoptimizer/include:$CPATH
+		#clangのデフォルトライブラリパスの設定
+#		export CLIB
+		
+		# alias
+		alias emacs="TERM=xterm-256color /usr/local//bin/emacs"
 		;;
 	linux*)
         #ここにLinux向けの設定
@@ -97,6 +102,17 @@ fi
 # 続けて <Tab> を押すと候補からパス名を選択できるようになる
 # 候補を選ぶには <Tab> か Ctrl-N,B,F,P
 zstyle ':completion:*:default' menu select=1
+
+######## ディレクトリの移動の設定 ##############
+
+DIRSTACKSIZE=100
+setopt AUTO_PUSHD
+
+autoload -Uz compinit && compinit
+
+zstyle ':completion:*' menu select
+zstyle ':completion:*:cd:*' ignore-parents parent pwd
+zstyle ':completion:*:descriptions' format '%BCompleting%b %U%d%u'
  
 ########################################
 # vcs_info
@@ -222,8 +238,11 @@ case ${OSTYPE} in
         #Mac用の設定
         export CLICOLOR=1
         alias ls='ls -G -F'
-		alias clang++=/usr/bin/clang++
-		alias clang=/usr/bin/clang
+		alias clang++=/usr/local/opt/llvm/bin/clang++
+		alias clang=/usr/local/opt/llvm/bin/clang
+		#brew-fileの設定
+		export HOMEBREW_BREWFILE=$HOME/.brewfile
+		export HOMEBREW_CASK_OPTS="--caskroom=/etc/Caskroom"
         ;;
     linux*)
         #Linux用の設定
