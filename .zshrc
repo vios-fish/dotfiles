@@ -207,7 +207,7 @@ fi
 # hashの設定
 # "~hoge" が特定のパス名に展開されるようにする（ブックマークのようなもの）
 # 例： cd ~hoge と入力すると /long/path/to/hogehoge ディレクトリに移動
-hash -d hoge=/long/path/to/hogehoge
+# hash -d hoge=/long/path/to/hogehoge
 
 #######################################
 # ruby の設定
