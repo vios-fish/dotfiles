@@ -34,18 +34,18 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
 (defvar my/favorite-packages
   '(
-	;; cask
-	pallet
+    ;; cask
+    pallet
 
-	;; base
-	exec-path-from-shell
-	
-	;; libraly for elisp
-	dash ; list function API
-	s    ; string function API
-	f    ; file function API
-	ht   ; hash table API
-	
+    ;; base
+    exec-path-from-shell
+    
+    ;; libraly for elisp
+    dash ; list function API
+    s    ; string function API
+    f    ; file function API
+    ht   ; hash table API
+    
     ;; mode
     php-mode
     haskell-mode
@@ -70,11 +70,11 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
     helm-gtags
     helm-c-moccur
     helm-c-yasnippet
-	helm-R
-	helm-ag
-	helm-migemo
-	wgrep-helm
-	helm-descbinds
+    helm-R
+    helm-ag
+    helm-migemo
+    wgrep-helm
+    helm-descbinds
 
     ;;; editing utilities
     open-junk-file
@@ -82,57 +82,57 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
     wrap-region
     undo-tree
     auto-complete
-	fuzzy
+    fuzzy
     smartrep
     yasnippet
-	migemo
-	all-ext
+    migemo
+    all-ext
 
     ;;; buffer utils
     popwin
     buffer-move
     htmlize
-	direx
+    direx
 
     ;;; programming
     smart-compile
-;	auto-complete-clang
-	
+					;	auto-complete-clang
+    
     ;;; lisp
     paredit
 
 	;;; R
-	ess
-	ess-R-object-popup
+    ess
+    ess-R-object-popup
 
 	;;; python
-	deferred
-	epc
-	jedi
-	python-mode
+    deferred
+    epc
+    jedi
+    python-mode
 
     ;;; syntacks check
     flycheck
-	flycheck-pos-tip
+    flycheck-pos-tip
 
 	;;; org
-	org
-	org-plus-contrib
+    org
+    org-plus-contrib
 
 	;;; git
-	magit
-	
+    magit
+    
     ;;; syntacks check
     flycheck
 
 	;;; thema
-	powerline
-	
+    powerline
+    
     ;;; vim
-    ;evil
+					;evil
 
 	;;; the-silver-search
-	ag
+    ag
     )
   "起動時に自動的にインストールされるパッケージのリスト")
 
@@ -141,7 +141,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
     ;; 1ファイルのelispしか管理できません
     ;; パッケージ名はファイル名の.elより前の部分になります
     ;"http://namazu.org/~tsuchiya/elisp/dabbrev-ja.el"
-    "http://homepage3.nifty.com/oatu/emacs/archives/auto-save-buffers.el"
+    ;"http://homepage3.nifty.com/oatu/emacs/archives/auto-save-buffers.el"
     )
   "起動時に自動的にインストールされるelispのURLのリスト")
 

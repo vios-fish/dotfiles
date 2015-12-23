@@ -36,9 +36,10 @@ case ${OSTYPE} in
 		;;
 	linux*)
         #ここにLinux向けの設定
+		export PATH=/opt/ibm/ILOG/CPLEX_Studio1261/cplex/bin/x86-64_linux/cplex:$PATH
 		export PATH=/usr/local/sbin:$PATH
-		export PATH=/usr/local/bin:$PATH
 		export PATH=/usr/bin:$PATH
+		export PATH=/usr/local/bin:$PATH
 		;;
 esac
 #export PATH="$HOME/.linuxbrew/bin:$PATH"
