@@ -1,4 +1,3 @@
-#!/bin/bash
 BREWFILE_DIR=./
 
 ask() {
@@ -15,26 +14,25 @@ ask() {
 
 set -e
 
-if ask 'xcode install?'; then
-  xcode-select --install
+if ask 'zsh install?'; then
+	sudo apt-get install zsh && zsh
+	ln -s ~/dotfiles/.zshrc ~/.zshrc
+	ln -s ~/dotfiles/.zsh.d ~/.zsh.d
+	source ~/.zshrc
 fi
 
 if ask 'Homebrew install?'; then
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-  brew doctor
-  brew install caskroom/cask/brew-cask
+	sudo apt-get install build-essential curl git m4 ruby \
+		 texinfo libbz2-dev libcurl4-openssl-dev libexpat-dev \
+		 libncurses-dev zlib1g-dev
+	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"
 fi
 
 if ask 'execute brew bundle(Brewfile)?'; then
-  brew tap Homebrew/bundle
-  pushd $BREWFILE_DIR
-  brew bundle
-  popd
-fi
-
-if ask 'restore setting from mackup? (need Dropbox directory)'; then
-  mackup restore
+	brew tap Homebrew/bundle
+	pushd $BREWFILE_DIR
+	brew bundle
+	popd
 fi
 
 if ask "Do you want to install ruby by rbenv-rubybuild?"; then
@@ -46,9 +44,3 @@ fi
 if ask "Create symbolic link bash_profile?"; then
 	ln -s ~/dotfiles/.bash_profile ~/.bash_profile
 fi
-
-if ask "Create symbolic link zsh?"; then
-	ln -s ~/dotfiles/.zshrc ~/.zshrc
-	ln -s ~/dotfiles/.zsh.d ~/.zsh.d
-fi
-
