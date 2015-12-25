@@ -1,8 +1,10 @@
+;;; Code:
+
 ;;;---------------------------------
 ;;; R & ESS の設定
 ;;;---------------------------------
 ;; パスの追加
-;(setq load-path (cons (concat my/dropbox-dir "/elisp/ess") load-path))
+;(setq load-path (cons (concat my/emacs-directory "/elisp/ess") load-path))
 ;; 拡張子が r, R の場合に R-mode を起動
 (add-to-list 'auto-mode-alist '("\\.[rR]$" . R-mode))
 ;; R-mode を起動する時に ess-site をロード

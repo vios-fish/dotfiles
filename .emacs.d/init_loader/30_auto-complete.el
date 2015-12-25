@@ -2,7 +2,7 @@
 ;; 自動補完
 
 ;;; パスを通す
-;; (defvar my/ac-dir (concat my/dropbox-dir "/elisp/auto-complete/"))
+;; (defvar my/ac-dir (concat my/emacs-directory "/elisp/auto-complete/"))
 ;; (setq load-path
 ;;       (append (list my/ac-dir
 ;; 					(concat my/ac-dir "lib/ert")
@@ -95,7 +95,7 @@
 
 ; (defun my-ac-cc-mode-setup ()
 ;   ;; for emacs-clang-complete-async
-;   ;(setq ac-clang-complete-executable (concat dropbox-emacs-dir "/elisp/emacs-clang-complete-async/clang-complete"))
+;   ;(setq ac-clang-complete-executable (concat emacs-directory "/elisp/emacs-clang-complete-async/clang-complete"))
 
 ;   ;; for auto-complete-clang
 ;   ;; 読み込むプリコンパイル済みヘッダ

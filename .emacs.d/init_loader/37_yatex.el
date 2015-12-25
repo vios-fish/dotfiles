@@ -1,7 +1,7 @@
 ;;
 ;; YaTeX
 ;;
-(add-to-list 'load-path (concat my/dropbox-dir "/elisps/yatex"))
+(add-to-list 'load-path (concat my/emacs-directory "/elisps/yatex"))
 (autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
 (setq auto-mode-alist
       (append '(("\\.tex$" . yatex-mode)
@@ -113,7 +113,7 @@
           '(lambda ()
              (auto-fill-mode -1)))
 ;; templatefile
-;(setq YaTeX-template-file (concat my/dropbox-dir "/insert/template.tex"))
+;(setq YaTeX-template-file (concat my/emacs-directory "/insert/template.tex"))
 
 
 (when linux-p

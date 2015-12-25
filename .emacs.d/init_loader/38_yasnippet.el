@@ -7,8 +7,8 @@
 (require 'yasnippet)
 
 ;; ドロップボックスのEmacsフォルダにsnippetsというフォルダを作っておく
-;(add-to-list 'yas-snippet-dirs (concat my/dropbox-dir "/snippets")) ;; 作成するスニペットはここに入る
-;(add-to-list 'yas-snippet-dirs (concat my/dropbox-dir "/elisp/yasnippet/snippets")) ;; 最初から入っていたスニペット(省略可能)
+;(add-to-list 'yas-snippet-dirs (concat my/emacs-directory "/snippets")) ;; 作成するスニペットはここに入る
+;(add-to-list 'yas-snippet-dirs (concat my/emacs-directory "/elisp/yasnippet/snippets")) ;; 最初から入っていたスニペット(省略可能)
 (yas-global-mode 1)
 
 ;; 単語展開キーバインド (ver8.0から明記しないと機能しない)

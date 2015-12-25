@@ -1,9 +1,11 @@
-;ロードパスを追加
-(setq load-path (cons my/dropbox-dir load-path))
-(setq load-path (cons (concat my/dropbox-dir "/elisps") load-path))
-;(setq load-path (cons (concat my/dropbox-dir "/package") load-path))
-;(setq load-path (cons (concat my/dropbox-dir "/auto-install") load-path))
-;(setq load-path (cons (concat my/dropbox-dir "/elisp/SKK") load-path))
+;;; Code:
+
+;;;ロードパスを追加
+(setq load-path (cons my/emacs-directory load-path))
+(setq load-path (cons (concat my/emacs-directory "/elisps") load-path))
+;(setq load-path (cons (concat my/emacs-directory "/package") load-path))
+;(setq load-path (cons (concat my/emacs-directory "/auto-install") load-path))
+;(setq load-path (cons (concat my/emacs-directory "/elisp/SKK") load-path))
 
 
 ;; load environment variables

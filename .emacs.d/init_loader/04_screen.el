@@ -13,5 +13,5 @@
 	)
 	default-frame-alist))
 
-(setq custom-theme-directory (concat my/dropbox-dir "/themes/"))
+(setq custom-theme-directory (concat my/emacs-directory "/themes/"))
 (load-theme 'molokai t)

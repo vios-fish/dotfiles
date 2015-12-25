@@ -2,7 +2,7 @@
 ;; ひな形ファイルの場所と拡張子の対応付け
 (require 'autoinsert)
 ; テンプレート格納用ディレクトリ
-(setq auto-insert-directory (concat my/dropbox-dir "/insert/"))
+(setq auto-insert-directory (concat my/emacs-directory "/insert/"))
 ; ファイル拡張子とテンプレートの対応
 (setq auto-insert-alist
       (append '(

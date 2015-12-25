@@ -24,8 +24,6 @@
 
 ;;; Code:
 
-(setq load-path (cons my/dropbox-dir load-path))
-
 (defvar my/elisp-directory)
 (defvar my/init-loader-directory)
 

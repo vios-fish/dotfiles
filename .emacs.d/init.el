@@ -1,21 +1,13 @@
-;; 変数の設定
-(defvar my/elisp-directory)
-(defvar my/init-loader-directory)
+;;;基本設定
+;;; Code:
+; dotfilesのパス追加
+(setq my/dotfiles-dir "~/dotfiles/.emacs.d")
+(setq load-path (cons my/dotfiles-dir load-path))
 
-(when load-file-name
-  (setq user-emacs-directory (file-name-directory load-file-name))
-  (setq custom-theme-directory (concat user-emacs-directory "elisps/")))
-
-(setq my/emacs-directory user-emacs-directory)
-
-(setq my/elisp-directory (concat user-emacs-directory "elisps/"))
-(unless (file-directory-p my/elisp-directory)
-  (make-directory my/elisp-directory))
-
-(message load-file-name)
-
-(add-to-list 'load-path my/emacs-directory)
-
-(require 'common)
+;; dotfilesのcommon.elを読み込む
+(load (concat my/dotfiles-dir "/common"))
+(put 'dired-find-alternate-file 'disabled nil)
 
 (provide 'init)
+;;; init.el ends here
+
