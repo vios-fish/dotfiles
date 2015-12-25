@@ -16,8 +16,9 @@ set -e
 
 if ask 'zsh install?'; then
 	sudo apt-get install zsh && zsh
-	ln -s ~/dotfiles/.zshrc ~/.zshrc
-	ln -s ~/dotfiles/.zsh.d ~/.zsh.d
+	ln -s .zshrc ~/.zshrc
+	ln -s .zsh.d ~/.zsh.d
+	touch ~/.xmodmap
 	source ~/.zshrc
 fi
 
