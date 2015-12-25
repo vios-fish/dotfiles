@@ -22,6 +22,10 @@ case ${OSTYPE} in
 #		export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
 		# CPLEXのパスを設定
 		export PATH=$HOME/Applications/IBM/ILOG/CPLEX_Studio126/cplex/bin/x86-64_osx:$PATH
+		# Gurobiのパスを設定
+		export GUROBI_HOME="/opt/gurobi600/linux64"
+		export PATH="${PATH}:${GUROBI_HOME}/bin"
+		export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
 
 		#clangのデフォルトインクルードパスの設定
 		export CPATH=/usr/local/include:$CPATH
@@ -36,9 +40,18 @@ case ${OSTYPE} in
 		;;
 	linux*)
         #ここにLinux向けの設定
+		# path
+		export PATH=/opt/ibm/ILOG/CPLEX_Studio1261/cplex/bin/x86-64_linux:$PATH
 		export PATH=/usr/local/sbin:$PATH
-		export PATH=/usr/local/bin:$PATH
 		export PATH=/usr/bin:$PATH
+		export PATH=/usr/local/bin:$PATH
+		export PATH=$HOME/.linuxbrew/bin:$PATH
+
+		# manpath
+		export MANPATH=$HOME/.linuxbrew/share/man:$MANPATH
+
+		# infopath
+		export INFOPATH=$HOME/.linuxbrew/share/info:$INFOPATH
 		;;
 esac
 #export PATH="$HOME/.linuxbrew/bin:$PATH"
@@ -223,7 +236,7 @@ fi
 # hashの設定
 # "~hoge" が特定のパス名に展開されるようにする（ブックマークのようなもの）
 # 例： cd ~hoge と入力すると /long/path/to/hogehoge ディレクトリに移動
-hash -d hoge=/long/path/to/hogehoge
+# hash -d hoge=/long/path/to/hogehoge
 
 #######################################
 # ruby の設定
@@ -260,6 +273,3 @@ esac
 # export SYS_NOTIFIER='terminal-notifier'
 # source ~/.zsh.d/zsh-notify/notify.plugin.zsh
 
-export GUROBI_HOME="/opt/gurobi600/linux64"
-export PATH="${PATH}:${GUROBI_HOME}/bin"
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"

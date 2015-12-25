@@ -19,3 +19,5 @@
 /.emacs.d/init_loader/workbench.xmi
 /.emacs.d/semanticdb/
 /.emacs.d/url/
+/.emacs.d/places
+/.emacs.d/srecode-map.el
