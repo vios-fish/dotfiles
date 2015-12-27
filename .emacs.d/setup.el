@@ -81,12 +81,14 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
     expand-region
     wrap-region
     undo-tree
-    auto-complete
+;    auto-complete
     fuzzy
     smartrep
     yasnippet
     migemo
     all-ext
+
+	company
 
     ;;; buffer utils
     popwin

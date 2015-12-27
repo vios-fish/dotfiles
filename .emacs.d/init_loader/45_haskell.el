@@ -24,17 +24,17 @@
 (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
 ;; auto-complete
-(ac-define-source ghc-mod
-  '((depends ghc)
-    (candidates . (ghc-select-completion-symbol))
-    (symbol . "s")
-    (cache)))
+;; (ac-define-source ghc-mod
+;;   '((depends ghc)
+;;     (candidates . (ghc-select-completion-symbol))
+;;     (symbol . "s")
+;;     (cache)))
 
-(require 'ac-haskell-process) ; if not installed via package.el
-(add-hook 'interactive-haskell-mode-hook 'ac-haskell-process-setup)
-(add-hook 'haskell-interactive-mode-hook 'ac-haskell-process-setup)
-(eval-after-load "auto-complete"
-  '(add-to-list 'ac-modes 'haskell-interactive-mode))
+;; (require 'ac-haskell-process) ; if not installed via package.el
+;; (add-hook 'interactive-haskell-mode-hook 'ac-haskell-process-setup)
+;; (add-hook 'haskell-interactive-mode-hook 'ac-haskell-process-setup)
+;; (eval-after-load "auto-complete"
+;;  '(add-to-list 'ac-modes 'haskell-interactive-mode))
 
 
 (defun my-ac-haskell-mode ()
