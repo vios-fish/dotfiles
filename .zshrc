@@ -52,6 +52,12 @@ case ${OSTYPE} in
 
 		# infopath
 		export INFOPATH=$HOME/.linuxbrew/share/info:$INFOPATH
+
+		# gcc のデフォルトインクルードパス
+		export CPATH=/usr/local/include:$CPATH
+		export CPATH=/opt/ibm/ILOG/CPLEX_Studio1261/cplex/include:$CPATH
+		export CPATH=/opt/ibm/ILOG/CPLEX_Studio1261/concert/include:$CPATH
+		export CPATH=/opt/ibm/ILOG/CPLEX_Studio1261/cpoptimizer/include:$CPATH
 		;;
 esac
 #export PATH="$HOME/.linuxbrew/bin:$PATH"
