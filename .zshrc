@@ -15,23 +15,22 @@ export LC_ALL=ja_JP.UTF-8
 case ${OSTYPE} in
     darwin*)
         #ここにMac向けの設定
-		export PATH=$HOME/.cabal/bin:$PATH
-		export PATH=/usr/bin:$PATH
-		export PATH=/usr/local/sbin:$PATH
-		export PATH=/usr/local/bin:$PATH
-#		export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
-		# CPLEXのパスを設定
-		export PATH=$HOME/Applications/IBM/ILOG/CPLEX_Studio126/cplex/bin/x86-64_osx:$PATH
-		# Gurobiのパスを設定
-		export GUROBI_HOME="/opt/gurobi600/linux64"
-		export PATH="${PATH}:${GUROBI_HOME}/bin"
-		export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
 
-		#clangのデフォルトインクルードパスの設定
-		export CPATH=/usr/local/include:$CPATH
-		export CPATH=$HOME/Applications/IBM/ILOG/CPLEX_Studio126/cplex/include:$CPATH
-		export CPATH=$HOME/Applications/IBM/ILOG/CPLEX_Studio126/concert/include:$CPATH
-		export CPATH=$HOME/Applications/IBM/ILOG/CPLEX_Studio126/cpoptimizer/include:$CPATH
+		# HomeBrew
+		export BREW_DIR=/usr/local
+		
+		# CPLEX
+		export CPLEX_HOME_DIR=$HOME/Apprications/IBM/ILOG/CPLEX_Studio126
+		export CPLEX_BIN_DIR=$CPLEX_HOME_DIR/cplex/bin/x86-64_osx
+		
+		# Gurobi
+		export GUROBI_HOME=/opt/gurobi600/linux64		
+		export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib" # DYLib
+		export PATH=$PATH:$GUROBI_HOME/bin # Path
+		
+		# pyenv
+		export PYENV_ROOT=/usr/local/var/pyenv
+		
 		#clangのデフォルトライブラリパスの設定
 #		export CLIB
 		
@@ -40,26 +39,40 @@ case ${OSTYPE} in
 		;;
 	linux*)
         #ここにLinux向けの設定
-		# path
-		export PATH=/opt/ibm/ILOG/CPLEX_Studio1261/cplex/bin/x86-64_linux:$PATH
-		export PATH=/usr/local/sbin:$PATH
-		export PATH=/usr/bin:$PATH
-		export PATH=/usr/local/bin:$PATH
-		export PATH=$HOME/.linuxbrew/bin:$PATH
+
+		# HomeBrew (Linux Brew)
+		export BREW_DIR=$HOME/.linuxbrew
+
+		# Cplex
+		export CPLEX_HOME_DIR=/opt/ibm/ILOG/CPLEX_Studio1261
+		export CPLEX_BIN_DIR=$CPLEX_HOME_DIR/cplex/bin/x86-64_linux
+		
+		# pyenv
+		export PYENV_ROOT=$BREW_DIR/var/pyenv
 
 		# manpath
-		export MANPATH=$HOME/.linuxbrew/share/man:$MANPATH
+		export MANPATH=$BREW_DIR/share/man:$MANPATH
 
 		# infopath
-		export INFOPATH=$HOME/.linuxbrew/share/info:$INFOPATH
+		export INFOPATH=$BREW_DIR/share/info:$INFOPATH
 
-		# gcc のデフォルトインクルードパス
-		export CPATH=/usr/local/include:$CPATH
-		export CPATH=/opt/ibm/ILOG/CPLEX_Studio1261/cplex/include:$CPATH
-		export CPATH=/opt/ibm/ILOG/CPLEX_Studio1261/concert/include:$CPATH
-		export CPATH=/opt/ibm/ILOG/CPLEX_Studio1261/cpoptimizer/include:$CPATH
 		;;
 esac
+
+# PATH
+export PATH=$HOME/.cabal/bin:$PATH
+export PATH=/usr/bin:$PATH
+export PATH=/usr/local/sbin:$PATH
+export PATH=/usr/local/bin:$PATH
+export PATH=$CPLEX_BIN_DIR:$PATH
+export PAHT=$BREW_DIR/bin:$PATH
+
+#clangのデフォルトインクルードパスの設定
+export CPATH=/usr/local/include:$CPATH
+export CPATH=$CPLEX_HOME_DIR/cplex/include:$CPATH
+export CPATH=$CPLEX_HOME_DIR/concert/include:$CPATH
+export CPATH=$CPLEX_HOME_DIR/cpoptimizer/include:$CPATH
+
 #export PATH="$HOME/.linuxbrew/bin:$PATH"
 #export LD_LIBRARY_PATH="$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH"
 
@@ -213,8 +226,6 @@ alias mkdir='mkdir -p'
 
 alias ...='cd ../..'
 alias ....='cd ../../..'
-
-
  
 # sudo の後のコマンドでエイリアスを有効にする
 alias sudo='sudo '
@@ -248,7 +259,10 @@ fi
 # ruby の設定
 export PATH=$HOME/.rbenv/bin:$PATH
 eval "$(rbenv init -)"
- 
+
+# python の設定
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
  
 ########################################
 # OS 別の設定
