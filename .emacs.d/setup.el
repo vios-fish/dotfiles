@@ -100,6 +100,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
     smart-compile
 
 	;;;auto-complete-clang
+	auto-complete-clang-async
     
     ;;; lisp
     paredit
