@@ -24,7 +24,7 @@ case ${OSTYPE} in
 		export CPLEX_BIN_DIR=$CPLEX_HOME_DIR/cplex/bin/x86-64_osx
 		
 		# Gurobi
-		export GUROBI_HOME=/opt/gurobi600/linux64		
+		export GUROBI_HOME=/opt/gurobi600/linux64
 		export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib" # DYLib
 		export PATH=$PATH:$GUROBI_HOME/bin # Path
 		
@@ -158,8 +158,7 @@ precmd () {
     [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 }
 RPROMPT="%1(v|%F{green}%1v%f|)"
- 
- 
+
 ########################################
 # オプション
 # 日本語ファイル名を表示可能にする
@@ -233,7 +232,7 @@ alias sudo='sudo '
 # グローバルエイリアス
 alias -g L='| less'
 alias -g G='| grep'
-
+alias -g P='| peco'
  
 # C で標準出力をクリップボードにコピーする
 # mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1
@@ -248,6 +247,22 @@ elif which putclip >/dev/null 2>&1 ; then
     alias -g C='| putclip'
 fi
 
+# peco
+function peco-select-history() {
+    local tac
+    if which tac > /dev/null; then
+        tac="tac"
+    else
+        tac="tail -r"
+    fi
+    BUFFER=$(\history -n 1 | \
+        eval $tac | \
+        peco --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle clear-screen
+}
+zle -N peco-select-history
+bindkey '^r' peco-select-history
 
 #######################################
 # hashの設定
@@ -258,11 +273,12 @@ fi
 #######################################
 # ruby の設定
 export PATH=$HOME/.rbenv/bin:$PATH
-eval "$(rbenv init -)"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # python の設定
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
  
 ########################################
 # OS 別の設定
@@ -279,7 +295,6 @@ case ${OSTYPE} in
         ;;
     linux*)
         #Linux用の設定
-		alias pbcopy='xsel --clipboard --input'
 		xmodmap $HOME/.xmodmap
         ;;
 esac
