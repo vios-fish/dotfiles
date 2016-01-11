@@ -40,6 +40,9 @@ case ${OSTYPE} in
 	linux*)
         #ここにLinux向けの設定
 
+		# oh-my-zsh
+		export ZSH=/home/tokunaga/.oh-my-zsh
+		
 		# HomeBrew (Linux Brew)
 		export BREW_DIR=$HOME/.linuxbrew
 
@@ -76,6 +79,18 @@ export CPATH=$CPLEX_HOME_DIR/cpoptimizer/include:$CPATH
 #export PATH="$HOME/.linuxbrew/bin:$PATH"
 #export LD_LIBRARY_PATH="$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH"
 
+####################################################
+# oh-my-zsh
+# THEME
+#ZSH_THEME="amuse"
+ZSH_THEME="agnoster"
+
+# Plugins
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
+#####################################################
 # 色を使用出来るようにする
 autoload -Uz colors
 colors
@@ -92,8 +107,8 @@ SAVEHIST=1000000
 # 1行表示
 # PROMPT="%~ %# "
 # 2行表示
-PROMPT="%{${fg[red]}%}[%n@%m]%{${reset_color}%} %~
-%# "
+#PROMPT="%{${fg[red]}%}[%n@%m]%{${reset_color}%} %~
+#%# "
  
  
 # 単語の区切り文字を指定する
@@ -110,6 +125,10 @@ autoload -Uz add-zsh-hook
 ########################################
 # 補完
 # 補完機能を有効にする
+if [ -e /usr/local/share/zsh-completions ]; then
+	fpath=($BREW_DIR/share/zsh-completions $fpath)
+fi
+
 autoload -Uz compinit
 compinit
  
@@ -125,10 +144,6 @@ zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
  
 # ps コマンドのプロセス名補完
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
-
-if [ -e /usr/local/share/zsh-completions ]; then
-	fpath=(/usr/local/share/zsh-completions $fpath)
-fi
 
 # <Tab> でパス名の補完候補を表示したあと、
 # 続けて <Tab> を押すと候補からパス名を選択できるようになる
@@ -149,15 +164,15 @@ zstyle ':completion:*:descriptions' format '%BCompleting%b %U%d%u'
 ########################################
 # vcs_info
 
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' formats '(%s)-[%b]'
-zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
-precmd () {
-    psvar=()
-    LANG=en_US.UTF-8 vcs_info
-    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-}
-RPROMPT="%1(v|%F{green}%1v%f|)"
+# autoload -Uz vcs_info
+# zstyle ':vcs_info:*' formats '(%s)-[%b]'
+# zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
+# precmd () {
+# 	psvar=()
+# 	LANG=en_US.UTF-8 vcs_info
+# 	[[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+# }
+# RPROMPT="%1(v|%F{green}%1v%f|)"
 
 ########################################
 # オプション
