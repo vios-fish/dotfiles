@@ -17,12 +17,12 @@
 
 
 (when ns-p
-  (setq YaTeX-dvipdf-command "/usr/texbin/dvipdfmx")
+  (setq YaTeX-dvipdf-command "/Library/TeX/texbin/dvipdfmx")
   (setq YaTeX-dvi2-command-ext-alist
         '(("[agx]dvi\\|PictPrinter\\|Mxdvi" . ".dvi")
           ("gv" . ".ps")
           ("Preview\\|TeXShop\\|TeXworks\\|Skim\\|mupdf\\|xpdf\\|Adobe" . ".pdf")))
-  (setq tex-command "~/Library/TeXShop/bin/platex2pdf-utf8"   ; eucの場合はplatex2pdf-euc
+  (setq tex-command "platex"   ; eucの場合はplatex2pdf-euc
         dvi2-command "open -a Preview")  ; Preview.appを使ってPDFを開く
                                         ;(setq tex-command "/usr/texbin/latexmk -e '$latex=q/platex -synctex=1/' -e '$bibtex=q/pbibtex/' -e '$makeindex=q/mendex/' -e '$dvipdf=q/dvipdfmx %O -o %D %S/' -norc -gg -pdfdvi")
                                         ;(setq tex-command "/usr/texbin/latexmk -e '$latex=q/platex -synctex=1/' -e '$bibtex=q/pbibtex/' -e '$makeindex=q/mendex/' -e '$dvips=q/dvips %O -z -f %S | convbkmk -g > %D/' -e '$ps2pdf=q/ps2pdf %O %S %D/' -norc -gg -pdfps")
@@ -41,17 +41,19 @@
                                         ;(setq tex-command "/usr/texbin/lualatex -synctex=1")
                                         ;(setq tex-command "/usr/texbin/xelatex -synctex=1")
   (setq bibtex-command (cond ((string-match "uplatex" tex-command) "/usr/texbin/upbibtex")
-                             ((string-match "platex" tex-command) "/usr/texbin/pbibtex")
+                             ((string-match "platex" tex-command) "/Library/TeX/texbin/pbibtex")
                              ((string-match "lualatex\\|xelatex" tex-command) "/usr/texbin/bibtexu")
                              (t "/usr/texbin/bibtex")))
   (setq makeindex-command (cond ((string-match "uplatex" tex-command) "/usr/texbin/mendex")
-                                ((string-match "platex" tex-command) "/usr/texbin/mendex")
+                                ((string-match "platex" tex-command) "/Library/TeX/texbin/mendex")
                                 ((string-match "lualatex\\|xelatex" tex-command) "/usr/texbin/texindy")
                                 (t "/usr/texbin/makeindex")))
   (setq dvi2-command (cond ((string-match "pdf\\|lua\\|xe" tex-command) "/usr/bin/open -a Preview")
-                           (t "/usr/bin/open -a PictPrinter")))
-  (setq dviprint-command-format (cond ((string-match "pdf\\|lua\\|xe" tex-command) "/usr/bin/open -a \"Adobe Reader\" %s")
-                                      (t "/usr/bin/open -a \"Adobe Reader\" `echo %s | sed -e \"s/\\.[^.]*$/\\.pdf/\"`")))
+						   (t "open -a Preview")))
+;                           (t "/usr/bin/open -a PictPrinter")))
+  (setq dviprint-command-format "dvipdfmx %s")
+;  (setq dviprint-command-format (cond ((string-match "pdf\\|lua\\|xe" tex-command) "/usr/bin/open -a \"Adobe Reader\" %s")
+;                                      (t "/usr/bin/open -a \"Adobe Reader\" `echo %s | sed -e \"s/\\.[^.]*$/\\.pdf/\"`")))
   
   (defun skim-forward-search ()
     (interactive)
