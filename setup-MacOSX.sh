@@ -37,6 +37,12 @@ if ask 'restore setting from mackup? (need Dropbox directory)'; then
   mackup restore
 fi
 
+if ask 'setting zsh config?'; then
+	curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+	ln -s ~/dotfiles/.zshrc ~/.zshrc
+	ln -s ~/dotfiles/.zsh.d ~/.zsh.d	
+fi
+
 if ask "Do you want to install ruby by rbenv-rubybuild?"; then
   INSTALL_RUBY_VERSION="$( rbenv install -l | peco)"
   brew link readline --force
@@ -45,10 +51,5 @@ fi
 
 if ask "Create symbolic link bash_profile?"; then
 	ln -s ~/dotfiles/.bash_profile ~/.bash_profile
-fi
-
-if ask "Create symbolic link zsh?"; then
-	ln -s ~/dotfiles/.zshrc ~/.zshrc
-	ln -s ~/dotfiles/.zsh.d ~/.zsh.d
 fi
 
