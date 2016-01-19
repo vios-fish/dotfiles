@@ -62,16 +62,20 @@ case ${OSTYPE} in
 		;;
 esac
 
-# PATH
+############# PATH #####################
 export PATH=$HOME/.cabal/bin:$PATH
 export PATH=/usr/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
+# CPLEX
 export PATH=$CPLEX_BIN_DIR:$PATH
-export PAHT=$BREW_DIR/bin:$PATH
+# HOMEBREW
+export PATH=$BREW_DIR/bin:$PATH
+export PATH=$BREW_DIR/sbin:$PATH
 
-#clangのデフォルトインクルードパスの設定
+##### clangのデフォルトインクルードパスの設定 ####
 export CPATH=/usr/local/include:$CPATH
+# CPLEX
 export CPATH=$CPLEX_HOME_DIR/cplex/include:$CPATH
 export CPATH=$CPLEX_HOME_DIR/concert/include:$CPATH
 export CPATH=$CPLEX_HOME_DIR/cpoptimizer/include:$CPATH
