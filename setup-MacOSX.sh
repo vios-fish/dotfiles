@@ -1,5 +1,5 @@
 #!/bin/bash
-BREWFILE_DIR=./
+BREWFILE_DIR=./MacOSX
 
 ask() {
   printf "$* [y/n] "
@@ -33,7 +33,7 @@ if ask 'execute brew bundle(Brewfile)?'; then
   popd
 fi
 
-if ask 'restore setting from mackup? (need Dropbox directory)'; then
+if ask 'restore setting from mackup? (need Dropbox directory)?'; then
   mackup restore
 fi
 

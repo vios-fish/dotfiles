@@ -16,28 +16,31 @@ case ${OSTYPE} in
     darwin*)
         #ここにMac向けの設定
 
-		# HomeBrew
-		export BREW_DIR=/usr/local
+	# HomeBrew
+	export BREW_DIR=/usr/local
+
+	# oh-my-zsh
+	export ZSH=$HOME/.oh-my-zsh
 		
-		# CPLEX
-		export CPLEX_HOME_DIR=$HOME/Apprications/IBM/ILOG/CPLEX_Studio126
-		export CPLEX_BIN_DIR=$CPLEX_HOME_DIR/cplex/bin/x86-64_osx
+	# CPLEX
+	export CPLEX_HOME_DIR=$HOME/Apprications/IBM/ILOG/CPLEX_Studio126
+	export CPLEX_BIN_DIR=$CPLEX_HOME_DIR/cplex/bin/x86-64_osx
+	
+	# Gurobi
+	export GUROBI_HOME=/opt/gurobi600/linux64
+	export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib" # DYLib
+	export PATH=$PATH:$GUROBI_HOME/bin # Path
+	
+	# pyenv
+	export PYENV_ROOT=/usr/local/var/pyenv
+	
+	#clangのデフォルトライブラリパスの設定
+	#export CLIB
 		
-		# Gurobi
-		export GUROBI_HOME=/opt/gurobi600/linux64
-		export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib" # DYLib
-		export PATH=$PATH:$GUROBI_HOME/bin # Path
-		
-		# pyenv
-		export PYENV_ROOT=/usr/local/var/pyenv
-		
-		#clangのデフォルトライブラリパスの設定
-#		export CLIB
-		
-		# alias
-		alias emacs="TERM=xterm-256color /usr/local//bin/emacs"
-		;;
-	linux*)
+	# alias
+	alias emacs="TERM=xterm-256color /usr/local//bin/emacs"
+	;;
+    linux*)
         #ここにLinux向けの設定
 
 		# oh-my-zsh
@@ -90,7 +93,8 @@ export CPATH=$CPLEX_HOME_DIR/cpoptimizer/include:$CPATH
 ZSH_THEME="agnoster"
 
 # Plugins
-plugins=(git)
+plugins=(my-env atom autojump brew brew-cask bundler cdd colored-man composer docker encode64 gem git homeshick pow rails rake rbenv tig tmux vagrant web-search)
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -265,6 +269,10 @@ elif which putclip >/dev/null 2>&1 ; then
     # Cygwin
     alias -g C='| putclip'
 fi
+
+# emacs
+alias -g emacs='emacsclient -nw -a""'
+alias -g e='emacs'
 
 # peco
 function peco-select-history() {
