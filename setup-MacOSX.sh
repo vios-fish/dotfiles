@@ -39,8 +39,8 @@ fi
 
 if ask 'setting zsh config?'; then
 	curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-	ln -s ~/dotfiles/.zshrc ~/.zshrc
-	ln -s ~/dotfiles/.zsh.d ~/.zsh.d	
+	ln -sn ~/dotfiles/.zshrc ~/.zshrc
+	ln -sn ~/dotfiles/.zsh.d ~/.zsh.d	
 fi
 
 if ask "Do you want to install ruby by rbenv-rubybuild?"; then
@@ -49,7 +49,13 @@ if ask "Do you want to install ruby by rbenv-rubybuild?"; then
   MAKE_OPTS="-j 4" RUBY_CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline)" rbenv install $INSTALL_RUBY_VERSION
 fi
 
+if ask "Do you want to install python by pyenv-pythonbuild?"; then
+  INSTALL_PYTHON_VERSION="$( pyenv install -l | peco)"
+  brew link readline --force
+  MAKE_OPTS="-j 4" PYTHON_CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline)" pyenv install $INSTALL_PYTHON_VERSION
+fi
+
 if ask "Create symbolic link bash_profile?"; then
-	ln -s ~/dotfiles/.bash_profile ~/.bash_profile
+	ln -sn ~/dotfiles/.bash_profile ~/.bash_profile
 fi
 

@@ -16,30 +16,30 @@ case ${OSTYPE} in
     darwin*)
         #ここにMac向けの設定
 
-	# HomeBrew
-	export BREW_DIR=/usr/local
+		# HomeBrew
+		export BREW_DIR=/usr/local
 
-	# oh-my-zsh
-	export ZSH=$HOME/.oh-my-zsh
+		# oh-my-zsh
+		export ZSH=$HOME/.oh-my-zsh
 		
-	# CPLEX
-	export CPLEX_HOME_DIR=$HOME/Apprications/IBM/ILOG/CPLEX_Studio126
-	export CPLEX_BIN_DIR=$CPLEX_HOME_DIR/cplex/bin/x86-64_osx
-	
-	# Gurobi
-	export GUROBI_HOME=/opt/gurobi600/linux64
-	export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib" # DYLib
-	export PATH=$PATH:$GUROBI_HOME/bin # Path
-	
-	# pyenv
-	export PYENV_ROOT=/usr/local/var/pyenv
-	
-	#clangのデフォルトライブラリパスの設定
-	#export CLIB
+		# CPLEX
+		export CPLEX_HOME_DIR=$HOME/Apprications/IBM/ILOG/CPLEX_Studio126
+		export CPLEX_BIN_DIR=$CPLEX_HOME_DIR/cplex/bin/x86-64_osx
 		
-	# alias
-	alias emacs="TERM=xterm-256color /usr/local//bin/emacs"
-	;;
+		# Gurobi
+		export GUROBI_HOME=/opt/gurobi600/linux64
+		export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib" # DYLib
+		export PATH=$PATH:$GUROBI_HOME/bin # Path
+		
+		# pyenv
+		export PYENV_ROOT=/usr/local/var/pyenv
+		
+		#clangのデフォルトライブラリパスの設定
+		#export CLIB
+		
+		# alias
+		alias emacs="TERM=xterm-256color /usr/local//bin/emacs"
+		;;
     linux*)
         #ここにLinux向けの設定
 
