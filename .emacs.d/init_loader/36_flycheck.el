@@ -4,9 +4,6 @@
 
 ;;; Code:
 
-;;; flycheck clang include path
-(setq flycheck-clang-include-path '("/usr/local/Cellar/glpk/4.52/include" "/Users/tokunagamakoto/Programing/uchidalab/HigherMarkovTracking/src/"))
-
 ;;; flycheck for c++11
 ;; (flycheck-define-checker c/c++-clang
 ;;   "A C/C++ checker using clang."
@@ -27,7 +24,14 @@
 ;;   :modes (c-mode c++-mode))
 
 ;; 上記設定のかわり
-(add-hook 'c++-mode-hook (lambda () (setq flycheck-gcc-language-standard "c++11")))
+(add-hook 'c++-mode-hook
+		  (lambda () (setq flycheck-gcc-language-standard "c++11"
+						   flycheck-clang-include-path
+						   (list (expand-file-name "/usr/local/include")
+								 )
+						   )))
+											  
+
 
 ;;; flycheck error view by tool tip
 (eval-after-load 'flycheck
