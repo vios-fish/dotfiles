@@ -304,7 +304,10 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # python の設定
 export PATH="$PYENV_ROOT/bin:$PATH"
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which pyenv > /dev/null; then
+	eval "$(pyenv init -)";
+	eval "$(pyenv virtualenv-init -)"
+fi
 
  
 ########################################
