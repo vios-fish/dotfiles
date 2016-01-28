@@ -14,19 +14,19 @@ ask() {
 
 set -e
 
-if ask 'zsh install?'; then
-	sudo apt-get install zsh && zsh
-	ln -s .zshrc ~/.zshrc
-	ln -s .zsh.d ~/.zsh.d
-	touch ~/.xmodmap
-	source ~/.zshrc
-fi
-
 if ask 'Homebrew install?'; then
 	sudo apt-get install build-essential curl git m4 ruby \
 		 texinfo libbz2-dev libcurl4-openssl-dev libexpat-dev \
 		 libncurses-dev zlib1g-dev
 	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"
+fi
+
+if ask 'zshrc install?'; then
+	zsh
+	ln -s .zshrc ~/.zshrc
+	ln -s .zsh.d ~/.zsh.d
+	touch ~/.xmodmap
+	source ~/.zshrc
 fi
 
 if ask 'execute brew bundle(Brewfile)?'; then
