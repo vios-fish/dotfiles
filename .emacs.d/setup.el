@@ -120,16 +120,17 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
     ;;; syntacks check
     flycheck
     flycheck-pos-tip
+	helm-flycheck
 
 	;;; org
     org
     org-plus-contrib
 
+	;;; cmake
+	cmake-mode
+
 	;;; git
     magit
-    
-    ;;; syntacks check
-    flycheck
 
 	;;; mail
 	mew

@@ -19,6 +19,9 @@ case ${OSTYPE} in
 		# HomeBrew
 		export BREW_DIR=/usr/local
 
+		# Local Dir
+		export LOCAL_DIR=$HOME/local
+
 		# oh-my-zsh
 		export ZSH=$HOME/.oh-my-zsh
 		
@@ -33,6 +36,7 @@ case ${OSTYPE} in
 		
 		# pyenv
 		export PYENV_ROOT=/usr/local/var/pyenv
+
 		
 		#clangのデフォルトライブラリパスの設定
 		#export CLIB
@@ -48,6 +52,9 @@ case ${OSTYPE} in
 		
 		# HomeBrew (Linux Brew)
 		export BREW_DIR=$HOME/.linuxbrew
+
+		# Local Dir
+		export LOCAL_DIR=$HOME/local
 
 		# Cplex
 		export CPLEX_HOME_DIR=/opt/ibm/ILOG/CPLEX_Studio1261
@@ -70,21 +77,31 @@ export PATH=$HOME/.cabal/bin:$PATH
 export PATH=/usr/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
+export PATH=$LOCAL_DIR/bin:$PATH
+
 # CPLEX
 export PATH=$CPLEX_BIN_DIR:$PATH
+
 # HOMEBREW
 export PATH=$BREW_DIR/bin:$PATH
 export PATH=$BREW_DIR/sbin:$PATH
 
 ##### clangのデフォルトインクルードパスの設定 ####
 export CPATH=/usr/local/include:$CPATH
+export CPATH=$LOCAL_DIR/include:$CPATH
+
 # CPLEX
 export CPATH=$CPLEX_HOME_DIR/cplex/include:$CPATH
 export CPATH=$CPLEX_HOME_DIR/concert/include:$CPATH
 export CPATH=$CPLEX_HOME_DIR/cpoptimizer/include:$CPATH
 
-#export PATH="$HOME/.linuxbrew/bin:$PATH"
-#export LD_LIBRARY_PATH="$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH"
+#export PATH=$HOME/.linuxbrew/bin:$PATH
+#export LD_LIBRARY_PATH=$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH
+
+# my build lib path
+export PKG_CONFIG_PATH=$LOCAL_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
+export DYLD_FALLBACK_LIBRARY_PATH=$LOCAL_DIR/lib:$DYLD_FALLBACK_LIBRARY_PATH
+
 
 ####################################################
 # oh-my-zsh
@@ -271,7 +288,7 @@ elif which putclip >/dev/null 2>&1 ; then
 fi
 
 # emacs
-alias -g emacs='emacsclient -nw -a""'
+alias -g emacs='emacsclient -nw -a ""'
 alias -g e='emacs'
 
 # peco
