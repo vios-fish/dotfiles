@@ -29,13 +29,15 @@
 ;;; Code:
 (require 'use-package)
 
+(require 'use-package)
+
 (use-package magit
-			 :ensure t
-			 :bind (("C-x g" . magit-status)
-					("C-x M-g" . magit-dispatch-popup))
-			 :init
-			 :config
-			 )
+  :ensure t
+  :bind (("C-x g" . magit-status)
+		 ("C-x M-g" . magit-dispatch-popup))
+  :init
+  :config
+  )
 
 (provide '22_magit)
 ;;; 22_magit.el ends here
