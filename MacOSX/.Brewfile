@@ -1,5 +1,0 @@
-tap 'homebrew/bundle'
-brew 'pkg-config'
-brew 'makedepend'
-brew 'zlib'
-brew 'openssl'
