@@ -33,9 +33,9 @@ if ask 'execute brew bundle(Brewfile)?'; then
   popd
 fi
 
-if ask 'restore setting from mackup? (need Dropbox directory)?'; then
-  mackup restore
-fi
+# if ask 'restore setting from mackup? (need Dropbox directory)?'; then
+#   mackup restore
+# fi
 
 if ask 'setting zsh config?'; then
 	curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
