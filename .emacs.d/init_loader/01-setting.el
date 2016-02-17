@@ -33,15 +33,13 @@
 
 ;;; メニューバー
 ;; メニューバーを消す
-;(menu-bar-mode -1)
+(menu-bar-mode nil)
 ;; ツールバーを消す
-;(tool-bar-mode -1)
+(tool-bar-mode -1)
 
 ;;; バックアップファイル
-;; ＊.~とかのバックアップファイルを作る
-(setq make-backup-files t)
 ;; .#*とかのバックアップファイルを作る
-(setq auto-save-default t)
+(setq auto-save-default nil)
 
 (setq make-backup-files t)
 (setq backup-directory "~/.emacs.d/backup/")
@@ -171,3 +169,9 @@
 (require 'server)
 (unless (server-running-p)
   (server-start))
+
+;; スクリーンの最大化
+(set-frame-parameter nil 'fullscreen 'maximized)
+
+;; フルスクリーン
+;(set-frame-parameter nil 'fullscreen 'fullboth)
