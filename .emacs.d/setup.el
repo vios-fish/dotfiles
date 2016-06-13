@@ -61,6 +61,9 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
     
     gtags
 
+	;; C/C++
+	modern-cpp-font-lock
+
     ;; init-loader
     init-loader
 
