@@ -327,6 +327,13 @@ if which pyenv > /dev/null; then
 	eval "$(pyenv virtualenv-init -)"
 fi
 
+export WORKON_HOME=$HOME/.virtualenvs
+
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    export WORKON_HOME=$HOME/.virtualenvs
+    source /usr/local/bin/virtualenvwrapper.sh
+fi
+
  
 ########################################
 # OS 別の設定
