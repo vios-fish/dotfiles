@@ -26,8 +26,14 @@
 ;; 上記設定のかわり
 (add-hook 'c++-mode-hook
 		  (lambda () (setq flycheck-gcc-language-standard "c++11"
+						   flycheck-clang-language-standard "c++11"
 						   flycheck-clang-include-path
 						   (list (expand-file-name "/usr/local/include")
+								 (expand-file-name "~/local/include")
+								 )
+						   flycheck-clang-include-path
+						   (list (expand-file-name "/usr/local/include")
+								 (expand-file-name "~/local/include")
 								 )
 						   )))
 

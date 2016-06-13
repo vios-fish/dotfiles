@@ -86,6 +86,10 @@ export PATH=$CPLEX_BIN_DIR:$PATH
 export PATH=$BREW_DIR/bin:$PATH
 export PATH=$BREW_DIR/sbin:$PATH
 
+# my build lib path
+export PKG_CONFIG_PATH=$LOCAL_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
+export DYLD_FALLBACK_LIBRARY_PATH=$LOCAL_DIR/lib:$DYLD_FALLBACK_LIBRARY_PATH
+
 ##### clangのデフォルトインクルードパスの設定 ####
 export CPATH=/usr/local/include:$CPATH
 export CPATH=$LOCAL_DIR/include:$CPATH
@@ -95,12 +99,9 @@ export CPATH=$CPLEX_HOME_DIR/cplex/include:$CPATH
 export CPATH=$CPLEX_HOME_DIR/concert/include:$CPATH
 export CPATH=$CPLEX_HOME_DIR/cpoptimizer/include:$CPATH
 
-#export PATH=$HOME/.linuxbrew/bin:$PATH
-#export LD_LIBRARY_PATH=$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH
+# HomeBrew
+export LD_LIBRARY_PATH=$BREW_DIR/lib:$LD_LIBRARY_PATH
 
-# my build lib path
-export PKG_CONFIG_PATH=$LOCAL_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
-export DYLD_FALLBACK_LIBRARY_PATH=$LOCAL_DIR/lib:$DYLD_FALLBACK_LIBRARY_PATH
 
 
 ####################################################
@@ -326,6 +327,9 @@ if which pyenv > /dev/null; then
 	eval "$(pyenv virtualenv-init -)"
 fi
 
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
  
 ########################################
 # OS 別の設定
@@ -342,7 +346,6 @@ case ${OSTYPE} in
         ;;
     linux*)
         #Linux用の設定
-		xmodmap $HOME/.xmodmap
         ;;
 esac
  
