@@ -334,7 +334,7 @@ if which pyenv > /dev/null; then
 	eval "$(pyenv virtualenv-init -)"
 fi
 
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export VIRTUALENVWRAPPER_PYTHON=python
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
  
