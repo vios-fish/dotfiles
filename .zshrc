@@ -64,6 +64,9 @@ case ${OSTYPE} in
 		# pyenv
 		export PYENV_ROOT=$BREW_DIR/var/pyenv
 
+		# Go
+		export GOPATH=$HOME/go
+
 		# manpath
 		export MANPATH=$BREW_DIR/share/man:$MANPATH
 
@@ -86,6 +89,9 @@ export PATH=$CPLEX_BIN_DIR:$PATH
 # HOMEBREW
 export PATH=$BREW_DIR/bin:$PATH
 export PATH=$BREW_DIR/sbin:$PATH
+
+# Go
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 # my build lib path
 export PKG_CONFIG_PATH=$LOCAL_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
