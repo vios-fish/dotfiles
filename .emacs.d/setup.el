@@ -52,6 +52,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
     php-mode
     haskell-mode
     csharp-mode
+	cmake-mode
     yaml-mode
     ruby-mode
     js2-mode
