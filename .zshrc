@@ -64,6 +64,9 @@ case ${OSTYPE} in
 		# pyenv
 		export PYENV_ROOT=$BREW_DIR/var/pyenv
 
+		# Go
+		export GOPATH=$HOME/go
+
 		# manpath
 		export MANPATH=$BREW_DIR/share/man:$MANPATH
 
@@ -86,6 +89,9 @@ export PATH=$CPLEX_BIN_DIR:$PATH
 # HOMEBREW
 export PATH=$BREW_DIR/bin:$PATH
 export PATH=$BREW_DIR/sbin:$PATH
+
+# Go
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 # my build lib path
 export PKG_CONFIG_PATH=$LOCAL_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
@@ -328,7 +334,7 @@ if which pyenv > /dev/null; then
 	eval "$(pyenv virtualenv-init -)"
 fi
 
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export VIRTUALENVWRAPPER_PYTHON=python
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
  
