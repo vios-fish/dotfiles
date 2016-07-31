@@ -25,19 +25,20 @@
 ;;; Code:
 
 (use-package irony
-  :ensure t
   :defer t
   
   :init
   (add-hook 'c-mode-common-hook 'irony-mode)
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
   
   :config
   (custom-set-variables '(irony-additional-clang-options '("-std=c++1y")))
   (use-package company
 	:config
-	(add-to-list 'company-backends 'company-irony))  
-  (irony-cdb-autosetup-compile-options)
+	(add-to-list 'company-backends 'company-irony))
   )
+
+(require 'irony)
 
 (provide '38_irony)
 ;;; 38_irony.el ends here

@@ -41,23 +41,49 @@
 		(company-complete-selection)
 	  (company--insert-candidate2 company-common))))
 
+;; yasnippet and company
+(defun check-expansion ()
+  (save-excursion
+	(if (looking-at "\\_>") t
+	  (backward-char 1)
+	  (if (looking-at "\\.") t
+		(backward-char 1)
+		(if (looking-at "->") t nil)))))
+
+(defun do-yas-expand ()
+  (let ((yas/fallback-behavior 'return-nil))
+	(yas/expand)))
+
+(defun tab-indent-or-complete ()
+  (interactive)
+  (if (minibufferp)
+	  (minibuffer-complete)
+	(if (or (not yas-minor-mode)
+			(null (do-yas-expand)))
+		(if (check-expansion)
+			(company-complete-common)
+		  (indent-for-tab-command)))))
+
 (use-package company
-  :ensure t
-  :init (progn (global-company-mode))
-  :bind (("tab" . company-complete))
+  :init (progn (add-hook 'after-init-hook 'global-company-mode))
+  :bind (("<tab>" . tab-indent-or-complete))
   :config
   (setq company-idle-delay nil) ;; 自動補完無効
   (setq company-minimum-prefix-length 2) 
   (setq company-selection-wrap-around t)
   (bind-keys :map company-active-map
-			 ("tab" . company-complete-common2)
-			 ("backtab" . company-select-previous)
+			 ([tab] . company-complete-common2)
+			 ("<backtab>" . company-select-previous)
 			 ("M-n" . nil)
 			 ("M-p" . nil)
 			 ("C-n" . company-select-next)
 			 ("C-p" . company-select-previous)
 			 ("C-h" . nil)
 			 ("C-s" . company-filter-candidates))
+  (bind-keys :map company-search-map
+			 ("C-n" . company-select-next)
+			 ("C-p" . company-select-previous)
+			 ([tab] . company-complete-common2))
   )
 
 (provide '31_company)

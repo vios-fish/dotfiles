@@ -24,23 +24,21 @@
 ;;   :modes (c-mode c++-mode))
 
 ;; 上記設定のかわり
-(add-hook 'c++-mode-hook
-		  (lambda () (setq flycheck-gcc-language-standard "c++11"
-						   flycheck-clang-language-standard "c++11"
-						   flycheck-gcc-include-path
-						   (list (expand-file-name "/usr/local/include")
-								 (expand-file-name "~/local/include")
-								 )
-						   flycheck-clang-include-path
-						   (list (expand-file-name "/usr/local/include")
-								 (expand-file-name "~/local/include")
-								 )
-						   )))
 
-
-;;; flycheck error view by tool tip
-(with-eval-after-load 'flycheck
+(use-package flycheck
+  :init
+  (add-hook 'after-init-hook #'global-flycheck-mode)
+  :config
   (flycheck-pos-tip-mode)
+  (setq flycheck-gcc-language-standard "c++11"
+		flycheck-clang-language-standard "c++11"
+		flycheck-gcc-include-path
+		(list (expand-file-name "/usr/local/include")
+			  (expand-file-name "~/local/include")
+			  )
+		flycheck-clang-include-path
+		(list (expand-file-name "/usr/local/include")
+			  (expand-file-name "~/local/include")))
+  (when (locate-library "flycheck-irony")
+	(flycheck-irony-setup))
   )
-
-(add-hook 'after-init-hook #'global-flycheck-mode)
