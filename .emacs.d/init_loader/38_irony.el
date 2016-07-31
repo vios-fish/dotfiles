@@ -1,8 +1,8 @@
 ;;; 38_irony.el ---                                  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2016  徳永誠
+;; Copyright (C) 2016  vios-fish
 
-;; Author: 徳永誠 <tokunagamakoto@TokunagaMB.local>
+;; Author: 徳永誠 <vios-fish@MB.local>
 ;; Keywords: abbrev, abbrev
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -25,7 +25,6 @@
 ;;; Code:
 
 (use-package irony
-  :ensure t
   :defer t
   
   :init
