@@ -1,5 +1,8 @@
 ;;; undo-tree
 ;;; undo,redoを木状にしてやりやすくする
-(when (require 'undo-tree nil t)
+
+(use-package undo-tree
+  :diminish "UT"
+  :init
   (global-undo-tree-mode))
 
