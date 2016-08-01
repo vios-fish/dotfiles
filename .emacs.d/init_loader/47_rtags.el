@@ -1,4 +1,4 @@
-;;; 47_rtags.el ---                                  -*- lexical-binding: t; -*-
+;;; 47_rtags.el ---
 
 ;; Copyright (C) 2016  tokunaga
 
@@ -24,15 +24,32 @@
 
 ;;; Code:
 
-(use-package rtags :defer t
-  :init (add-hook 'c-mode-common-hook 'rtags-mode)
+(use-package rtags
+  :commands
+  rtags-enable-standard-keybindings
+  rtags-find-references
+  rtags-find-references-at-point
+  rtags-find-symbol
+  rtags-find-symbol-at-point
+  rtags-imenu
+  rtags-location-stack-back
+  rtags-location-stack-forward
+  rtags-start-process-unless-running
+  
   :config
-  (when (rtags-is-indexed)
-	(local-set-key (kbd "M-." 'rtags-find-symbol-at-point))
-	(local-set-key (kbd "M-;" 'rtags-find-symbol))
-	(local-set-key (kbd "M-@" 'rtags-find-references))
-	(local-set-key (kbd "M-," 'rtags-location-stack-back))
-	(custom-set-variables '(rtags-use-helm t))))
+  (rtags-enable-standard-keybindings c-mode-base-map)
+  (add-hook 'c-mode-common-hook 'rtags-start-process-unless-running)
+  (custom-set-variables '(rtags-use-helm t))
+  
+  :bind (:map c-mode-base-map
+              ("C-." . rtags-find-symbol)
+              ("C-," . rtags-find-reference)
+              ("M-." . rtags-find-symbol-at-point)
+              ("M-," . rtags-find-reference-at-point)
+              ("C-c i" . rtags-imenu)
+              ("C-{" . rtags-location-stack-back)
+              ("C-}" . rtags-location-stack-forward)))
+
 
 (provide '47_rtags)
 ;;; 47_rtags.el ends here

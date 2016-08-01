@@ -66,10 +66,12 @@
 
 (use-package company
   :init (progn (add-hook 'after-init-hook 'global-company-mode))
+  
   :bind ("TAB" . tab-indent-or-complete)
+  
   :config
   (setq company-idle-delay nil) ;; 自動補完無効
-  (setq company-minimum-prefix-length 2) 
+  (setq company-minimum-prefix-length 2)
   (setq company-selection-wrap-around t)
   (bind-keys :map company-active-map
 			 ([tab] . company-complete-common2)
@@ -83,8 +85,7 @@
   (bind-keys :map company-search-map
 			 ("C-n" . company-select-next)
 			 ("C-p" . company-select-previous)
-			 ([tab] . company-complete-common2))
-  )
+			 ([tab] . company-complete-common2)))
 
 (provide '31_company)
 ;;; 31_company.el ends here

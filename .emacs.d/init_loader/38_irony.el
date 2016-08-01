@@ -1,4 +1,4 @@
-;;; 38_irony.el ---                                  -*- lexical-binding: t; -*-
+;;; 38_irony.el ---
 
 ;; Copyright (C) 2016  vios-fish
 
@@ -33,13 +33,21 @@
 	(add-hook 'c++-mode-hook 'irony-mode))
   
   :config
+  ;; replace the `completion-at-point' and `complete-symbol' bindeings in
+  ;; irony-mode's buffers by irony-mode's function
+  (bind-key [remap completion-at-point] 'irony-completion-at-point-async irony-mode-map)
+  (bind-key [remap complete-symbol] 'irony-completion-at-point-async irony-mode-map)
+
+  
   (custom-set-variables '(irony-additional-clang-options '("-std=c++1y")))
   (irony-cdb-autosetup-compile-options))
 
 (use-package company-irony
   :after (irony company)
   :config
+  (company-irony-setup-begin-commands)
   (add-to-list 'company-backends 'company-irony))
+
 
 (use-package flycheck-irony
   :after (irony flycheck)
