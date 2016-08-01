@@ -61,6 +61,8 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
     google-c-style
     
     gtags
+	rtags
+	cmake-ide
 
 	;; C/C++
 	modern-cpp-font-lock
@@ -131,9 +133,6 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 	;;; org
     org
     org-plus-contrib
-
-	;;; cmake
-	cmake-mode
 
 	;;; git
     magit
