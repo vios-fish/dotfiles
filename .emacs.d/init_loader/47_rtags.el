@@ -1,9 +1,9 @@
-;;; 38_irony.el ---                                  -*- lexical-binding: t; -*-
+;;; 47_rtags.el ---                                  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2016  vios-fish
+;; Copyright (C) 2016  tokunaga
 
-;; Author: vios-fish <vios-fish@MB.local>
-;; Keywords: abbrev, abbrev
+;; Author: tokunaga
+;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -24,20 +24,15 @@
 
 ;;; Code:
 
-(use-package irony :defer t
-  :init
-  (progn
-	(add-hook 'c-mode-common-hook 'irony-mode)
-	(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
-  
+(use-package rtags :defer t
+  :init (add-hook 'c-mode-common-hook 'rtags-mode)
   :config
-  (custom-set-variables '(irony-additional-clang-options '("-std=c++1y")))
-  (use-package company
-	:config
-	(add-to-list 'company-backends 'company-irony))
-  )
+  (when (rtags-is-indexed)
+	(local-set-key (kbd "M-." 'rtags-find-symbol-at-point))
+	(local-set-key (kbd "M-;" 'rtags-find-symbol))
+	(local-set-key (kbd "M-@" 'rtags-find-references))
+	(local-set-key (kbd "M-," 'rtags-location-stack-back))
+	(custom-set-variables '(rtags-use-helm t))))
 
-(require 'irony)
-
-(provide '38_irony)
-;;; 38_irony.el ends here
+(provide '47_rtags)
+;;; 47_rtags.el ends here
