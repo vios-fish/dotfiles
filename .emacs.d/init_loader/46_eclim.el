@@ -17,3 +17,4 @@
 (setq help-at-pt-timer-delay 0.1)
 (help-at-pt-set-timer)
 (define-key eclim-mode-map (kbd "C-c C-e ;") 'eclim-run-class)
+

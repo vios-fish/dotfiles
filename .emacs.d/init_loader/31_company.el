@@ -66,7 +66,7 @@
 
 (use-package company
   :init (progn (add-hook 'after-init-hook 'global-company-mode))
-  :bind (("<tab>" . tab-indent-or-complete))
+  :bind ("TAB" . tab-indent-or-complete)
   :config
   (setq company-idle-delay nil) ;; 自動補完無効
   (setq company-minimum-prefix-length 2) 

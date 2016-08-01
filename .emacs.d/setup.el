@@ -95,6 +95,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
     all-ext
 
 	company
+	company-irony
 
     ;;; buffer utils
     popwin
@@ -125,6 +126,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
     flycheck
     flycheck-pos-tip
 	helm-flycheck
+	flycheck-irony
 
 	;;; org
     org
@@ -211,5 +213,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
                     collect url)))
     (dolist (url urls)
       (package-install-from-url url))))
+
+(require 'use-package)
 
 (provide 'setup)
