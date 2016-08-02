@@ -25,30 +25,24 @@
 ;;; Code:
 
 (use-package rtags
-  :commands
-  rtags-enable-standard-keybindings
-  rtags-find-references
-  rtags-find-references-at-point
-  rtags-find-symbol
-  rtags-find-symbol-at-point
-  rtags-imenu
-  rtags-location-stack-back
-  rtags-location-stack-forward
-  rtags-start-process-unless-running
+  :defer t
   
-  :config
+  :init
   (rtags-enable-standard-keybindings c-mode-base-map)
-  (add-hook 'c-mode-common-hook 'rtags-start-process-unless-running)
-  (custom-set-variables '(rtags-use-helm t))
   
-  :bind (:map c-mode-base-map
-              ("C-." . rtags-find-symbol)
-              ("C-," . rtags-find-reference)
-              ("M-." . rtags-find-symbol-at-point)
-              ("M-," . rtags-find-reference-at-point)
-              ("C-c i" . rtags-imenu)
-              ("C-{" . rtags-location-stack-back)
-              ("C-}" . rtags-location-stack-forward)))
+  :bind
+  (:map c-mode-base-map
+		("C-." . rtags-find-symbol)
+		("C-," . rtags-find-references)
+		("M-." . rtags-find-symbol-at-point)
+		("M-," . rtags-find-references-at-point)
+		("C-c i" . rtags-imenu)
+		("C-{" . rtags-location-stack-back)
+		("C-}" . rtags-location-stack-forward))
+  :config
+  (rtags-start-process-unless-running)
+  (custom-set-variables '(rtags-use-helm t))
+  (cmake-ide-setup))
 
 
 (provide '47_rtags)

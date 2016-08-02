@@ -1,31 +1,3 @@
-;;;
-;;; anything.el
-;;;
-;; (require 'anything-startup)
-;; ;;; descbinds-anything.el
-;; (require 'descbinds-anything)
-;; (descbinds-anything-install)
-;; ; my-anything-filelist+
-;; (defun my-anything-filelist+ ()
-;;   (interactive)
-;;   (anything-other-buffer
-;;    '(anything-c-source-files-in-current-dir+
-;;      anything-c-source-buffers+
-;;      anything-c-source-recentf
-;;      anything-c-source-mac-spotlight
-;;      anything-c-source-locate)
-;;    " *my-anything-filelist+*"))
-
-;; ;; anything key
-;; (global-set-key "\C-x\C-b" 'anything-buffers+)
-;; (global-set-key "\C-x\C-v" 'my-anything-filelist+)
-;; (global-set-key "\C-x\C-f" 'find-file)
-
-;;;
-;;; helm
-;;;
-
-
 ;;; Code:
 
 (use-package helm
@@ -85,38 +57,5 @@
   :config
   (bind-key "g" 'helm-ag helm-command-map))
 
-
-;; (progn
-;;   (require 'helm-config)
-;;   (global-unset-key (kbd "C-z"))
-;;   (custom-set-variables
-;;    '(helm-command-prefix-key "C-z")))
-;; ;; For find-file etc.
-;; (define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
-;; ;; For helm-find-files etc.
-;; (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
-
-;; (define-key helm-command-map (kbd "d") 'helm-descbinds)
-;; (define-key helm-command-map (kbd "g") 'helm-ag)
-;; (define-key helm-command-map (kbd "o") 'helm-occur)
-;; (define-key helm-command-map (kbd "y") 'yas/insert-snippet)
-;; (define-key helm-command-map (kbd "M-/") 'helm-dabbrev)
-			 
-;; (define-key global-map (kbd "M-x") 'helm-M-x)
-;; (define-key global-map (kbd "C-x b") 'helm-buffers-list)
-;; (define-key global-map (kbd "C-x C-f") 'helm-find-files)
-;; (define-key global-map (kbd "C-x C-r") 'helm-recentf)
-;; (define-key global-map (kbd "M-y") 'helm-show-kill-ring)
-;; (define-key global-map (kbd "C-c i") 'helm-imenu)
-;; (define-key global-map (kbd "M-g .") 'helm-ag)
-;; (define-key global-map (kbd "C-M-s") 'helm-ag-this-file)
-;; (define-key global-map (kbd "C-q") 'helm-mini)
-
-
-		 
-
-
-;; helmの設定
-;; set helm-command-prefix-key to "C-z"
-
-
+(provide '20_helm)
+;;; 20_helm.el ends here

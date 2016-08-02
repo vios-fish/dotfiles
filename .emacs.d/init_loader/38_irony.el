@@ -40,17 +40,15 @@
 
   
   (custom-set-variables '(irony-additional-clang-options '("-std=c++1y")))
-  (irony-cdb-autosetup-compile-options))
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
 (use-package company-irony
-  :after (irony company)
   :config
   (company-irony-setup-begin-commands)
   (add-to-list 'company-backends 'company-irony))
 
 
 (use-package flycheck-irony
-  :after (irony flycheck)
   :config
   (flycheck-irony-setup))
 

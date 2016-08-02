@@ -28,8 +28,8 @@
   (("<f5>" . cmake-ide-compile))
   
   :config
-  (setq cmake-ide-rdm-executable "path"
-		cmake-ide-rc-executable "path"))
+  (setq cmake-ide-rdm-executable "/usr/local/bin/rdm"
+		cmake-ide-rc-executable "/usr/local/bin/rc"))
 
 (provide '48_cmake-ide)
 ;;; 48_cmake-ide.el ends here
