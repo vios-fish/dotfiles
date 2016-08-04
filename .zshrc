@@ -43,7 +43,7 @@ case ${OSTYPE} in
 		
 		# alias
 		alias emacs="TERM=xterm-256color /usr/local//bin/emacs"
-		alias gcc="g++-5 -std=c++11 -Wall -Wextra -Wconversion"
+		# alias gcc="g++-5 -std=c++11 -Wall -Wextra -Wconversion"
 		;;
     linux*)
         #ここにLinux向けの設定

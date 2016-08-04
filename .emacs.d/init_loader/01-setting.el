@@ -1,3 +1,5 @@
+
+;;; Code:
 ;;日本語
 ;言語を日本語にする
 ;(require 'un-define)
@@ -5,7 +7,7 @@
 (set-terminal-coding-system 'utf-8)
 (setq file-name-coding-system 'utf-8)
 (set-clipboard-coding-system 'utf-8)
-(setq default-buffer-file-coding-system 'utf-8)
+(setq buffer-file-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-keyboard-coding-system 'utf-8)
@@ -39,10 +41,8 @@
 
 ;;; バックアップファイル
 ;; .#*とかのバックアップファイルを作る
-(setq auto-save-default nil)
-
 (setq make-backup-files t)
-(setq backup-directory "~/.emacs.d/backup/")
+(setq backup-directory (expand-file-name "~/.emacs.d/backup/"))
 (if (and (boundp 'backup-directory)
          (not (fboundp 'make-backup-file-name-original)))
     (progn
@@ -55,8 +55,9 @@
                     "/" (file-name-nondirectory filename))
           (make-backup-file-name-original filename)))))
 
-(setq auto-save-file-name-transforms
-  `((".*", (expand-file-name "~/.emacs.d/backup/") t)))
+(setq auto-save-default t)
+(setq auto-save-file-name-transforms '((".*" "~/.emacs.d/backup/" t)))
+
 
 ;; バッファの自動読み込み
 (global-auto-revert-mode 1)
@@ -173,5 +174,5 @@
 ;; スクリーンの最大化
 (set-frame-parameter nil 'fullscreen 'maximized)
 
-;; フルスクリーン
-;(set-frame-parameter nil 'fullscreen 'fullboth)
+(provide '01-setting)
+;;; 01-setting.el ends here
