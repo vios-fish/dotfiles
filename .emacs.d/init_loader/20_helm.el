@@ -1,8 +1,6 @@
 ;;; Code:
 
 (use-package helm
-  :after popwin
-  
   :init (progn
 		  (helm-mode t)
 		  (helm-descbinds-mode))
