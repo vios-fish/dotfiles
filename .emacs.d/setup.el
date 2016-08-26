@@ -67,6 +67,9 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 	;; C/C++
 	modern-cpp-font-lock
 
+	;; refactor
+	srefactor
+
     ;; init-loader
     init-loader
 

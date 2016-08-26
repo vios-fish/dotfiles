@@ -39,7 +39,9 @@
   (bind-key [remap complete-symbol] 'irony-completion-at-point-async irony-mode-map)
 
   
-  (custom-set-variables '(irony-additional-clang-options '("-std=c++1y"))))
+  (custom-set-variables '(irony-additional-clang-options '("-std=c++1y")))
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+  )
 
 (use-package company-irony
   :config

@@ -1,8 +1,7 @@
-;;; 47_rtags.el ---
-
+;;; 49_semantic-refactor.el ---                      -*- lexical-binding: t; -*-
 ;; Copyright (C) 2016  tokunaga
 
-;; Author: tokunaga
+;; Author: tokunaga <tokunaga@tokunaga-Ubuntu16>
 ;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,23 +23,16 @@
 
 ;;; Code:
 
-(use-package rtags
+(use-package srefactor :defer t
   :init
-  (rtags-enable-standard-keybindings c-mode-base-map)
-  (bind-keys :map c-mode-base-map
-		("C-." . rtags-find-symbol)
-		("C-," . rtags-find-references)
-		("M-." . rtags-find-symbol-at-point)
-		("M-," . rtags-find-references-at-point)
-		("C-c i" . rtags-imenu)
-		("C-{" . rtags-location-stack-back)
-		("C-}" . rtags-location-stack-forward))
-  
-  :config
-  (rtags-start-process-unless-running)
-  (custom-set-variables '(rtags-use-helm t))
-  (cmake-ide-setup))
-
-
-(provide '47_rtags)
-;;; 47_rtags.el ends here
+  (semantic-mode 1)
+  (bind-key "M-RET" 'srefactor-refactor-at-point c-mode-map)
+  (bind-key "M-RET" 'srefactor-refactor-at-point c++-mode-map)
+  (bind-keys
+   ("M-RET o" . srefactor-lisp-one-line)
+   ("M-RET m" . srefactor-lisp-format-sexp)
+   ("M-RET d" . srefactor-lisp-format-defun)
+   ("M-RET b" . srefactor-lisp-format-buffer))
+  )
+(provide '49_semantic-refactor)
+;;; 49_semantic-refactor.el ends here
