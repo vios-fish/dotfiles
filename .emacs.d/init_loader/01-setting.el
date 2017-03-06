@@ -171,8 +171,6 @@
 (unless (server-running-p)
   (server-start))
 
-;; スクリーンの最大化
-(set-frame-parameter nil 'fullscreen 'maximized)
 
 (provide '01-setting)
 ;;; 01-setting.el ends here

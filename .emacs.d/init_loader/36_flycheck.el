@@ -6,7 +6,7 @@
 
 (use-package flycheck
   :init
-  (add-hook 'after-init-hook #'global-flycheck-mode)
+  (global-flycheck-mode)
   :config
   (flycheck-pos-tip-mode)
   (setq flycheck-gcc-language-standard "c++1y"

@@ -65,28 +65,3 @@
   (when (member (file-name-extension (buffer-file-name)) my-linum-file-extension)
                 (linum-mode t)))
 (add-hook 'find-file-hook 'my-linum-file-extension)
-
-
-;; fullscreen
-(defvar my-fullscreen-default 'fullboth)
-(defun my-fullscreen (arg)
-  (interactive "P")
-  (let* ((state (frame-parameter (selected-frame) 'fullscreen))
-         (my-fullscreen-default
-          (cond
-           (arg
-            (intern (completing-read (format "method (now:%s): " state)
-                                     '("fullboth" "maximized" "nil")
-                                     nil
-                                     t)))
-           (t
-            my-fullscreen-default))))
-    (cond
-     ((or arg (null state))
-      (setq state my-fullscreen-default))
-     (t
-      (setq state nil)))
-    (set-frame-parameter (selected-frame) 'fullscreen state))
-  (redisplay))
-(global-set-key [(F11)] 'my-fullscreen)
-

@@ -37,19 +37,15 @@
   ;; irony-mode's buffers by irony-mode's function
   (bind-key [remap completion-at-point] 'irony-completion-at-point-async irony-mode-map)
   (bind-key [remap complete-symbol] 'irony-completion-at-point-async irony-mode-map)
-
-  
   (custom-set-variables '(irony-additional-clang-options '("-std=c++1y")))
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-  )
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
-(use-package company-irony
+(use-package company-irony :after company
   :config
   (company-irony-setup-begin-commands)
   (add-to-list 'company-backends 'company-irony))
 
-
-(use-package flycheck-irony
+(use-package flycheck-irony :after flycheck
   :config
   (flycheck-irony-setup))
 

@@ -118,7 +118,7 @@ export LD_LIBRARY_PATH=$BREW_DIR/lib:$LD_LIBRARY_PATH
 ZSH_THEME="agnoster"
 
 # Plugins
-plugins=(my-env atom autojump brew brew-cask bundler cdd colored-man composer docker encode64 gem git homeshick pow rails rake rbenv tig tmux vagrant web-search)
+plugins=(my-env autojump brew brew-cask bundler cdd colored-man composer docker encode64 gem git homeshick pow rbenv tig tmux vagrant web-search)
 
 
 source $ZSH/oh-my-zsh.sh
