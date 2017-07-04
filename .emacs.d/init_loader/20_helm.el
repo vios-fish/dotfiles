@@ -25,7 +25,7 @@
 	(push '("^\*helm-.+\*$" :regexp t) popwin:special-display-config)
 
 	;; migemo
-	(helm-migemo-mode 1)
+;	(helm-migemo-mode 1)
 	
 	;; keybind
 	(unbind-key "C-z")
