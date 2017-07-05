@@ -29,8 +29,6 @@
 ;;; Code:
 (require 'use-package)
 
-(require 'use-package)
-
 
 ;; コミットメッセージをHelmで挿入できるようにする
 (defvar helm-c-source-git-commit-messages
@@ -88,9 +86,9 @@
   :bind (("C-x g" . magit-status)
 		 ("C-x M-g" . magit-dispatch-popup))
   :init
+  (setenv "SSH_ASKPASS" "git-gui--askpass")
   :config
   )
-
 
 (provide '22_magit)
 ;;; 22_magit.el ends here

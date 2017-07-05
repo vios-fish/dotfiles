@@ -1,9 +1,9 @@
-;;; setup-el-get.el ---                              -*- lexical-binding: t; -*-
+;;; 54_javascript.el ---                             -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2016  vios-fish
+;; Copyright (C) 2017
 
-;; Author: vios-fish;;; setup-el-get.el ---                              -*- lexical-binding: t; -*- <MBA>
-;; Keywords: 
+;; Author: ;;; 54_javascript.el ---                             -*- lexical-binding: t; -*- <works@TOKUNAGA_M>
+;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -23,14 +23,10 @@
 ;; 
 
 ;;; Code:
+(use-package js2-mode
+  :mode ("\\.js\\'" . js2-mode)
+  )
 
-(add-to-list 'load-path (locate-user-emacs-file "el-get/elget"))
-(unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-	  (url-retrieve-synchronously
-	   "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
-	(goto-char (point-max))
-	(eval-print-last-sexp)))
 
-(provide 'setup-el-get)
-;;; setup-el-get.el ends here
+(provide '54_javascript)
+;;; 54_javascript.el ends here

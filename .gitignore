@@ -1,6 +1,7 @@
 /.emacs.d/elisps/auto-complete
 /.emacs.d/.DS_Store
 /.emacs.d/.python-environments/
+/.emacs.d/common.el~
 /.emacs.d/ac-comphist.dat
 /.emacs.d/history
 /.emacs.d/dict/stdafx.pch
@@ -22,7 +23,7 @@
 /.emacs.d/srecode-map.el
 /.emacs.d/irony/
 /.emacs.d/recentf
+/.emacs.d/session.104b3a44f2718fe30145304180381081400000022840054
+/.emacs.d/session.108cba71441746f084145327160688281700000022770054
 /.emacs.d/session*
 /.emacs.d/tutorial/Japanese.tut
-*/.DS_Store
-/.emacs.d/server

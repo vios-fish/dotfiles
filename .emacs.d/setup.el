@@ -7,16 +7,16 @@
 
 
 ;; PATHをロードパスに追加
-;; (defun set-exec-path-from-shell-PATH ()
-;;   "Set up Emacs' `exec-path' and PATH environment variable to match that used by the user's shell.
+(defun set-exec-path-from-shell-PATH ()
+  "Set up Emacs' `exec-path' and PATH environment variable to match that used by the user's shell.
 
-;; This is particularly useful under Mac OSX, where GUI apps are not started from a shell."
-;;   (interactive)
-;;   (let ((path-from-shell (replace-regexp-in-string "[ \t\n]*$" "" (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
-;;     (setenv "PATH" path-from-shell)
-;;     (setq exec-path (split-string path-from-shell path-separator))))
+This is particularly useful under Mac OSX, where GUI apps are not started from a shell."
+  (interactive)
+  (let ((path-from-shell (replace-regexp-in-string "[ \t\n]*$" "" (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
+    (setenv "PATH" path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator))))
 
-;; (set-exec-path-from-shell-PATH)
+;(set-exec-path-from-shell-PATH)
 
 
 ;; (unless load-file-name
@@ -34,11 +34,10 @@
 
 (defvar my/favorite-packages
   '(
-    ;; cask
-    pallet
-
-    ;; base
-    exec-path-from-shell
+	;; cask
+	pallet
+	;; base
+	exec-path-from-shell
     
     ;; libraly for elisp
     dash ; list function API
@@ -86,19 +85,23 @@
     helm-migemo
     wgrep-helm
     helm-descbinds
+	helm-company
+	helm-swoop
 
     ;;; editing utilities
     open-junk-file
     expand-region
     wrap-region
     undo-tree
-;    auto-complete
     fuzzy
     smartrep
     yasnippet
     migemo
     all-ext
 
+	ace-isearch
+
+	;; company
 	company
 	company-irony
 
@@ -139,6 +142,7 @@
 
 	;;; git
     magit
+	ssh-agency
 
 	;;; mail
 	mew
