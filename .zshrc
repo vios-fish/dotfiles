@@ -73,6 +73,9 @@ case ${OSTYPE} in
 		# infopath
 		export INFOPATH=$BREW_DIR/share/info:$INFOPATH
 
+		# pip
+		export PATH=$PATH:~/.local/bin
+
 		;;
 esac
 
@@ -107,7 +110,7 @@ export CPATH=$CPLEX_HOME_DIR/concert/include:$CPATH
 export CPATH=$CPLEX_HOME_DIR/cpoptimizer/include:$CPATH
 
 # HomeBrew
-export LD_LIBRARY_PATH=$BREW_DIR/lib:$LD_LIBRARY_PATH
+#export LD_LIBRARY_PATH=$BREW_DIR/lib:$LD_LIBRARY_PATH
 
 
 
@@ -115,13 +118,16 @@ export LD_LIBRARY_PATH=$BREW_DIR/lib:$LD_LIBRARY_PATH
 # oh-my-zsh
 # THEME
 #ZSH_THEME="amuse"
-ZSH_THEME="agnoster"
+#ZSH_THEME="agnoster"
 
 # Plugins
-plugins=(my-env autojump brew brew-cask bundler cdd colored-man composer docker encode64 gem git homeshick pow rbenv tig tmux vagrant web-search)
+#plugins=(my-env autojump brew brew-cask bundler cdd colored-man composer docker encode64 gem git homeshick pow rbenv tig tmux vagrant web-search)
 
 
-source $ZSH/oh-my-zsh.sh
+#source $ZSH/oh-my-zsh.sh
+
+powerline-daemon -q
+. ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
 #####################################################
 # 色を使用出来るようにする
@@ -328,15 +334,15 @@ export PATH=$HOME/.rbenv/bin:$PATH
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # python の設定
-export PATH="$PYENV_ROOT/bin:$PATH"
-if which pyenv > /dev/null; then
-	eval "$(pyenv init -)";
-	eval "$(pyenv virtualenv-init -)"
-fi
+#export PATH="$PYENV_ROOT/bin:$PATH"
+#if which pyenv > /dev/null; then#
+#	eval "$(pyenv init -)";
+#	eval "$(pyenv virtualenv-init -)"
+#fi
 
-export VIRTUALENVWRAPPER_PYTHON=python
-export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
+#export VIRTUALENVWRAPPER_PYTHON=python
+#export WORKON_HOME=$HOME/.virtualenvs
+#source /usr/local/bin/virtualenvwrapper.sh
  
 ########################################
 # OS 別の設定
