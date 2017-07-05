@@ -16,6 +16,4 @@
 (setq custom-theme-directory (concat my/emacs-directory "/themes/"))
 (load-theme 'molokai t)
 
-;; スクリーンの最大化
-(set-frame-parameter nil 'fullscreen 'maximized)
 

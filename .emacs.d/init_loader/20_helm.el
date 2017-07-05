@@ -1,19 +1,24 @@
-;;; Code:
+;;; package --- Su
 
+;;; Commentary:
+
+;;; Code:
 (use-package helm
   :init (progn
 		  (helm-mode t)
-		  (helm-descbinds-mode))
+		  (helm-descbinds-mode)
+		  (helm-migemo-mode 1)
+		  )
   
-  :bind (("M-x"     .	helm-M-x)
-		 ("C-x b"   .	helm-buffers-list)
-		 ("C-x C-f" .	helm-find-files)
-		 ("C-x C-r" .	helm-recentf)
-		 ("M-y"     .	helm-show-kill-ring)
-		 ("C-c i"	.	helm-imenu)
-		 ("M-g ."	.	helm-ag)
-		 ("C-M-s"	.	helm-ag-this-file)
-		 ("C-q"		.	helm-mini))
+  :bind (("M-x"     .  helm-M-x)
+		 ("C-x b"   .  helm-buffers-list)
+		 ("C-x C-f" .  helm-find-files)
+		 ("C-x C-r" .  helm-recentf)
+		 ("M-y"     .  helm-show-kill-ring)
+		 ("C-c i"	.  helm-imenu)
+		 ("M-g ."	.  helm-ag)
+		 ("C-M-s"	.  helm-ag-this-file)
+		 ("C-q"	    .  helm-mini))
   
   :config
   (progn
@@ -31,10 +36,10 @@
 	(unbind-key "C-z")
 	(custom-set-variables '(helm-command-prefix-key "C-z"))
 	(bind-keys :map helm-command-map
-			   ("d"	  . helm-descbinds)
+			   ("d"   . helm-descbinds)
 			   ("o"   . helm-occur)
-			   ("y"	  . yas/insert-snippet)
-			   ("M-/" .	helm-dabbrev))
+			   ("y"   . yas/insert-snippet)
+			   ("M-/" . helm-dabbrev))
 	(bind-key "<tab>" 'helm-execute-persistent-action helm-read-file-map)
 	(bind-key "<tab>" 'helm-execute-persistent-action helm-find-files-map)
 	
