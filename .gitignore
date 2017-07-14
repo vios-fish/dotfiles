@@ -26,3 +26,4 @@
 /.emacs.d/init_sample.el
 *.DS_Store
 /.emacs.d/server
+.emacs.d/meghanada
