@@ -1,11 +1,13 @@
 ;; org-modeの初期化
 
-(use-package org-install
+(use-package org
+  :ensure t
   :bind (("C-c l" . org-store-link)
 		 ("C-c a" . org-agenda)
 		 ("C-c r" . org-remember))
 
-  :mode (("\\.org$" . org-mode))
+  :mode (("\\.org$" . org-mode)
+		 ("\\.txt$" . org-mode))
 
   :config
   ;; org-modeでの強調表示を可能にする
