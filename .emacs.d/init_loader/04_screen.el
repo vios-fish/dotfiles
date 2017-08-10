@@ -9,7 +9,7 @@
 					'(cursor-color . "white")
 					'(width . 190)
 					'(height . 50)
-					'(alpha . (80 60 40 40))
+					'(alpha . (100 100 40 40))
 					)
 			  default-frame-alist))
 
