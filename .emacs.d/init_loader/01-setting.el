@@ -171,6 +171,9 @@
 (unless (server-running-p)
   (server-start))
 
+;;; tramp
+(if windows-p
+	(setq tramp-default-method "plink"))
 
 (provide '01-setting)
 ;;; 01-setting.el ends here
