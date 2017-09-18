@@ -1,3 +1,8 @@
+;;; package --- Summary
+;;; Commentary:
+
+;;; Code:
+
 ;; ;;; フォントの設定
 ;; (set-fontset-font
 ;;  (frame-parameter nil 'font)
@@ -23,5 +28,8 @@
       (set-fontset-font nil 'japanese-jisx0213.2004-1 jp-fontspec)
       (set-fontset-font nil 'japanese-jisx0213-2 jp-fontspec)
       (set-fontset-font nil 'katakana-jisx0201 jp-fontspec)
-      (set-fontset-font nil '(#x0080 . #x024F) fontspec) 
+      (set-fontset-font nil '(#x0080 . #x024F) fontspec)
       (set-fontset-font nil '(#x0370 . #x03FF) fontspec))
+
+(provide '03_font)
+;;; 03_font.el ends here
