@@ -22,6 +22,8 @@
   ;; TODO状態
   (setq org-todo-keywords
 		'((sequence "TODO(t)" "WAIT(w)" "|" "DONE(d)" "SOMEDAY(s)")))
+  ;; code blockのハイライト表示
+  (setq org-src-fontify-natively t)
   ;; DONEの時刻を記録
   (setq org-log-done 'time))
 
