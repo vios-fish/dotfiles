@@ -21,7 +21,6 @@
 ;; 
 
 ;;; Code:
-
 (defun company--insert-candidate2 (candidate)
   (when (> (length candidate) 0)
 	(setq candidate (substring-no-properties candidate))
@@ -86,6 +85,15 @@
 			 ("C-n" . company-select-next)
 			 ("C-p" . company-select-previous)
 			 ([tab] . company-complete-common2)))
+
+(use-package helm-company
+  :after helm company
+  :config
+  (bind-keys :map company-mode-map
+			 ("C-:" . helm-company))
+  (bind-keys :map company-active-map
+			 ("C-:" . helm-company))
+  )
 
 (provide '31_company)
 ;;; 31_company.el ends here

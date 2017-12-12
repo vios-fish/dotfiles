@@ -1,4 +1,4 @@
-;;; 52_markdown.el ---                               -*- lexical-binding: t; -*-
+;;; 52_markdown.el --- 
 
 ;; Copyright (C) 2016  徳永誠
 
@@ -24,18 +24,23 @@
 
 ;;; Code:
 
-(add-hook 'markdown-mode-hook
-		  (lambda ()
-			(when buffer-file-name
-			  (add-hook 'after-save-hook
-						'check-parens
-						nil t))))
+;; (add-hook 'markdown-mode-hook
+;; 		  (lambda ()
+;; 			(when buffer-file-name
+;; 			  (add-hook 'after-save-hook
+;; 						'check-parens
+;; 						nil t))))
 
-(autoload 'markdown-mode "markdown-mode"
-   "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+;; (autoload 'markdown-mode "markdown-mode"
+;;    "Major mode for editing Markdown files" t)
+;; (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+;; (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+;; (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+(use-package markdown-mode :ensure t
+  :mode (("\\.md$" . markdown-mode)
+		 ("\\.markdown$" . markdown-mode))
+  )
 
 (provide '52_markdown)
 ;;; 52_markdown.el ends here

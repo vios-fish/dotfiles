@@ -16,7 +16,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
     (setenv "PATH" path-from-shell)
     (setq exec-path (split-string path-from-shell path-separator))))
 
-(set-exec-path-from-shell-PATH)
+;(set-exec-path-from-shell-PATH)
 
 
 ;; (unless load-file-name
@@ -28,17 +28,16 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (add-to-list 'load-path my/elisp-directory)
 
 ;; check commands
-(dolist (cmd '("curl"))
-  (unless (executable-find cmd)
-    (error "Please install %s" cmd)))
+;(dolist (cmd '("curl"))
+;  (unless (executable-find cmd)
+;    (error "Please install %s" cmd)))
 
 (defvar my/favorite-packages
   '(
-    ;; cask
-    pallet
-
-    ;; base
-    exec-path-from-shell
+	;; cask
+	pallet
+	;; base
+	exec-path-from-shell
     
     ;; libraly for elisp
     dash ; list function API
@@ -86,19 +85,23 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
     helm-migemo
     wgrep-helm
     helm-descbinds
+	helm-company
+	helm-swoop
 
     ;;; editing utilities
     open-junk-file
     expand-region
     wrap-region
     undo-tree
-;    auto-complete
     fuzzy
     smartrep
     yasnippet
     migemo
     all-ext
 
+	ace-isearch
+
+	;; company
 	company
 	company-irony
 
@@ -139,6 +142,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
 	;;; git
     magit
+	ssh-agency
 
 	;;; mail
 	mew

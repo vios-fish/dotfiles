@@ -1,3 +1,8 @@
+;;; package --- Summary
+;;; Commentary:
+
+;;; Code:
+
 ;; ;;; フォントの設定
 ;; (set-fontset-font
 ;;  (frame-parameter nil 'font)
@@ -14,8 +19,8 @@
 
 
 (let* ((size 14)
-           (asciifont "Ricty") ; ASCII fonts
-           (jpfont "Ricty") ; Japanese fonts
+           (asciifont "Myrica M") ; ASCII fonts
+           (jpfont "Myrica M") ; Japanese fonts
            (h (* size 10))
            (fontspec (font-spec :family asciifont))
            (jp-fontspec (font-spec :family jpfont)))
@@ -26,14 +31,5 @@
       (set-fontset-font nil '(#x0080 . #x024F) fontspec)
       (set-fontset-font nil '(#x0370 . #x03FF) fontspec))
 
-;; ;;; フォントの設定
-;; (set-fontset-font
-;;  (frame-parameter nil 'font)
-;;  'mule-unicode-0100-24ff
-;;  '("Ricty" . "iso10646-1"))
-;; (set-fontset-font (frame-parameter nil 'font)
-;; 				  'japanese-jisx0208
-;; 				  '("Ricty" . "unicode-bmp"))
-;; (set-fontset-font (frame-parameter nil 'font)
-;; 				  'katakana-jisx0201
-;; 				  '("Ricty" . "unicode-bmp"))
+(provide '03_font)
+;;; 03_font.el ends here

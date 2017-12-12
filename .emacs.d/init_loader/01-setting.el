@@ -118,8 +118,13 @@
 (setq-default save-place t)
 
 ;; for tramp
-(require 'tramp)
-(setq tramp-default-method "ssh")
+(use-package tramp
+  :init
+  (setq tramp-default-method "ssh")
+  (add-to-list 'tramp-default-proxies-alist
+               '("proxy2" nil "/plink:proxy1:"))
+  (add-to-list 'tramp-default-proxies-alist
+               '("target" nil "/proxy2:")))
 
 ;;; 行
 ;; 行の先頭でC-kを一回押すだけで行全体を消去する
@@ -166,7 +171,6 @@
 (require 'server)
 (unless (server-running-p)
   (server-start))
-
 
 (provide '01-setting)
 ;;; 01-setting.el ends here

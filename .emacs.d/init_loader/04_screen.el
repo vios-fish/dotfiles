@@ -9,13 +9,11 @@
 					'(cursor-color . "white")
 					'(width . 190)
 					'(height . 50)
-					'(alpha . (80 60 40 40))
+					'(alpha . (100 100 40 40))
 					)
 			  default-frame-alist))
 
 (setq custom-theme-directory (concat my/emacs-directory "/themes/"))
 (load-theme 'molokai t)
 
-;; スクリーンの最大化
-(set-frame-parameter nil 'fullscreen 'maximized)
 

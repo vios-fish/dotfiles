@@ -1,11 +1,13 @@
 ;; org-modeの初期化
 
-(use-package org-install
+(use-package org
+  :ensure t
   :bind (("C-c l" . org-store-link)
 		 ("C-c a" . org-agenda)
 		 ("C-c r" . org-remember))
 
-  :mode (("\\.org$" . org-mode))
+  :mode (("\\.org$" . org-mode)
+		 ("\\.txt$" . org-mode))
 
   :config
   ;; org-modeでの強調表示を可能にする
@@ -20,6 +22,8 @@
   ;; TODO状態
   (setq org-todo-keywords
 		'((sequence "TODO(t)" "WAIT(w)" "|" "DONE(d)" "SOMEDAY(s)")))
+  ;; code blockのハイライト表示
+  (setq org-src-fontify-natively t)
   ;; DONEの時刻を記録
   (setq org-log-done 'time))
 
