@@ -27,7 +27,8 @@
       emacs23.0-p (string-match "^23\.0" emacs-version)
       emacs23.1-p (string-match "^23\.1" emacs-version)
       emacs23.2-p (string-match "^23\.2" emacs-version)
-	  emacs24-p (string-match "^24" emacs-version))
+	  emacs24-p (string-match "^24" emacs-version)
+	  emacs25-p (string-match "^25" emacs-version))
 
 ;; system-type predicates
 (setq darwin-p  (eq system-type 'darwin)
