@@ -18,7 +18,7 @@
 ;                         )
 
 
-(let* ((size 14)
+(let* ((size 16)
            (asciifont "Myrica M") ; ASCII fonts
            (jpfont "Myrica M") ; Japanese fonts
            (h (* size 10))
