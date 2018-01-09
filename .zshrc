@@ -65,7 +65,7 @@ case ${OSTYPE} in
 		export PYENV_ROOT=$BREW_DIR/var/pyenv
 
 		# Go
-		export GOPATH=$HOME/go
+		export GOPATH=$HOME/local/go
 
 		# manpath
 		export MANPATH=$BREW_DIR/share/man:$MANPATH
@@ -75,6 +75,10 @@ case ${OSTYPE} in
 
 		# pip
 		export PATH=$PATH:~/.local/bin
+		
+		# java
+		export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
+		export PATH=$PATH:$JAVA_HOME/bin
 
 		;;
 esac
@@ -87,27 +91,27 @@ export PATH=/usr/local/bin:$PATH
 export PATH=$LOCAL_DIR/bin:$PATH
 
 # CPLEX
-export PATH=$CPLEX_BIN_DIR:$PATH
+#export PATH=$CPLEX_BIN_DIR:$PATH
 
 # HOMEBREW
-export PATH=$BREW_DIR/bin:$PATH
-export PATH=$BREW_DIR/sbin:$PATH
+#export PATH=$BREW_DIR/bin:$PATH
+#export PATH=$BREW_DIR/sbin:$PATH
 
 # Go
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+export PATH=$GOPATH/bin:$PATH
 
 # my build lib path
-export PKG_CONFIG_PATH=$LOCAL_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
-export DYLD_FALLBACK_LIBRARY_PATH=$LOCAL_DIR/lib:$DYLD_FALLBACK_LIBRARY_PATH
+#export PKG_CONFIG_PATH=$LOCAL_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
+#export DYLD_FALLBACK_LIBRARY_PATH=$LOCAL_DIR/lib:$DYLD_FALLBACK_LIBRARY_PATH
 
 ##### clangのデフォルトインクルードパスの設定 ####
 export CPATH=/usr/local/include:$CPATH
 export CPATH=$LOCAL_DIR/include:$CPATH
 
 # CPLEX
-export CPATH=$CPLEX_HOME_DIR/cplex/include:$CPATH
-export CPATH=$CPLEX_HOME_DIR/concert/include:$CPATH
-export CPATH=$CPLEX_HOME_DIR/cpoptimizer/include:$CPATH
+#export CPATH=$CPLEX_HOME_DIR/cplex/include:$CPATH
+#export CPATH=$CPLEX_HOME_DIR/concert/include:$CPATH
+#export CPATH=$CPLEX_HOME_DIR/cpoptimizer/include:$CPATH
 
 # HomeBrew
 #export LD_LIBRARY_PATH=$BREW_DIR/lib:$LD_LIBRARY_PATH
@@ -279,6 +283,8 @@ alias mkdir='mkdir -p'
 
 alias ...='cd ../..'
 alias ....='cd ../../..'
+
+alias grep='grep --color'
  
 # sudo の後のコマンドでエイリアスを有効にする
 alias sudo='sudo '
@@ -306,6 +312,7 @@ alias -g emacs='emacsclient -nw -a ""'
 alias -g e='emacs'
 
 # peco
+## peco history
 function peco-select-history() {
     local tac
     if which tac > /dev/null; then
@@ -322,6 +329,36 @@ function peco-select-history() {
 zle -N peco-select-history
 bindkey '^r' peco-select-history
 
+# ### search a destination from cdr list
+function peco-get-destination-from-cdr() {
+  cdr -l | \
+  sed -e 's/^[[:digit:]]*[[:blank:]]*//' | \
+  peco --query "$LBUFFER"
+}
+
+### search a destination from cdr list and cd the destination
+function peco-cdr() {
+  local destination="$(peco-get-destination-from-cdr)"
+  if [ -n "$destination" ]; then
+    BUFFER="cd $destination"
+    zle accept-line
+  else
+    zle reset-prompt
+  fi
+}
+zle -N peco-cdr
+bindkey '^x' peco-cdr
+
+#pecoでkill
+function peco-pkill() {
+  for pid in `ps aux | peco | awk '{ print $2 }'`
+  do
+    kill $pid
+    echo "Killed ${pid}"
+  done
+}
+alias pk="peco-pkill"
+
 #######################################
 # hashの設定
 # "~hoge" が特定のパス名に展開されるようにする（ブックマークのようなもの）
@@ -330,8 +367,10 @@ bindkey '^r' peco-select-history
 
 #######################################
 # ruby の設定
-export PATH=$HOME/.rbenv/bin:$PATH
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# export PATH=$HOME/.rbenv/bin:$PATH
+# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+
 
 # python の設定
 #export PATH="$PYENV_ROOT/bin:$PATH"
@@ -339,6 +378,10 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 #	eval "$(pyenv init -)";
 #	eval "$(pyenv virtualenv-init -)"
 #fi
+
+export PYENV_ROOT=$HOME/.pyenv
+export PATH=$PYENV_ROOT/bin:$PATH
+eval "$(pyenv init -)"
 
 #export VIRTUALENVWRAPPER_PYTHON=python
 #export WORKON_HOME=$HOME/.virtualenvs
@@ -371,3 +414,33 @@ esac
 # export SYS_NOTIFIER='terminal-notifier'
 # source ~/.zsh.d/zsh-notify/notify.plugin.zsh
 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+## Tmux + SSH --------------------------------------------------------
+# function ssh_tmux() {
+#   tmux  set-option default-terminal "screen" \; \
+#         new-window -n $(echo $@ | perl -ple 's/(^|\s)-[^\s] *[^\s]+//g' | cut -d" " -f2 ) "exec ssh $(echo $@)" \; \
+#         run-shell        "[ ! -d $HOME/.tmuxlog/#W/$(date +%Y-%m/%d) ] && mkdir -p $HOME/.tmuxlog/#W/$(date +%Y-%m/%d)" \; \
+#         pipe-pane        "cat >> $HOME/.tmuxlog/#W/$(date +%Y-%m/%d/%H%M%S.log)" \; \
+#         display-message  "Started logging to $HOME/.tmuxlog/#W/$(date +%Y-%m/%d/%H%M%S.log)"
+# }
+
+# if [[ $TERM = screen ]] || [[ $TERM = screen-256color ]] ; then
+#   alias ssh=ssh_tmux
+# fi
+
+if [[ $TERM = screen ]] || [[ $TERM = screen-256color ]] ; then
+  LOGDIR=$HOME/.tmuxlog
+  LOGFILE=$(hostname)_$(date +%Y-%m-%d_%H%M%S_%N.log)
+  [ ! -d $LOGDIR ] && mkdir -p $LOGDIR
+  tmux  set-option default-terminal "screen" \; \
+    pipe-pane        "cat >> $LOGDIR/$LOGFILE" \; \
+    display-message  "Started logging to $LOGDIR/$LOGFILE"
+fi
+
+if [ $SHLVL = 1 ]; then
+  tmux -2
+fi

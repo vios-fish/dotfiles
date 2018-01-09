@@ -14,8 +14,8 @@
 
 
 (let* ((size 14)
-           (asciifont "Myrica M") ; ASCII fonts
-           (jpfont "Myrica M") ; Japanese fonts
+           (asciifont "MyricaM M") ; ASCII fonts
+           (jpfont "MyricaM M") ; Japanese fonts
            (h (* size 10))
            (fontspec (font-spec :family asciifont))
            (jp-fontspec (font-spec :family jpfont)))

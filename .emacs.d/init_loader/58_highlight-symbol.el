@@ -1,9 +1,9 @@
-;;; 54_javascript.el ---                             -*- lexical-binding: t; -*-
+;;; 58_highlight-symbol.el ---                       -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2017
+;; Copyright (C) 2018  tokunaga-m
 
-;; Author: ;;; 54_javascript.el ---                             -*- lexical-binding: t; -*- <works@TOKUNAGA_M>
-;; Keywords:
+;; Author: tokunaga-m <tokunaga-m@tokunagam-OptiPlex-7040>
+;; Keywords: emacs
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -23,13 +23,15 @@
 ;; 
 
 ;;; Code:
-(use-package js2-mode
-  :mode ("\\.js\\'" . js2-mode)
+
+(use-package highlight-symbol
+  :ensure t
+  :defer t
+  :init
+  (add-hook 'ruby-mode-hook 'highlight-symbol-mode)
   :config
-  (setq js2-basic-offset 2)
-  (setq-default indent-tabs-mode nil)
+  (setq highlight-symbol-idle-delay 0.5)
   )
 
-
-(provide '54_javascript)
-;;; 54_javascript.el ends here
+(provide '58_highlight-symbol)
+;;; 58_highlight-symbol.el ends here

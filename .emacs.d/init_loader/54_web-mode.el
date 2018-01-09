@@ -24,25 +24,39 @@
 
 ;;; Code:
 
-(use-package web-mode
-  :mode (("\\.jsp$" . web-mode)
-		 ("\\.html?$" . web-mode))
-  :config
-   (setq web-mode-html-offset   2)
-   (setq web-mode-style-padding 2)
-   (setq web-mode-css-offset    2)
-   (setq web-mode-script-offset 2)
-   (setq web-mode-java-offset   2)
-   (setq web-mode-asp-offset    2)
+(use-package web-mode :ensure t
+  :mode (("\\.jsp" . web-mode)
+		 ("\\.phtml'" . web-mode)
+		 ("\\.html?" . web-mode)
+		 ("\\.tpl" . web-mode)
+		 ("\\.php" . web-mode)
+		 ("\\.[gj]sp'" . web-mode)
+		 ("\\.as[cp]x'" . web-mode)
+		 ("\\.erb'" . web-mode)
+		 ("\\.mustache'" . web-mode)
+		 ("\\.djhtml'" . web-mode))
+  
+  :init
+  (setq web-mode-engines-alist
+		'(("php"    . "\\.phtml\\'")
+		  ("blade"  . "\\.blade\\.")))
 
-   (local-set-key (kbd "C-m") 'newline-and-indent)
-   
-   ;; auto tag closing
+  :config
+  (setq web-mode-html-offset   2)
+  (setq web-mode-style-padding 2)
+  (setq web-mode-css-offset    2)
+  (setq web-mode-script-offset 2)
+  (setq web-mode-java-offset   2)
+  (setq web-mode-asp-offset    2)
+
+  (local-set-key (kbd "C-m") 'newline-and-indent)
+  
+  ;; auto tag closing
 										;0=no auto-closing
 										;1=auto-close with </
 										;2=auto-close with > and </
-   (setq web-mode-tag-auto-close-style 2)
-   )
+  (setq web-mode-tag-auto-close-style 2)
+  )
 
 (provide '54_web-mode)
 ;;; 54_web-mode.el ends here

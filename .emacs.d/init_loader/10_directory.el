@@ -7,44 +7,40 @@
 
 
 ;; 各種設定
-(add-hook 'dired-load-hook
-		  '(lambda ()
-			 ;; diredを2つのウィンドウで開いている時に、デフォルトの移動orコピー先をもう一方のdiredで開いているディレクトリにする
-			 (setq dired-dwim-target t)
-			 ;; ディレクトリを再帰的にコピーする
-			 (setq dired-recursive-copies 'always)
-			 ;; diredバッファでC-sした時にファイル名だけにマッチするように
-			 (setq dired-isearch-filenames t)
-			 ;; .zipで終わるファイルをZキーで展開できるように
-			 (add-to-list 'dired-compress-file-suffixes '("\\.zip\\'" ".zip" "unzip"))
-			 ;; ディレクトリを再帰的にコピー可能にする
-			 (setq dired-recursive-copies 'always)
+;; diredを2つのウィンドウで開いている時に、デフォルトの移動orコピー先をもう一方のdiredで開いているディレクトリにする
+(setq dired-dwim-target t)
+;; ディレクトリを再帰的にコピーする
+(setq dired-recursive-copies 'always)
+;; diredバッファでC-sした時にファイル名だけにマッチするように
+(setq dired-isearch-filenames t)
+;; .zipで終わるファイルをZキーで展開できるように
+;(add-to-list 'dired-compress-file-suffixes '("\\.zip\\'" ".zip" "unzip"))
+;; ディレクトリを再帰的にコピー可能にする
+(setq dired-recursive-copies 'always)
 
-			 ;; ディレクトリを確認なしで再帰的に削除可能にする(使用する場合は注意)
+;; ディレクトリを確認なしで再帰的に削除可能にする(使用する場合は注意)
 										;(setq dired-recursive-deletes 'always)
-			 ;; 対象の最上位ディレクトリごとに確認が出る形
-			 (setq dired-recursive-deletes 'top)
+;; 対象の最上位ディレクトリごとに確認が出る形
+(setq dired-recursive-deletes 'top)
 
-			 ;; lsのオプションを指定 (詳しくはlsのmanページなどを参照)
-			 ;; Windows以外向け
-			 ;; "l" (小文字のエル)は必須
-			 ;; ディレクトリをファイルよりも上に表示するには
-			 ;;   "--group-directories-first" を含める
-			 ;; 出力される日時の形式を "YYYY-MM-DD hh:mm" にするには
-			 ;;   "--time-style=long-iso" を含める
-			 (setq dired-listing-switches "-Flha --time-style=long-iso --group-directories-first")   ; "." と ".." が必要な場合
+;; lsのオプションを指定 (詳しくはlsのmanページなどを参照)
+;; Windows以外向け
+;; "l" (小文字のエル)は必須
+;; ディレクトリをファイルよりも上に表示するには
+;;   "--group-directories-first" を含める
+;; 出力される日時の形式を "YYYY-MM-DD hh:mm" にするには
+;;   "--time-style=long-iso" を含める
+(setq dired-listing-switches "-Flha --time-style=long-iso --group-directories-first")   ; "." と ".." が必要な場合
 										;(setq dired-listing-switches "-GFlha --time-style=long-iso --group-directories-first") ; グループ表示が不要な場合
 										;(setq dired-listing-switches "-FlhA --time-style=long-iso --group-directories-first")  ; "." と ".." が不要な場合
 
-			 ;; find-dired/find-grep-diredで、条件に合ったファイルを一覧する際の出力形式
-			 ;; ([findのオプション(出力に関係するもの)] . [LSのオプション(出力解析上の指定)])
-			 (setq find-ls-option '("-print0 | xargs -0 ls -Flhatd --time-style=long-iso" . "-Flhatd --time-style=long-iso"))
+;; find-dired/find-grep-diredで、条件に合ったファイルを一覧する際の出力形式
+;; ([findのオプション(出力に関係するもの)] . [LSのオプション(出力解析上の指定)])
+(setq find-ls-option '("-print0 | xargs -0 ls -Flhatd --time-style=long-iso" . "-Flhatd --time-style=long-iso"))
 
-			 ;; 新規バッファを作らずに移動するコマンド "dired-find-alternate-file" は
-			 ;; 標準では無効化されているので、使用したい場合は下の記述で有効にする
-			 (put 'dired-find-alternate-file 'disabled nil)
-			 )
-		  )
+;; 新規バッファを作らずに移動するコマンド "dired-find-alternate-file" は
+;; 標準では無効化されているので、使用したい場合は下の記述で有効にする
+(put 'dired-find-alternate-file 'disabled nil)
 
 ;; 幾つかの部分の表示スタイルをカスタマイズ
 ;; "M-x describe-face" で "dired-" と入力してTab補完できる項目に適用可で

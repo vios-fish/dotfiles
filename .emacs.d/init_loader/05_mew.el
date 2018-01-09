@@ -1,11 +1,12 @@
 ;;; 05-mew.el --- 
 
-;; Copyright (C) 2014  tokunaga
+;; Copyright (C) 2014  vios.fish
 
-;; Author: tokunaga <tokunaga@tokunaga-AX877AV-ABJ-HPE-190jp>
+;; Author: tokunaga <vios.fish@vios.fish-AX877AV-ABJ-HPE-190jp>
 ;; Keywords: abbrev, mail
 
 ;; Gmail 受信用のIMAP設定
+
 (setq mew-proto "%")
 (setq mew-user "vios.fish@gmail.com")
 (setq mew-mail-domain "gmail.com")

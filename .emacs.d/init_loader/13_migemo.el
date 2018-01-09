@@ -2,7 +2,7 @@
 (use-package migemo
   :config
   (cond ((eq linux-p t)
-		 (setq migemo-dictionary "/usr/share/migemo/utf-8/migemo-dict"))
+		 (setq migemo-dictionary "/usr/share/cmigemo/utf-8/migemo-dict"))
 		((eq ns-p t)
 		 (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
 		 )

@@ -69,7 +69,7 @@
   :bind ("TAB" . tab-indent-or-complete)
   
   :config
-  (setq company-idle-delay nil) ;; 自動補完無効
+  (setq company-idle-delay nil) ;; disable auto complete
   (setq company-minimum-prefix-length 2)
   (setq company-selection-wrap-around t)
   (bind-keys :map company-active-map
