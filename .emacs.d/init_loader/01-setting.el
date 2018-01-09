@@ -1,8 +1,9 @@
-
+;;; package --- Summary
+;;; Commentary:
 ;;; Code:
+
 ;;日本語
 ;言語を日本語にする
-;(require 'un-define)
 (set-language-environment 'Japanese)
 (set-terminal-coding-system 'utf-8)
 (setq file-name-coding-system 'utf-8)
@@ -13,11 +14,6 @@
 (set-keyboard-coding-system 'utf-8)
 (set-buffer-file-coding-system 'utf-8-unix)
 (setq default-input-method 'japanese-anthy)
-;日本語化
-;(setq menu-tree-coding-system 'utf-8)
-;(require 'menu-tree)
-; UTF-8 and Japanese Setting
-
 
 ;;;オープニングメッセージを表示しない
 (setq inhibit-startup-message t)
