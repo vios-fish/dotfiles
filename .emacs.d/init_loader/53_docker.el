@@ -1,20 +1,19 @@
 ;;; 53_docker.el --- elisp for docker                -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2017  徳永誠
+;; Copyright (C) 2017  vios-fish
 
-;; Author: 徳永誠 <tokunagamakoto@TokunagaMB.local>
+;; Author: vios-fish <vios.fish@gmail.com>
 ;; Keywords:
 
 ;;; Code:
 
 ;; docker package
-(use-package docker)
+(use-package docker :ensure t)
 
 ;; dockerfile mode
 (use-package dockerfile-mode
-
-  :mode (("Dockerfile\\'" . dockerfile-mode))
-  )
+  :ensure t
+  :mode (("Dockerfile\\'" . dockerfile-mode)))
 
 
 (provide '53_docker)
