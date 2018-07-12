@@ -1,5 +1,6 @@
 #!/bin/bash
 BREWFILE_DIR=./MacOSX
+ANYENV_HOME=$HOME/.anyenv
 
 ask() {
   printf "$* [y/n] "
@@ -23,7 +24,6 @@ if ask 'Homebrew install?'; then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
   brew doctor
-  brew install caskroom/cask/brew-cask
 fi
 
 if ask 'execute brew bundle(Brewfile)?'; then
@@ -38,24 +38,42 @@ fi
 # fi
 
 if ask 'setting zsh config?'; then
-	curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-	ln -sn ~/dotfiles/.zshrc ~/.zshrc
-	ln -sn ~/dotfiles/.zsh.d ~/.zsh.d	
+    if [ ! -e "${HOME}/.zprezto" ]; then
+	git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+    fi
+    
+    ln -sfn $(pwd)/.zshrc ~/.zshrc
+    ln -fs $(pwd)/.zsh.d ~/.zsh.d
+    ln -sfn $(pwd)/.tmux.conf ~/.tmux.conf
 fi
 
-if ask "Do you want to install ruby by rbenv-rubybuild?"; then
-  INSTALL_RUBY_VERSION="$( rbenv install -l | peco)"
-  brew link readline --force
-  MAKE_OPTS="-j 4" RUBY_CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline)" rbenv install $INSTALL_RUBY_VERSION
+if ask "Do you want to setup anyenv?"; then
+    if [ ! -e $ANYENV_HOME ]; then
+		git clone https://github.com/riywo/anyenv $ANYENV_HOME
+    else
+		git -C $ANYENV_HOME pull
+    fi
+    export PATH=$ANYENV_HOME/bin:$PATH
+    eval "$(anyenv init -)"
+
+    # plugins
+    mkdir -p $(anyenv root)/plugins
+    git clone https://github.com/znz/anyenv-update.git $(anyenv root)/plugins/anyenv-update
+
+    # install env
+    anyenv install pyenv
+    git clone https://github.com/yyuu/pyenv-virtualenv $ANYENV_HOME/envs/pyenv/plugins/pyenv-virtualenv
+    anyenv install ndenv
+    anyenv install goenv
+    anyenv install rbenv
+    eval "$(anyenv init -)"
 fi
 
-if ask "Do you want to install python by pyenv-pythonbuild?"; then
-  INSTALL_PYTHON_VERSION="$( pyenv install -l | peco)"
-  brew link readline --force
-  MAKE_OPTS="-j 4" PYTHON_CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline)" pyenv install $INSTALL_PYTHON_VERSION
+if ask "Create symbolic link for bash_profile?"; then
+    ln -sfn $(pwd)/.bash_profile ~/.bash_profile
 fi
 
-if ask "Create symbolic link bash_profile?"; then
-	ln -sn ~/dotfiles/.bash_profile ~/.bash_profile
+if ask "Create symbolic link for emacs.d?"; then
+    ln -sf $(pwd)/.emacs.d ~/.emacs.d
 fi
 

@@ -16,71 +16,64 @@ case ${OSTYPE} in
     darwin*)
         #ここにMac向けの設定
 
-		# HomeBrew
-		export BREW_DIR=/usr/local
+	# HomeBrew
+	export BREW_DIR=/usr/local
 
-		# Local Dir
-		export LOCAL_DIR=$HOME/local
+	# Local Dir
+	export LOCAL_DIR=$HOME/local
 
-		# oh-my-zsh
-		export ZSH=$HOME/.oh-my-zsh
-		
-		# CPLEX
-		export CPLEX_HOME_DIR=$HOME/Apprications/IBM/ILOG/CPLEX_Studio126
-		export CPLEX_BIN_DIR=$CPLEX_HOME_DIR/cplex/bin/x86-64_osx
-		
-		# Gurobi
-		export GUROBI_HOME=/opt/gurobi600/linux64
-		export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib" # DYLib
-		export PATH=$PATH:$GUROBI_HOME/bin # Path
-		
-		# pyenv
-		export PYENV_ROOT=/usr/local/var/pyenv
-
-		
-		#clangのデフォルトライブラリパスの設定
-		#export CLIB
-		
-		# alias
-		alias emacs="TERM=xterm-256color /usr/local//bin/emacs"
-		# alias gcc="g++-5 -std=c++11 -Wall -Wextra -Wconversion"
-		;;
+	# oh-my-zsh
+	export ZSH=$HOME/.oh-my-zsh
+	
+	# CPLEX
+	export CPLEX_HOME_DIR=$HOME/Apprications/IBM/ILOG/CPLEX_Studio126
+	export CPLEX_BIN_DIR=$CPLEX_HOME_DIR/cplex/bin/x86-64_osx
+	
+	# Gurobi
+	export GUROBI_HOME=/opt/gurobi600/linux64
+	export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib" # DYLib
+	export PATH=$PATH:$GUROBI_HOME/bin # Path
+	
+	#clangのデフォルトライブラリパスの設定
+	#export CLIB
+	
+	# alias
+	alias emacs="TERM=xterm-256color /usr/local//bin/emacs"
+	# alias gcc="g++-5 -std=c++11 -Wall -Wextra -Wconversion"
+	;;
     linux*)
         #ここにLinux向けの設定
 
-		# oh-my-zsh
-		export ZSH=/home/tokunaga/.oh-my-zsh
-		
-		# HomeBrew (Linux Brew)
-		export BREW_DIR=$HOME/.linuxbrew
+	# oh-my-zsh
+	export ZSH=/home/tokunaga/.oh-my-zsh
+	
+	# HomeBrew (Linux Brew)
+	export BREW_DIR=$HOME/.linuxbrew
 
-		# Local Dir
-		export LOCAL_DIR=$HOME/local
+	# Local Dir
+	export LOCAL_DIR=$HOME/local
 
-		# Cplex
-		export CPLEX_HOME_DIR=/opt/ibm/ILOG/CPLEX_Studio1261
-		export CPLEX_BIN_DIR=$CPLEX_HOME_DIR/cplex/bin/x86-64_linux
-		
-		# pyenv
-		export PYENV_ROOT=$BREW_DIR/var/pyenv
+	# Cplex
+	export CPLEX_HOME_DIR=/opt/ibm/ILOG/CPLEX_Studio1261
+	export CPLEX_BIN_DIR=$CPLEX_HOME_DIR/cplex/bin/x86-64_linux
+	
+	# Go
+	export GOPATH=$HOME/local/go
 
-		# Go
-		export GOPATH=$HOME/local/go
+	# manpath
+	export MANPATH=$BREW_DIR/share/man:$MANPATH
 
-		# manpath
-		export MANPATH=$BREW_DIR/share/man:$MANPATH
+	# infopath
+	export INFOPATH=$BREW_DIR/share/info:$INFOPATH
 
-		# infopath
-		export INFOPATH=$BREW_DIR/share/info:$INFOPATH
+	# pip
+	export PATH=$PATH:~/.local/bin
+	
+	# java
+	export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
+	export PATH=$PATH:$JAVA_HOME/bin
 
-		# pip
-		export PATH=$PATH:~/.local/bin
-		
-		# java
-		export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
-		export PATH=$PATH:$JAVA_HOME/bin
-
-		;;
+	;;
 esac
 
 ############# PATH #####################
@@ -116,23 +109,6 @@ export CPATH=$LOCAL_DIR/include:$CPATH
 # HomeBrew
 #export LD_LIBRARY_PATH=$BREW_DIR/lib:$LD_LIBRARY_PATH
 
-
-
-####################################################
-# oh-my-zsh
-# THEME
-#ZSH_THEME="amuse"
-#ZSH_THEME="agnoster"
-
-# Plugins
-#plugins=(my-env autojump brew brew-cask bundler cdd colored-man composer docker encode64 gem git homeshick pow rbenv tig tmux vagrant web-search)
-
-
-#source $ZSH/oh-my-zsh.sh
-
-powerline-daemon -q
-. ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
-
 #####################################################
 # 色を使用出来るようにする
 autoload -Uz colors
@@ -151,8 +127,7 @@ SAVEHIST=1000000
 # PROMPT="%~ %# "
 # 2行表示
 #PROMPT="%{${fg[red]}%}[%n@%m]%{${reset_color}%} %~
-#%# "
- 
+#%# " 
  
 # 単語の区切り文字を指定する
 autoload -Uz select-word-style
@@ -169,7 +144,7 @@ autoload -Uz add-zsh-hook
 # 補完
 # 補完機能を有効にする
 if [ -e /usr/local/share/zsh-completions ]; then
-	fpath=($BREW_DIR/share/zsh-completions $fpath)
+    fpath=($BREW_DIR/share/zsh-completions $fpath)
 fi
 
 autoload -Uz compinit
@@ -366,22 +341,10 @@ alias pk="peco-pkill"
 # hash -d hoge=/long/path/to/hogehoge
 
 #######################################
-# ruby の設定
-# export PATH=$HOME/.rbenv/bin:$PATH
-# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-
-
-# python の設定
-#export PATH="$PYENV_ROOT/bin:$PATH"
-#if which pyenv > /dev/null; then#
-#	eval "$(pyenv init -)";
-#	eval "$(pyenv virtualenv-init -)"
-#fi
-
-export PYENV_ROOT=$HOME/.pyenv
-export PATH=$PYENV_ROOT/bin:$PATH
-eval "$(pyenv init -)"
+# anyenvの設定
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
 
 #export VIRTUALENVWRAPPER_PYTHON=python
 #export WORKON_HOME=$HOME/.virtualenvs
@@ -394,11 +357,8 @@ case ${OSTYPE} in
         #Mac用の設定
         export CLICOLOR=1
         alias ls='ls -G -F'
-		alias clang++=/usr/local/opt/llvm/bin/clang++
-		alias clang=/usr/local/opt/llvm/bin/clang
-		#brew-fileの設定
-		export HOMEBREW_BREWFILE=$HOME/.brewfile
-		export HOMEBREW_CASK_OPTS="--caskroom=/etc/Caskroom"
+	alias clang++=/usr/local/opt/llvm/bin/clang++
+	alias clang=/usr/local/opt/llvm/bin/clang
         ;;
     linux*)
         #Linux用の設定
@@ -414,10 +374,7 @@ esac
 # export SYS_NOTIFIER='terminal-notifier'
 # source ~/.zsh.d/zsh-notify/notify.plugin.zsh
 
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 
 ## Tmux + SSH --------------------------------------------------------
 # function ssh_tmux() {
@@ -433,14 +390,14 @@ export NVM_DIR="$HOME/.nvm"
 # fi
 
 if [[ $TERM = screen ]] || [[ $TERM = screen-256color ]] ; then
-  LOGDIR=$HOME/.tmuxlog
-  LOGFILE=$(hostname)_$(date +%Y-%m-%d_%H%M%S_%N.log)
-  [ ! -d $LOGDIR ] && mkdir -p $LOGDIR
-  tmux  set-option default-terminal "screen" \; \
-    pipe-pane        "cat >> $LOGDIR/$LOGFILE" \; \
-    display-message  "Started logging to $LOGDIR/$LOGFILE"
+    LOGDIR=$HOME/.tmuxlog
+    LOGFILE=$(hostname)_$(date +%Y-%m-%d_%H%M%S_%N.log)
+    [ ! -d $LOGDIR ] && mkdir -p $LOGDIR
+    tmux set-option default-terminal "screen" \; \
+	 pipe-pane        "cat >> $LOGDIR/$LOGFILE" \; \
+	 display-message  "Started logging to $LOGDIR/$LOGFILE"
 fi
 
 if [ $SHLVL = 1 ]; then
-  tmux -2
+    tmux -2
 fi

@@ -11,7 +11,7 @@
   (setq user-emacs-directory (file-name-directory load-file-name)))
 
 ; dotfilesのパス追加
-(setq my/dotfiles-dir "~/dotfiles/.emacs.d")
+(setq my/dotfiles-dir "~/repos/dotfiles/.emacs.d")
 (setq load-path (cons my/dotfiles-dir load-path))
 
 ;; dotfilesのcommon.elを読み込む
