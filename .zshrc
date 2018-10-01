@@ -282,9 +282,6 @@ elif which putclip >/dev/null 2>&1 ; then
     alias -g C='| putclip'
 fi
 
-# emacs
-alias -g emacs='emacsclient -nw -a ""'
-alias -g e='emacs'
 
 # peco
 ## peco history
@@ -357,8 +354,9 @@ case ${OSTYPE} in
         #Mac用の設定
         export CLICOLOR=1
         alias ls='ls -G -F'
-	alias clang++=/usr/local/opt/llvm/bin/clang++
-	alias clang=/usr/local/opt/llvm/bin/clang
+		alias clang++=/usr/local/opt/llvm/bin/clang++
+        alias clang=/usr/local/opt/llvm/bin/clang
+        alias sudo='nocorrect sudo'
         ;;
     linux*)
         #Linux用の設定
@@ -401,3 +399,7 @@ fi
 if [ $SHLVL = 1 ]; then
     tmux -2
 fi
+
+# emacs
+alias -g emacs='emacsclient -nw -a ""'
+alias -g e='emacs'
