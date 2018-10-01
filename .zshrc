@@ -1,10 +1,10 @@
 # 少し凝った zshrc
- 
+
 ########################################
 # 環境変数
 #! /usr/bin/zsh
 # -*- mode: sh ; coding: utf-8 -*-
- 
+
 ########################################
 # LANG
 export LANG=ja_JP.UTF-8
@@ -16,64 +16,38 @@ case ${OSTYPE} in
     darwin*)
         #ここにMac向けの設定
 
-	# HomeBrew
-	export BREW_DIR=/usr/local
+		# HomeBrew
+		export BREW_DIR=/usr/local
 
-	# Local Dir
-	export LOCAL_DIR=$HOME/local
+		# Local Dir
+		export LOCAL_DIR=$HOME/local
 
-	# oh-my-zsh
-	export ZSH=$HOME/.oh-my-zsh
-	
-	# CPLEX
-	export CPLEX_HOME_DIR=$HOME/Apprications/IBM/ILOG/CPLEX_Studio126
-	export CPLEX_BIN_DIR=$CPLEX_HOME_DIR/cplex/bin/x86-64_osx
-	
-	# Gurobi
-	export GUROBI_HOME=/opt/gurobi600/linux64
-	export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib" # DYLib
-	export PATH=$PATH:$GUROBI_HOME/bin # Path
-	
-	#clangのデフォルトライブラリパスの設定
-	#export CLIB
-	
-	# alias
-	alias emacs="TERM=xterm-256color /usr/local//bin/emacs"
-	# alias gcc="g++-5 -std=c++11 -Wall -Wextra -Wconversion"
-	;;
+		#clangのデフォルトライブラリパスの設定
+		#export CLIB
+		
+		# alias
+		alias emacs="TERM=xterm-256color /usr/local//bin/emacs"
+		# alias gcc="g++-5 -std=c++11 -Wall -Wextra -Wconversion"
+		;;
     linux*)
         #ここにLinux向けの設定
 
-	# oh-my-zsh
-	export ZSH=/home/tokunaga/.oh-my-zsh
-	
-	# HomeBrew (Linux Brew)
-	export BREW_DIR=$HOME/.linuxbrew
+		# HomeBrew (Linux Brew)
+		export BREW_DIR=$HOME/.linuxbrew
 
-	# Local Dir
-	export LOCAL_DIR=$HOME/local
+		# Local Dir
+		export LOCAL_DIR=$HOME/local
 
-	# Cplex
-	export CPLEX_HOME_DIR=/opt/ibm/ILOG/CPLEX_Studio1261
-	export CPLEX_BIN_DIR=$CPLEX_HOME_DIR/cplex/bin/x86-64_linux
-	
-	# Go
-	export GOPATH=$HOME/local/go
+		# Go
+		export GOPATH=$HOME/local/go
 
-	# manpath
-	export MANPATH=$BREW_DIR/share/man:$MANPATH
+		# manpath
+		export MANPATH=$BREW_DIR/share/man:$MANPATH
 
-	# infopath
-	export INFOPATH=$BREW_DIR/share/info:$INFOPATH
+		# infopath
+		export INFOPATH=$BREW_DIR/share/info:$INFOPATH
 
-	# pip
-	export PATH=$PATH:~/.local/bin
-	
-	# java
-	export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
-	export PATH=$PATH:$JAVA_HOME/bin
-
-	;;
+		;;
 esac
 
 ############# PATH #####################
@@ -82,9 +56,6 @@ export PATH=/usr/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=$LOCAL_DIR/bin:$PATH
-
-# CPLEX
-#export PATH=$CPLEX_BIN_DIR:$PATH
 
 # HOMEBREW
 #export PATH=$BREW_DIR/bin:$PATH
@@ -109,11 +80,15 @@ export CPATH=$LOCAL_DIR/include:$CPATH
 # HomeBrew
 #export LD_LIBRARY_PATH=$BREW_DIR/lib:$LD_LIBRARY_PATH
 
+# for prezto
+source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+
+
 #####################################################
 # 色を使用出来るようにする
 autoload -Uz colors
 colors
- 
+
 # emacs 風キーバインドにする
 bindkey -e
 
@@ -121,14 +96,14 @@ bindkey -e
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
- 
+
 # プロンプト
 # 1行表示
 # PROMPT="%~ %# "
 # 2行表示
 #PROMPT="%{${fg[red]}%}[%n@%m]%{${reset_color}%} %~
 #%# " 
- 
+
 # 単語の区切り文字を指定する
 autoload -Uz select-word-style
 select-word-style default
@@ -139,7 +114,7 @@ zstyle ':zle:*' word-style unspecified
 
 # add-zsh-hook
 autoload -Uz add-zsh-hook
- 
+
 ########################################
 # 補完
 # 補完機能を有効にする
@@ -149,17 +124,17 @@ fi
 
 autoload -Uz compinit
 compinit
- 
+
 # 補完で小文字でも大文字にマッチさせる
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
- 
+
 # ../ の後は今いるディレクトリを補完しない
 zstyle ':completion:*' ignore-parents parent pwd ..
- 
+
 # sudo の後ろでコマンド名を補完する
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
-                   /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
- 
+       /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
+
 # ps コマンドのプロセス名補完
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 
@@ -178,97 +153,88 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*:cd:*' ignore-parents parent pwd
 zstyle ':completion:*:descriptions' format '%BCompleting%b %U%d%u'
- 
-########################################
-# vcs_info
-
-# autoload -Uz vcs_info
-# zstyle ':vcs_info:*' formats '(%s)-[%b]'
-# zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
-# precmd () {
-# 	psvar=()
-# 	LANG=en_US.UTF-8 vcs_info
-# 	[[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-# }
-# RPROMPT="%1(v|%F{green}%1v%f|)"
 
 ########################################
 # オプション
 # 日本語ファイル名を表示可能にする
 setopt print_eight_bit
- 
+
 # beep を無効にする
 setopt no_beep
- 
+
 # フローコントロールを無効にする
 setopt no_flow_control
- 
+
 # '#' 以降をコメントとして扱う
 setopt interactive_comments
- 
+
 # ディレクトリ名だけでcdする
 setopt auto_cd
- 
+
 # cd したら自動的にpushdする
 setopt auto_pushd
 # 重複したディレクトリを追加しない
 setopt pushd_ignore_dups
- 
+
 # = の後はパス名として補完する
 setopt magic_equal_subst
- 
+
 # 同時に起動したzshの間でヒストリを共有する
 setopt share_history
- 
+
 # 同じコマンドをヒストリに残さない
 setopt hist_ignore_all_dups
- 
+
 # ヒストリファイルに保存するとき、すでに重複したコマンドがあったら古い方を削除する
 setopt hist_save_nodups
- 
+
 # スペースから始まるコマンド行はヒストリに残さない
 setopt hist_ignore_space
- 
+
 # ヒストリに保存するときに余分なスペースを削除する
 setopt hist_reduce_blanks
- 
+
 # 補完候補が複数あるときに自動的に一覧表示する
 setopt auto_menu
- 
+
 # 高機能なワイルドカード展開を使用する
 setopt extended_glob
- 
+
+# glob に引っかからなくても警告を出さないようにする
+setopt nonomatch
+
 ########################################
 # キーバインド
- 
+
 # ^R で履歴検索をするときに * でワイルドカードを使用出来るようにする
 bindkey '^R' history-incremental-pattern-search-backward
- 
+
 ########################################
 # エイリアス
- 
+
 alias la='ls -a'
 alias ll='ls -l'
- 
+
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
- 
+
 alias mkdir='mkdir -p'
 
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
 alias grep='grep --color'
- 
+
 # sudo の後のコマンドでエイリアスを有効にする
 alias sudo='sudo '
- 
+alias sudo='nocorrect sudo'
+
 # グローバルエイリアス
 alias -g L='| less'
 alias -g G='| grep'
 alias -g P='| peco'
- 
+
 # C で標準出力をクリップボードにコピーする
 # mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1
 if which pbcopy >/dev/null 2>&1 ; then
@@ -283,6 +249,57 @@ elif which putclip >/dev/null 2>&1 ; then
 fi
 
 
+#######################################
+
+########################################
+# OS 別の設定
+case ${OSTYPE} in
+    darwin*)
+        #Mac用の設定
+        export CLICOLOR=1
+        alias ls='ls -G -F'
+		alias clang++=/usr/local/opt/llvm/bin/clang++
+		alias clang=/usr/local/opt/llvm/bin/clang
+#		if [ -e $HOME/.Xmodmap ]; then
+#			xmodmap $HOME/.Xmodmap
+#		fi
+        ;;
+    linux*)
+        #Linux用の設定
+        ;;
+esac
+
+#########################################
+# 他のファイルの読み込み
+
+
+# for ros
+if [ -e /opt/ros/kinetic/setup.zsh ]; then
+	source /opt/ros/kinetic/setup.zsh
+fi
+
+# for Autoware
+if [ -e $HOME/repos/Autoware/ros/devel/setup.zsh ]; then
+	source $HOME/repos/Autoware/ros/devel/setup.zsh
+fi
+
+if [[ $TERM = screen ]] || [[ $TERM = screen-256color ]] ; then
+    LOGDIR=$HOME/.tmuxlog
+    LOGFILE=$(hostname)_$(date +%Y-%m-%d_%H%M%S_%N.log)
+    [ ! -d $LOGDIR ] && mkdir -p $LOGDIR
+    tmux set-option default-terminal "screen" \; \
+		 pipe-pane        "cat >> $LOGDIR/$LOGFILE" \; \
+		 display-message  "Started logging to $LOGDIR/$LOGFILE"
+fi
+
+if [ $SHLVL = 1 ]; then
+    tmux -2
+fi
+
+# anyenvの設定
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
+
 # peco
 ## peco history
 function peco-select-history() {
@@ -293,8 +310,8 @@ function peco-select-history() {
         tac="tail -r"
     fi
     BUFFER=$(\history -n 1 | \
-        eval $tac | \
-        peco --query "$LBUFFER")
+				 eval $tac | \
+				 peco --query "$LBUFFER")
     CURSOR=$#BUFFER
     zle clear-screen
 }
@@ -303,39 +320,34 @@ bindkey '^r' peco-select-history
 
 # ### search a destination from cdr list
 function peco-get-destination-from-cdr() {
-  cdr -l | \
-  sed -e 's/^[[:digit:]]*[[:blank:]]*//' | \
-  peco --query "$LBUFFER"
+	cdr -l | \
+		sed -e 's/^[[:digit:]]*[[:blank:]]*//' | \
+		peco --query "$LBUFFER"
 }
 
 ### search a destination from cdr list and cd the destination
 function peco-cdr() {
-  local destination="$(peco-get-destination-from-cdr)"
-  if [ -n "$destination" ]; then
-    BUFFER="cd $destination"
-    zle accept-line
-  else
-    zle reset-prompt
-  fi
+	local destination="$(peco-get-destination-from-cdr)"
+	if [ -n "$destination" ]; then
+		BUFFER="cd $destination"
+		zle accept-line
+	else
+		zle reset-prompt
+	fi
 }
 zle -N peco-cdr
 bindkey '^x' peco-cdr
 
 #pecoでkill
 function peco-pkill() {
-  for pid in `ps aux | peco | awk '{ print $2 }'`
-  do
-    kill $pid
-    echo "Killed ${pid}"
-  done
+	for pid in `ps aux | peco | awk '{ print $2 }'`
+	do
+		kill $pid
+		echo "Killed ${pid}"
+	done
 }
 alias pk="peco-pkill"
 
-#######################################
-# hashの設定
-# "~hoge" が特定のパス名に展開されるようにする（ブックマークのようなもの）
-# 例： cd ~hoge と入力すると /long/path/to/hogehoge ディレクトリに移動
-# hash -d hoge=/long/path/to/hogehoge
 
 #######################################
 
@@ -346,7 +358,10 @@ eval "$(anyenv init -)"
 #export VIRTUALENVWRAPPER_PYTHON=python
 #export WORKON_HOME=$HOME/.virtualenvs
 #source /usr/local/bin/virtualenvwrapper.sh
- 
+
+# pipenv
+eval "$(pipenv --completion)"
+
 ########################################
 # OS 別の設定
 case ${OSTYPE} in
