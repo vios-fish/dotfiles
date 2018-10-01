@@ -185,7 +185,8 @@
 ;; ファイル末尾に自動で改行しない
 (setq require-final-newline nil)
 
-(setq insert-directory-program "gls" dired-use-ls-dired t)
+(if carbon-p
+	(setq insert-directory-program "gls" dired-use-ls-dired t))
 
 (provide '01-setting)
 ;;; 01-setting.el ends here

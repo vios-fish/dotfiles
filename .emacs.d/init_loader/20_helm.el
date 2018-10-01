@@ -31,6 +31,8 @@
 
 	;; migemo
 	(helm-migemo-mode 1)
+
+	(helm-autoresize-mode t)
 	
 	;; keybind
 	(unbind-key "C-z")
