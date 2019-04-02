@@ -26,7 +26,7 @@ case ${OSTYPE} in
 		#export CLIB
 		
 		# alias
-		alias emacs="TERM=xterm-256color /usr/local//bin/emacs"
+		alias emacs="TERM=xterm-256color /usr/local/bin/emacs"
 		# alias gcc="g++-5 -std=c++11 -Wall -Wextra -Wconversion"
 		;;
     linux*)
@@ -82,6 +82,12 @@ export CPATH=$LOCAL_DIR/include:$CPATH
 
 # for prezto
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+
+# python user
+PATH=$HOME/.local/bin:$PATH
+
+# Rust
+PATH=$PATH:$HOME/.cargo/bin
 
 
 #####################################################
