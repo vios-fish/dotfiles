@@ -285,22 +285,9 @@ if [ -e /opt/ros/kinetic/setup.zsh ]; then
 fi
 
 # for Autoware
-if [ -e $HOME/repos/Autoware/ros/devel/setup.zsh ]; then
-	source $HOME/repos/Autoware/ros/devel/setup.zsh
-fi
-
-if [[ $TERM = screen ]] || [[ $TERM = screen-256color ]] ; then
-    LOGDIR=$HOME/.tmuxlog
-    LOGFILE=$(hostname)_$(date +%Y-%m-%d_%H%M%S_%N.log)
-    [ ! -d $LOGDIR ] && mkdir -p $LOGDIR
-    tmux set-option default-terminal "screen" \; \
-		 pipe-pane        "cat >> $LOGDIR/$LOGFILE" \; \
-		 display-message  "Started logging to $LOGDIR/$LOGFILE"
-fi
-
-if [ $SHLVL = 1 ]; then
-    tmux -2
-fi
+#if [ -e $HOME/repos/Autoware/ros/devel/setup.zsh ]; then
+#	source $HOME/repos/Autoware/ros/devel/setup.zsh
+#fi
 
 # anyenvの設定
 export PATH="$HOME/.anyenv/bin:$PATH"
@@ -356,14 +343,6 @@ alias pk="peco-pkill"
 
 
 #######################################
-
-# anyenvの設定
-export PATH="$HOME/.anyenv/bin:$PATH"
-eval "$(anyenv init -)"
-
-#export VIRTUALENVWRAPPER_PYTHON=python
-#export WORKON_HOME=$HOME/.virtualenvs
-#source /usr/local/bin/virtualenvwrapper.sh
 
 # pipenv
 eval "$(pipenv --completion)"
