@@ -12,6 +12,7 @@
 
 ; dotfilesのパス追加
 (setq my/dotfiles-dir "~/repos/dotfiles/.emacs.d")
+(setq my/dropbox-dir "~/Dropbox")
 (setq load-path (cons my/dotfiles-dir load-path))
 
 ;; dotfilesのcommon.elを読み込む
@@ -30,7 +31,7 @@
  '(irony-additional-clang-options (quote ("-std=c++1y")))
  '(package-selected-packages
    (quote
-	(package-build shut-up epl git commander f dash s json-mode highlight-symbol groovy-mode gtags-mode realgud autodisass-java-bytecode meghanada markdown-mode ag powerline mew ssh-agency magit org-plus-contrib flycheck-irony helm-flycheck flycheck-pos-tip flycheck python-mode jedi epc deferred ess-R-object-popup paredit auto-complete-clang-async smart-compile direx htmlize buffer-move popwin company-irony company ace-isearch all-ext migemo smartrep fuzzy undo-tree wrap-region expand-region open-junk-file helm-swoop helm-company helm-descbinds wgrep-helm helm-migemo yaml-mode web-mode use-package srefactor rtags php-mode pallet modern-cpp-font-lock matlab-mode js2-mode init-loader ht helm-gtags helm-git helm-c-yasnippet helm-c-moccur helm-ag helm-R haskell-mode gtags google-c-style exec-path-from-shell csharp-mode cmake-mode cmake-ide))))
+    (package-build shut-up epl git commander f dash s json-mode highlight-symbol groovy-mode gtags-mode realgud autodisass-java-bytecode meghanada markdown-mode ag powerline mew ssh-agency magit org-plus-contrib flycheck-irony helm-flycheck flycheck-pos-tip flycheck python-mode jedi epc deferred ess-R-object-popup paredit auto-complete-clang-async smart-compile direx htmlize buffer-move popwin company-irony company ace-isearch all-ext migemo smartrep fuzzy undo-tree wrap-region expand-region open-junk-file helm-swoop helm-company helm-descbinds wgrep-helm helm-migemo yaml-mode web-mode use-package srefactor rtags php-mode pallet modern-cpp-font-lock matlab-mode js2-mode init-loader ht helm-gtags helm-git helm-c-yasnippet helm-c-moccur helm-ag helm-R haskell-mode gtags google-c-style exec-path-from-shell csharp-mode cmake-mode cmake-ide))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
