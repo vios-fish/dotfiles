@@ -1,2 +1,4 @@
 ;;; htmlize
-(require 'htmlize)
+(use-package htmlize
+    :ensure t
+)

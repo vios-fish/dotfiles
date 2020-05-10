@@ -25,6 +25,7 @@
 ;;; Code:
 
 (use-package rtags
+  :ensure t
   :init
   (rtags-enable-standard-keybindings c-mode-base-map)
   (bind-keys :map c-mode-base-map

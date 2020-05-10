@@ -1,7 +1,8 @@
 ;;; undo-tree
 ;;; undo,redoを木状にしてやりやすくする
 
-(use-package undo-tree :diminish "UT"
+(use-package undo-tree
+  :diminish "UT"
   :after popwin
   :init
   (global-undo-tree-mode)

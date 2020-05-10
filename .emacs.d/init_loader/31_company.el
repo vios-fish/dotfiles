@@ -63,7 +63,7 @@
 			(company-complete-common)
 		  (indent-for-tab-command)))))
 
-(use-package company
+(use-package company :ensure t
   :init (progn (add-hook 'after-init-hook 'global-company-mode))
   
   :bind ("TAB" . tab-indent-or-complete)
@@ -85,15 +85,6 @@
 			 ("C-n" . company-select-next)
 			 ("C-p" . company-select-previous)
 			 ([tab] . company-complete-common2)))
-
-(use-package helm-company
-  :after helm company
-  :config
-  (bind-keys :map company-mode-map
-			 ("C-:" . helm-company))
-  (bind-keys :map company-active-map
-			 ("C-:" . helm-company))
-  )
 
 (provide '31_company)
 ;;; 31_company.el ends here

@@ -46,9 +46,12 @@
 (require 'setup)
 
 ;; init-loader
-(require 'init-loader)
-(setq my/init-loader-directory (concat user-emacs-directory "init_loader"))
-(init-loader-load my/init-loader-directory)
+(use-package init-loader
+  :ensure t
+  :config
+  (setq my/init-loader-directory (concat user-emacs-directory "init_loader"))
+  (init-loader-load my/init-loader-directory)
+)
 
 (provide 'common)
 ;;; common.el ends here

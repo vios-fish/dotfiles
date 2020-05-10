@@ -4,17 +4,6 @@
 (setq load-path (cons my/emacs-directory load-path))
 (setq load-path (cons (concat my/emacs-directory "/elisps") load-path))
 
-
-;; load environment variables
-;; 追記 GEMに関する環境変数を設定すると rbenv経由で rubyがうまく使えなかったので削除
- (when (memq window-system '(mac ns))
-   (exec-path-from-shell-initialize))
- (let ((envs '("PATH" "VIRTUAL_ENV" "GOROOT" "GOPATH" "CPATH"
- 			  "PKG_CONFIG_PATH"
- 			  )))
-   (exec-path-from-shell-copy-envs envs))
-
-
 (defun x->bool (elt) (not (not elt)))
 
 ;;; 今何の環境で開いているかのチェック

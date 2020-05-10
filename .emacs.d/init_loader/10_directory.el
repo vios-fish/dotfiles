@@ -1,8 +1,8 @@
 ;;; ディレクトリ
 ;; diredを便利にする
-(require 'dired-x)
+(use-package dired-x)
 ;; diredから"r"でファイル名をインライン編集する
-(require 'wdired)
+(use-package wdired)
 (define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)
 
 

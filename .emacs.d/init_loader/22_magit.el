@@ -27,9 +27,6 @@
 ;; 
 
 ;;; Code:
-(require 'use-package)
-
-
 ;; コミットメッセージをHelmで挿入できるようにする
 (defvar helm-c-source-git-commit-messages
   '((name . "Git Commit Messages")

@@ -24,7 +24,9 @@
 
 ;;; Code:
 
-(use-package irony :defer t
+(use-package irony
+  :ensure t
+  :defer t
   :diminish "irony"
  
   :init
@@ -40,12 +42,12 @@
   (custom-set-variables '(irony-additional-clang-options '("-std=c++1y")))
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
-(use-package company-irony :after company
+(use-package company-irony :after company :ensure t
   :config
   (company-irony-setup-begin-commands)
   (add-to-list 'company-backends 'company-irony))
 
-(use-package flycheck-irony :after flycheck
+(use-package flycheck-irony :after flycheck :ensure t
   :config
   (flycheck-irony-setup))
 

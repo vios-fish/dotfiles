@@ -1,5 +1,6 @@
 
 (use-package migemo
+  :ensure t
   :config
   (cond ((eq linux-p t)
 		 (setq migemo-dictionary "/usr/share/cmigemo/utf-8/migemo-dict"))
