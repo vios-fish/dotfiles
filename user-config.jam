@@ -1,2 +1,0 @@
-using gcc : 5.0 : /usr/bin/gcc-5.0 ;
-using mpi ;
