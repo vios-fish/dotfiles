@@ -1,1 +1,0 @@
-/Users/tokunagamakoto/dotfiles/.zsh.d

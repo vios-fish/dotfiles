@@ -1,3 +1,8 @@
+#!/usr/bin/env bash
+set -e
+
+script_dir=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
+
 ask() {
   printf "$* [y/n] "
   local answer
@@ -15,8 +20,6 @@ inst() {
     sudo apt-get install -y $@
 }
 
-set -e
-
 env LANGUAGE=C LC_MESSAGES=C xdg-user-dirs-gtk-update
 
 sudo sed -i.bak -e "s%http://[^ ]\+%http://ftp.jaist.ac.jp/pub/Linux/ubuntu/%g" /etc/apt/sources.list
@@ -28,20 +31,12 @@ sudo apt-get upgrade -y
 mkdir -p $HOME/repos
 mkdir -p $HOME/local
 
-# karnel
-sudo apt-get install -y \
-     linux-image-extra-$(uname -r) \
-     linux-image-extra-virtual
-
 if ask 'basic environment setup?'; then
     # add ppa
     sudo apt-get update
 
     # install basic
-    inst build-essential
-    inst zsh git curl wget
-    inst python ruby
-    inst tree
+    inst build-essential zsh git curl wget python ruby tree gnome-tweak-tool
 
     # install docker
     inst apt-transport-https ca-certificates curl software-properties-common
@@ -59,67 +54,84 @@ ANYENV_HOME=$HOME/.anyenv
 export PATH=$ANYENV_HOME/bin:$PATH
 if ask 'install anyenv?'; then
     if [ ! -e $ANYENV_HOME ]; then
-	git clone https://github.com/riywo/anyenv ~/repos/anyenv	
+	    git clone https://github.com/riywo/anyenv ~/repos/anyenv
     fi
     ln -sf ~/repos/anyenv $ANYENV_HOME
     eval "$(anyenv init -)"
 
     mkdir -p $(anyenv root)/plugins
     if [ ! -e $(anyenv root)/plugins/anyenv-update ]; then
-	git clone https://github.com/znz/anyenv-update.git $(anyenv root)/plugins/anyenv-update
+	    git clone https://github.com/znz/anyenv-update.git $(anyenv root)/plugins/anyenv-update
     fi
 
+    anyenv install --force-init || :
     anyenv install pyenv
-    git clone https://github.com/yyuu/pyenv-virtualenv $ANYENV_HOME/envs/pyenv/plugins/pyenv-virtualenv
-    anyenv install ndenv
+    if [ ! -e $ANYENV_HOME/envs/pyenv/plugins/pyenv-virtualenv ]; then
+      git clone https://github.com/yyuu/pyenv-virtualenv $ANYENV_HOME/envs/pyenv/plugins/pyenv-virtualenv
+    fi
+
+    anyenv install nodenv
     anyenv install goenv
     anyenv install rbenv
 fi
-eval "$(anyenv init -)"
-
+if type "anyenv" > /dev/null 2>&1; then
+  eval "$(anyenv init -)"
+fi
 
 if ask 'install tools?'; then
     # install tools
-    inst jq
-    inst xsel
+    inst jq xsel upx
+    pip install --user pipx pipenv poetry
 
     # install go latest
     goenv install 1.10.0
     goenv global 1.10.0
-    
+
     # isntall peco
     PECO_HOME=$HOME/repos/peco
     if [ ! -e $PECO_HOME ]; then
-	git clone --depth 1 https://github.com/peco/peco.git $PECO_HOME
+	    git clone --depth 1 https://github.com/peco/peco.git $PECO_HOME
     fi
-    export GOPATH=$HOME/local/go
+
     export PAHT=$PATH:$GOPATH/bin
     go get github.com/Masterminds/glide
     go install github.com/Masterminds/glide
     pushd $PECO_HOME
     glide install
     go build cmd/peco/peco.go
+    popd
 fi
 
 if ask 'install emacs?'; then
-    inst emacs cmigemo silversearcher-ag
-    git clone https://github.com/vios-fish/dotfiles.git ~/repos/dotfiles
+    inst emacs cmigemo silversearcher-ag ttf-mscorefonts-installers fonts-roboto fonts-noto fonts-ricty-diminished
 
     # install thirdparty software
     sudo pip install jedi virtualenv
-    
+
     # setup direcotry
-    ln -s ~/dotfiles/.emacs.d ~/.emacs.d
+    ln -sf ${script_dir}/dotfiles/.emacs.d ~/.emacs.d
     mkdir ~/.emacs.d/backup
 fi
 
-if ask 'install google chrome?'; then
-    sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-    sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-    sudo apt-get update
-    inst google-chrome-stable
+if ask 'install zsh?'; then
+  inst zsh
+
+  # install zprezto
+  if [ ! -e "${ZDOTDIR:-$HOME}/.zprezto" ]; then
+    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+
+    ln -sf ${script_dir}/zlogin ~/.zlogin
+    ln -sf ${script_dir}/zlogout ~/.zlogout
+    ln -sf ${script_dir}/zpreztorc ~/.zpreztorc
+    ln -sf ${script_dir}/zprofile ~/.zprofile
+    ln -sf ${script_dir}/zshenv ~/.zshenv
+    ln -sf ${script_dir}/zshrc ~/.zshrc
+    ln -sf ${script_dir}/.p10k.zsh ~/.p10k.zsh
+  fi
+
+  chsh -s $(which zsh) $(whoami)
 fi
 
-if ask 'install slack?'; then
-    echo "not"
+if ask 'install aws-cli'; then
+  pipx install aws-sam-cli
 fi
