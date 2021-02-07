@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # 少し凝った zshrc
 
 ########################################
@@ -218,7 +225,7 @@ bindkey '^R' history-incremental-pattern-search-backward
 ########################################
 # エイリアス
 
-alias la='ls -a'
+
 alias ll='ls -l'
 
 alias rm='rm -i'
@@ -368,33 +375,7 @@ esac
 #########################################
 # 他のファイルの読み込み
 
-# terminal-notifierの設定
-# export SYS_NOTIFIER='terminal-notifier'
-# source ~/.zsh.d/zsh-notify/notify.plugin.zsh
-
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-
-## Tmux + SSH --------------------------------------------------------
-# function ssh_tmux() {
-#   tmux  set-option default-terminal "screen" \; \
-#         new-window -n $(echo $@ | perl -ple 's/(^|\s)-[^\s] *[^\s]+//g' | cut -d" " -f2 ) "exec ssh $(echo $@)" \; \
-#         run-shell        "[ ! -d $HOME/.tmuxlog/#W/$(date +%Y-%m/%d) ] && mkdir -p $HOME/.tmuxlog/#W/$(date +%Y-%m/%d)" \; \
-#         pipe-pane        "cat >> $HOME/.tmuxlog/#W/$(date +%Y-%m/%d/%H%M%S.log)" \; \
-#         display-message  "Started logging to $HOME/.tmuxlog/#W/$(date +%Y-%m/%d/%H%M%S.log)"
-# }
-
-# if [[ $TERM = screen ]] || [[ $TERM = screen-256color ]] ; then
-#   alias ssh=ssh_tmux
-# fi
-
-if [[ $TERM = screen ]] || [[ $TERM = screen-256color ]] ; then
-    LOGDIR=$HOME/.tmuxlog
-    LOGFILE=$(hostname)_$(date +%Y-%m-%d_%H%M%S_%N.log)
-    [ ! -d $LOGDIR ] && mkdir -p $LOGDIR
-    tmux set-option default-terminal "screen" \; \
-	 pipe-pane        "cat >> $LOGDIR/$LOGFILE" \; \
-	 display-message  "Started logging to $LOGDIR/$LOGFILE"
-fi
 
 if [ $SHLVL = 1 ]; then
     tmux -2
@@ -403,3 +384,6 @@ fi
 # emacs
 alias -g emacs='emacsclient -nw -a ""'
 alias -g e='emacs'
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
