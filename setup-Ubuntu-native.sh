@@ -86,8 +86,8 @@ if ask 'install tools?'; then
     pip3 install --user pipx pipenv poetry
 
     # install go latest
-    goenv install 1.10.0
-    goenv global 1.10.0
+    goenv install 1.18.5
+    goenv global 1.18.5
 
     # isntall peco
     inst peco
