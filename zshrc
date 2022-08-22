@@ -70,6 +70,7 @@ export PATH=$LOCAL_DIR/bin:$PATH
 
 # Go
 export PATH=$GOPATH/bin:$PATH
+export GOPRIVATE=github.com/tier4
 
 # my build lib path
 #export PKG_CONFIG_PATH=$LOCAL_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
@@ -352,7 +353,7 @@ alias pk="peco-pkill"
 #######################################
 
 # pipenv
-eval "$(pipenv --completion)"
+eval "$(_PIPENV_COMPLETE=zsh_source pipenv)"
 
 ########################################
 # OS 別の設定
@@ -377,9 +378,9 @@ esac
 
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 
-if [ $SHLVL = 1 ]; then
-    tmux -2
-fi
+#if [ $SHLVL = 1 ]; then
+#    tmux -2
+#fi
 
 # emacs
 alias -g emacs='emacsclient -nw -a ""'
@@ -387,3 +388,7 @@ alias -g e='emacs'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+if [ -e ${HOME}/.secret ]; then
+  . ${HOME}/.secret
+fi

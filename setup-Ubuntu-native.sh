@@ -36,7 +36,7 @@ if ask 'basic environment setup?'; then
     sudo apt-get update
 
     # install basic
-    inst build-essential zsh git curl wget python ruby tree gnome-tweak-tool
+    inst build-essential zsh git curl wget python-is-python3 ruby tree gnome-tweaks
 
     # install docker
     inst apt-transport-https ca-certificates curl software-properties-common
@@ -81,36 +81,25 @@ fi
 if ask 'install tools?'; then
     # install tools
     inst jq xsel upx
-    pip install --user pipx pipenv poetry
+    pip3 install --user pipx pipenv poetry
 
     # install go latest
     goenv install 1.10.0
     goenv global 1.10.0
 
     # isntall peco
-    PECO_HOME=$HOME/repos/peco
-    if [ ! -e $PECO_HOME ]; then
-	    git clone --depth 1 https://github.com/peco/peco.git $PECO_HOME
-    fi
-
-    export PAHT=$PATH:$GOPATH/bin
-    go get github.com/Masterminds/glide
-    go install github.com/Masterminds/glide
-    pushd $PECO_HOME
-    glide install
-    go build cmd/peco/peco.go
-    popd
+    inst peco
 fi
 
 if ask 'install emacs?'; then
-    inst emacs cmigemo silversearcher-ag ttf-mscorefonts-installers fonts-roboto fonts-noto fonts-ricty-diminished
+    inst emacs cmigemo silversearcher-ag fonts-roboto fonts-noto fonts-ricty-diminished
 
     # install thirdparty software
-    sudo pip install jedi virtualenv
+    sudo pip3 install jedi virtualenv
 
     # setup direcotry
     ln -sf ${script_dir}/dotfiles/.emacs.d ~/.emacs.d
-    mkdir ~/.emacs.d/backup
+    mkdir -p ~/.emacs.d/backup
 fi
 
 if ask 'install zsh?'; then

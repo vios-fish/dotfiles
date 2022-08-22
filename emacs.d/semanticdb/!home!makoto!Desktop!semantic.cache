@@ -1,0 +1,16 @@
+;; Object semanticdb-project-database-file-159379c34c64
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file-159379c34c64"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table-159379c34c88"
+      :major-mode json-mode
+      :tags nil
+      :file "integration.json"
+      :pointmax 436
+      :fsize 435
+      :lastmodtime '(25314 8399 769843 160000)
+      :unmatched-syntax nil))
+  :file "!home!makoto!Desktop!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")
