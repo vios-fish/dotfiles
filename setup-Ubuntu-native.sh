@@ -53,10 +53,12 @@ fi
 ANYENV_HOME=$HOME/.anyenv
 export PATH=$ANYENV_HOME/bin:$PATH
 if ask 'install anyenv?'; then
-    if [ ! -e $ANYENV_HOME ]; then
+    if [ ! -e ~/repos/anyenv ]; then
 	    git clone https://github.com/riywo/anyenv ~/repos/anyenv
     fi
-    ln -sf ~/repos/anyenv $ANYENV_HOME
+    if [ ! -e $ANYENV_HOME ]; then
+        ln -sf ~/repos/anyenv $ANYENV_HOME
+    fi
     eval "$(anyenv init -)"
 
     mkdir -p $(anyenv root)/plugins
