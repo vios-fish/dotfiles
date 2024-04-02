@@ -100,7 +100,7 @@ if ask 'install emacs?'; then
     sudo pip3 install jedi virtualenv
 
     # setup direcotry
-    ln -sf ${script_dir}/dotfiles/.emacs.d ~/.emacs.d
+    ln -sfb ${script_dir}/dotfiles/.emacs.d ~/.emacs.d
     mkdir -p ~/.emacs.d/backup
 fi
 
