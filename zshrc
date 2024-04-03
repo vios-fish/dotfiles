@@ -1,3 +1,6 @@
+#! /usr/bin/zsh
+# -*- mode: sh ; coding: utf-8 -*-
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -5,13 +8,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# 少し凝った zshrc
-
 ########################################
 # 環境変数
-#! /usr/bin/zsh
-# -*- mode: sh ; coding: utf-8 -*-
-
 ########################################
 # LANG
 export LANG=ja_JP.UTF-8
@@ -54,6 +52,8 @@ case ${OSTYPE} in
 		# infopath
 		export INFOPATH=$BREW_DIR/share/info:$INFOPATH
 
+        # parquet
+        alias parquet="java -cp '/home/makoto/repos/parquet-mr/parquet-cli/target/parquet-cli-1.13.1.jar:target/dependency/*' org.apache.parquet.cli.Main"
 		;;
 esac
 
@@ -79,11 +79,6 @@ export GOPRIVATE=github.com/tier4
 ##### clangのデフォルトインクルードパスの設定 ####
 export CPATH=/usr/local/include:$CPATH
 export CPATH=$LOCAL_DIR/include:$CPATH
-
-# CPLEX
-#export CPATH=$CPLEX_HOME_DIR/cplex/include:$CPATH
-#export CPATH=$CPLEX_HOME_DIR/concert/include:$CPATH
-#export CPATH=$CPLEX_HOME_DIR/cpoptimizer/include:$CPATH
 
 # HomeBrew
 #export LD_LIBRARY_PATH=$BREW_DIR/lib:$LD_LIBRARY_PATH
@@ -392,3 +387,4 @@ alias -g e='emacs'
 if [ -e ${HOME}/.secret ]; then
   . ${HOME}/.secret
 fi
+autoload -U compinit; compinit
