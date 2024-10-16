@@ -40,14 +40,22 @@ if ask 'basic environment setup?'; then
 
     # install docker
     inst apt-transport-https ca-certificates curl software-properties-common
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    sudo add-apt-repository \
-	 "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-	  $(lsb_release -cs) \
-	  stable"
+    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+    sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+    # Add the repository to Apt sources:
+    echo \
+      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+      $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+      sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
     sudo apt-get update
-    inst docker-ce
+    inst docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+    # docker post-installlation steps
+    sudo groupadd docker
     sudo usermod -aG docker $(whoami)
+    newgrp docker
 fi
 
 ANYENV_HOME=$HOME/.anyenv
@@ -82,12 +90,12 @@ fi
 
 if ask 'install tools?'; then
     # install tools
-    inst jq xsel upx
+    inst jq xsel upx python3-pip python3-venv
     pip3 install --user pipx pipenv poetry
 
     # install go latest
-    goenv install 1.18.5
-    goenv global 1.18.5
+    goenv install latest
+    goenv global latest
 
     # isntall peco
     inst peco
@@ -100,7 +108,10 @@ if ask 'install emacs?'; then
     sudo pip3 install jedi virtualenv
 
     # setup direcotry
-    ln -sfb ${script_dir}/dotfiles/.emacs.d ~/.emacs.d
+    if [ -L  ~/.emacs.d ]; then
+      unlink ~/.emacs.d
+    fi
+    ln -sfb ${script_dir}/emacs.d ~/.emacs.d
     mkdir -p ~/.emacs.d/backup
 fi
 
@@ -123,6 +134,10 @@ if ask 'install zsh?'; then
   chsh -s $(which zsh) $(whoami)
 fi
 
+if ask 'install rust?'; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+fi
+
 if ask 'install aws-cli'; then
-  pipx install aws-sam-cli
+  pipx install awscliv2 aws-sam-cli
 fi

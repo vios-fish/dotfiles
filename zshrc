@@ -381,6 +381,9 @@ source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 alias -g emacs='emacsclient -nw -a ""'
 alias -g e='emacs'
 
+# aws cli v2
+alias aws='awsv2'
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
