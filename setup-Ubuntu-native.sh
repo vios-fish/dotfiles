@@ -91,7 +91,9 @@ fi
 if ask 'install tools?'; then
     # install tools
     inst jq xsel upx python3-pip python3-venv
-    pip3 install --user pipx pipenv poetry
+    pip3 install --user pipx pipenv
+
+    pipx install poetry
 
     # install go latest
     goenv install latest
