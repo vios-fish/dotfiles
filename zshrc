@@ -365,7 +365,10 @@ case ${OSTYPE} in
         #Linux用の設定
         ;;
 esac
- 
+
+# 1password
+source /home/makototokunaga/.config/op/plugins.sh
+
 # vim:set ft=zsh:
 
 #########################################
