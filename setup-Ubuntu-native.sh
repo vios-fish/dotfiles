@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 set -e
 
-script_dir=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
+script_dir=$(cd "$(dirname "${BASH_SOURCE:-$0}")"; pwd)
 
 ask() {
-  printf "$* [y/n] "
+  printf "%s [y/n]:" "$*"
   local answer
-  read answer
+  read -r answer
 
   case $answer in
     "yes" ) return 0 ;;
@@ -17,10 +17,10 @@ ask() {
 }
 
 inst() {
-    sudo apt-get install -y $@
+    sudo apt-get install -y "$@"
 }
 
-env LANGUAGE=C LC_MESSAGES=C xdg-user-dirs-gtk-update
+#env LANGUAGE=C LC_MESSAGES=C xdg-user-dirs-gtk-update
 
 sudo sed -i.bak -e "s%http://[^ ]\+%http://ftp.jaist.ac.jp/pub/Linux/ubuntu/%g" /etc/apt/sources.list
 
@@ -28,15 +28,16 @@ sudo apt-get update -y
 sudo apt-get upgrade -y
 
 # for repositories
-mkdir -p $HOME/repos
-mkdir -p $HOME/local
+mkdir -p ~/repos
+mkdir -p ~/local
 
 if ask 'basic environment setup?'; then
-    # add ppa
-    sudo apt-get update
-
     # install basic
     inst build-essential zsh git curl wget python-is-python3 ruby tree gnome-tweaks
+
+    # set locale
+    inst locales
+    sudo locale-gen ja_JP
 
     # install docker
     inst apt-transport-https ca-certificates curl software-properties-common
@@ -52,9 +53,9 @@ if ask 'basic environment setup?'; then
     sudo apt-get update
     inst docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-    # docker post-installlation steps
+    # docker post-installation steps
     sudo groupadd docker
-    sudo usermod -aG docker $(whoami)
+    sudo usermod -aG docker "$(whoami)"
     newgrp docker
 fi
 
@@ -64,20 +65,20 @@ if ask 'install anyenv?'; then
     if [ ! -e ~/repos/anyenv ]; then
 	    git clone https://github.com/riywo/anyenv ~/repos/anyenv
     fi
-    if [ ! -e $ANYENV_HOME ]; then
-        ln -sf ~/repos/anyenv $ANYENV_HOME
+    if [ ! -e "$ANYENV_HOME" ]; then
+        ln -sf ~/repos/anyenv "$ANYENV_HOME"
     fi
     eval "$(anyenv init -)"
 
-    mkdir -p $(anyenv root)/plugins
-    if [ ! -e $(anyenv root)/plugins/anyenv-update ]; then
-	    git clone https://github.com/znz/anyenv-update.git $(anyenv root)/plugins/anyenv-update
+    mkdir -p "$(anyenv root)"/plugins
+    if [ ! -e "$(anyenv root)"/plugins/anyenv-update ]; then
+	    git clone https://github.com/znz/anyenv-update.git "$(anyenv root)/plugins/anyenv-update"
     fi
 
     anyenv install --force-init || :
     anyenv install pyenv
-    if [ ! -e $ANYENV_HOME/envs/pyenv/plugins/pyenv-virtualenv ]; then
-      git clone https://github.com/yyuu/pyenv-virtualenv $ANYENV_HOME/envs/pyenv/plugins/pyenv-virtualenv
+    if [ ! -e "$ANYENV_HOME/envs/pyenv/plugins/pyenv-virtualenv" ]; then
+      git clone https://github.com/yyuu/pyenv-virtualenv "$ANYENV_HOME/envs/pyenv/plugins/pyenv-virtualenv"
     fi
 
     anyenv install nodenv
@@ -90,8 +91,7 @@ fi
 
 if ask 'install tools?'; then
     # install tools
-    inst jq xsel upx python3-pip python3-venv
-    pip3 install --user pipx pipenv
+    inst jq xsel upx python3-pip python3-venv pipx pipenv
 
     pipx install poetry
 
@@ -99,21 +99,21 @@ if ask 'install tools?'; then
     goenv install latest
     goenv global latest
 
-    # isntall peco
+    # install peco
     inst peco
 fi
 
 if ask 'install emacs?'; then
     inst emacs cmigemo silversearcher-ag fonts-roboto fonts-noto fonts-ricty-diminished
 
-    # install thirdparty software
+    # install third party software
     sudo pip3 install jedi virtualenv
 
-    # setup direcotry
+    # setup directory
     if [ -L  ~/.emacs.d ]; then
       unlink ~/.emacs.d
     fi
-    ln -sfb ${script_dir}/emacs.d ~/.emacs.d
+    ln -sfb "${script_dir}/emacs.d" ~/.emacs.d
     mkdir -p ~/.emacs.d/backup
 fi
 
@@ -124,16 +124,16 @@ if ask 'install zsh?'; then
   if [ ! -e "${ZDOTDIR:-$HOME}/.zprezto" ]; then
     git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 
-    ln -sf ${script_dir}/zlogin ~/.zlogin
-    ln -sf ${script_dir}/zlogout ~/.zlogout
-    ln -sf ${script_dir}/zpreztorc ~/.zpreztorc
-    ln -sf ${script_dir}/zprofile ~/.zprofile
-    ln -sf ${script_dir}/zshenv ~/.zshenv
-    ln -sf ${script_dir}/zshrc ~/.zshrc
-    ln -sf ${script_dir}/.p10k.zsh ~/.p10k.zsh
+    ln -sf "${script_dir}/zlogin" ~/.zlogin
+    ln -sf "${script_dir}/zlogout" ~/.zlogout
+    ln -sf "${script_dir}/zpreztorc" ~/.zpreztorc
+    ln -sf "${script_dir}/zprofile" ~/.zprofile
+    ln -sf "${script_dir}/zshenv" ~/.zshenv
+    ln -sf "${script_dir}/zshrc" ~/.zshrc
+    ln -sf "${script_dir}/.p10k.zsh" ~/.p10k.zsh
   fi
 
-  chsh -s $(which zsh) $(whoami)
+  chsh -s "$(which zsh)" "$(whoami)"
 fi
 
 if ask 'install rust?'; then
@@ -141,5 +141,5 @@ if ask 'install rust?'; then
 fi
 
 if ask 'install aws-cli'; then
-  pipx install awscliv2 aws-sam-cli
+  pipx install --force awscliv2 aws-sam-cli
 fi
