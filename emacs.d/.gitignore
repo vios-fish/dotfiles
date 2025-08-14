@@ -6,7 +6,9 @@
 /tramp
 /semanticdb
 /recentf
+/bookmarks
 
-# elpa package manager
+# package manager
 /elpa/
 /elisps/
+/eln-cache/

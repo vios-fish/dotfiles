@@ -120,11 +120,7 @@
 ;; for tramp
 (use-package tramp
   :init
-  (setq tramp-default-method "ssh")
-  (add-to-list 'tramp-default-proxies-alist
-               '("proxy2" nil "/plink:proxy1:"))
-  (add-to-list 'tramp-default-proxies-alist
-               '("target" nil "/proxy2:")))
+  (setq tramp-default-method "ssh"))
 
 ;;; 行
 ;; 行の先頭でC-kを一回押すだけで行全体を消去する

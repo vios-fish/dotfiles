@@ -29,8 +29,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(irony-additional-clang-options '("-std=c++1y"))
- '(package-selected-packages
-   '(cmake-mode yasnippet yaml-mode web-mode use-package rtags popwin open-junk-file migemo markdown-mode magit ivy-hydra init-loader htmlize highlight-symbol helm-gtags groovy-mode flycheck-irony dockerfile-mode docker counsel company-irony company-go autodisass-java-bytecode)))
+ '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
