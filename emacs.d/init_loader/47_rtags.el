@@ -38,10 +38,14 @@
 		("C-}" . rtags-location-stack-forward))
   
   :config
-  (rtags-start-process-unless-running)
+  ;rtagsを利用するときに有効化する
+  ;(rtags-start-process-unless-running)
   (custom-set-variables '(rtags-use-helm t))
-  (cmake-ide-setup))
+  )
 
+(use-package company-rtags
+  :ensure t
+  :requires company)
 
 (provide '47_rtags)
 ;;; 47_rtags.el ends here

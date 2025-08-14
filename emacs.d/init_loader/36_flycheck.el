@@ -9,7 +9,6 @@
   :init
   (global-flycheck-mode)
   :config
-  (flycheck-pos-tip-mode)
   (setq flycheck-gcc-language-standard "c++1y"
 		flycheck-clang-language-standard "c++1y"
 		flycheck-gcc-include-path
@@ -18,5 +17,10 @@
 			  )
 		flycheck-clang-include-path
 		(list "/usr/local/include"
-			  "~/local/include"))
-  )
+			  "~/local/include")))
+
+(use-package flycheck-pos-tip
+  :ensure t
+  :requires (flycheck)
+  :init
+  (flycheck-pos-tip-mode))
