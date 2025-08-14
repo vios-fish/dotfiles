@@ -1,27 +1,11 @@
-/backup
+# temporary files
+/backup/
+/transient/
 /history
-/elpa
-.cask
-
-elisps/auto-complete
-.python-environments
-ac-comphist.dat
-dict/stdafx.pch
-eshell/history
-dict/stdafx.hpp*
-eshell/lastdir
-image-dired
-tramp
-bookmarks
-init_loader/workbench.xmi
-semanticdb
-url
-places
-srecode-map.el
-irony
-recentf
-server
-meghanada
-network-security.data
-transient
 /session.*
+/tramp
+/semanticdb
+/recentf
+
+# elpa package manager
+/elpa/
