@@ -21,9 +21,6 @@ case ${OSTYPE} in
     darwin*)
         #ここにMac向けの設定
 
-		# HomeBrew
-		export BREW_DIR=/usr/local
-
 		# Local Dir
 		export LOCAL_DIR=$HOME/local
 
@@ -32,7 +29,6 @@ case ${OSTYPE} in
 		
 		# alias
 		alias emacs="TERM=xterm-256color /usr/local/bin/emacs"
-		# alias gcc="g++-5 -std=c++11 -Wall -Wextra -Wconversion"
 		;;
     linux*)
         #ここにLinux向けの設定
@@ -43,17 +39,12 @@ case ${OSTYPE} in
 		# Local Dir
 		export LOCAL_DIR=$HOME/local
 
-		# Go
-		export GOPATH=$HOME/local/go
-
 		# manpath
 		export MANPATH=$BREW_DIR/share/man:$MANPATH
 
 		# infopath
 		export INFOPATH=$BREW_DIR/share/info:$INFOPATH
 
-        # parquet
-        alias parquet="java -cp '/home/makoto/repos/parquet-mr/parquet-cli/target/parquet-cli-1.13.1.jar:target/dependency/*' org.apache.parquet.cli.Main"
 		;;
 esac
 
@@ -64,30 +55,15 @@ export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=$LOCAL_DIR/bin:$PATH
 
-# HOMEBREW
-#export PATH=$BREW_DIR/bin:$PATH
-#export PATH=$BREW_DIR/sbin:$PATH
+# for prezto
+source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+
+# python
+PATH=$HOME/.local/bin:$PATH
 
 # Go
 export PATH=$GOPATH/bin:$PATH
 export GOPRIVATE=github.com/tier4
-
-# my build lib path
-#export PKG_CONFIG_PATH=$LOCAL_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
-#export DYLD_FALLBACK_LIBRARY_PATH=$LOCAL_DIR/lib:$DYLD_FALLBACK_LIBRARY_PATH
-
-##### clangのデフォルトインクルードパスの設定 ####
-export CPATH=/usr/local/include:$CPATH
-export CPATH=$LOCAL_DIR/include:$CPATH
-
-# HomeBrew
-#export LD_LIBRARY_PATH=$BREW_DIR/lib:$LD_LIBRARY_PATH
-
-# for prezto
-source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-
-# python user
-PATH=$HOME/.local/bin:$PATH
 
 # Rust
 PATH=$PATH:$HOME/.cargo/bin
@@ -106,16 +82,10 @@ HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 
-# プロンプト
-# 1行表示
-# PROMPT="%~ %# "
-# 2行表示
-#PROMPT="%{${fg[red]}%}[%n@%m]%{${reset_color}%} %~
-#%# " 
-
 # 単語の区切り文字を指定する
 autoload -Uz select-word-style
 select-word-style default
+
 # ここで指定した文字は単語区切りとみなされる
 # / も区切りと扱うので、^W でディレクトリ１つ分を削除できる
 zstyle ':zle:*' word-chars " /=;@:{},|"
@@ -221,7 +191,6 @@ bindkey '^R' history-incremental-pattern-search-backward
 ########################################
 # エイリアス
 
-
 alias ll='ls -l'
 
 alias rm='rm -i'
@@ -257,42 +226,10 @@ elif which putclip >/dev/null 2>&1 ; then
     alias -g C='| putclip'
 fi
 
-
-#######################################
-
-########################################
-# OS 別の設定
-case ${OSTYPE} in
-    darwin*)
-        #Mac用の設定
-        export CLICOLOR=1
-        alias ls='ls -G -F'
-		alias clang++=/usr/local/opt/llvm/bin/clang++
-		alias clang=/usr/local/opt/llvm/bin/clang
-#		if [ -e $HOME/.Xmodmap ]; then
-#			xmodmap $HOME/.Xmodmap
-#		fi
-        ;;
-    linux*)
-        #Linux用の設定
-        ;;
-esac
-
 #########################################
 # 他のファイルの読み込み
 
-
-# for ros
-if [ -e /opt/ros/kinetic/setup.zsh ]; then
-	source /opt/ros/kinetic/setup.zsh
-fi
-
-# for Autoware
-#if [ -e $HOME/repos/Autoware/ros/devel/setup.zsh ]; then
-#	source $HOME/repos/Autoware/ros/devel/setup.zsh
-#fi
-
-# anyenvの設定
+# anyenv
 export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
 
@@ -314,14 +251,14 @@ function peco-select-history() {
 zle -N peco-select-history
 bindkey '^r' peco-select-history
 
-# ### search a destination from cdr list
+# search a destination from cdr list
 function peco-get-destination-from-cdr() {
 	cdr -l | \
 		sed -e 's/^[[:digit:]]*[[:blank:]]*//' | \
 		peco --query "$LBUFFER"
 }
 
-### search a destination from cdr list and cd the destination
+# search a destination from cdr list and cd the destination
 function peco-cdr() {
 	local destination="$(peco-get-destination-from-cdr)"
 	if [ -n "$destination" ]; then
@@ -334,7 +271,7 @@ function peco-cdr() {
 zle -N peco-cdr
 bindkey '^x' peco-cdr
 
-#pecoでkill
+# pecoでkill
 function peco-pkill() {
 	for pid in `ps aux | peco | awk '{ print $2 }'`
 	do
@@ -344,46 +281,29 @@ function peco-pkill() {
 }
 alias pk="peco-pkill"
 
-
-#######################################
-
 # pipenv
 eval "$(_PIPENV_COMPLETE=zsh_source pipenv)"
 
-########################################
-# OS 別の設定
-case ${OSTYPE} in
-    darwin*)
-        #Mac用の設定
-        export CLICOLOR=1
-        alias ls='ls -G -F'
-		alias clang++=/usr/local/opt/llvm/bin/clang++
-        alias clang=/usr/local/opt/llvm/bin/clang
-        alias sudo='nocorrect sudo'
-        ;;
-    linux*)
-        #Linux用の設定
-        ;;
-esac
-
 # 1password
-source /home/makototokunaga/.config/op/plugins.sh
+if [ -e "$HOME/.config/op/plugins.sh" ]; then
+    source "$HOME/.config/op/plugins.sh"
+else
+    echo "1passowrd shell plugin is not installed"
+fi
 
 # vim:set ft=zsh:
 
-#########################################
-# 他のファイルの読み込み
-
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-
-#if [ $SHLVL = 1 ]; then
-#    tmux -2
-#fi
 
 # emacs
 alias -g emacs='emacsclient -nw -a ""'
 alias -g e='emacs'
 
+# aws-vault
+eval "$(aws-vault --completion-script-zsh)"
+alias av='aws-vault' 
+alias ave='aws-vault exec' 
+alias avl='aws-vault login' 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
