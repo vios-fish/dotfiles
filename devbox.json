@@ -1,0 +1,34 @@
+{
+  "packages": [
+    "git",
+    "curl",
+    "wget",
+    "python@3",
+    "ruby",
+    "nodejs",
+    "go",
+    "rustup",
+    "tree",
+    "jq",
+    "upx",
+    "peco",
+    "emacs",
+    "cmigemo",
+    "silver-searcher",
+    "zsh",
+    "awscli2",
+    "aws-sam-cli",
+    "pipenv",
+    "poetry",
+    "ripgrep"
+  ],
+  "shell": {
+    "init_hook": [
+      "alias python=python3",
+      "bash $DEVBOX_ROOT/setup_devbox.sh"
+    ],
+    "scripts": {
+      "setup": "bash $DEVBOX_ROOT/setup_devbox.sh"
+    }
+  }
+}
