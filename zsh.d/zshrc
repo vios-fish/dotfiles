@@ -229,10 +229,6 @@ fi
 #########################################
 # 他のファイルの読み込み
 
-# anyenv
-export PATH="$HOME/.anyenv/bin:$PATH"
-eval "$(anyenv init -)"
-
 # peco
 ## peco history
 function peco-select-history() {
@@ -288,7 +284,7 @@ eval "$(_PIPENV_COMPLETE=zsh_source pipenv)"
 if [ -e "$HOME/.config/op/plugins.sh" ]; then
     source "$HOME/.config/op/plugins.sh"
 else
-    echo "1passowrd shell plugin is not installed"
+    echo "1password shell plugin is not installed"
 fi
 
 # vim:set ft=zsh:
@@ -300,10 +296,13 @@ alias -g emacs='emacsclient -nw -a ""'
 alias -g e='emacs'
 
 # aws-vault
-eval "$(aws-vault --completion-script-zsh)"
-alias av='aws-vault' 
-alias ave='aws-vault exec' 
-alias avl='aws-vault login' 
+
+if which aws-vault; then
+    eval "$(aws-vault --completion-script-zsh)"
+    alias av='aws-vault'
+    alias ave='aws-vault exec'
+    alias avl='aws-vault login'
+fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
