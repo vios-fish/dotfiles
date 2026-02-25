@@ -1,14 +1,15 @@
 [tools]
 python = "latest"
-node = "latest"
+node = "24"
 go = "latest"
 rust = "latest"
 ruby = "latest"
 jq = "latest"
-peco = "latest"
+peco = "0.5.11" # 0.6.0 installation is broken
 awscli = "latest"
 aws-sam-cli = "latest"
 poetry = "latest"
 pipenv = "latest"
 pipx = "latest"
 upx = "latest"
+usage = "latest"

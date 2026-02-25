@@ -61,15 +61,18 @@ sudo apt-get install -y zsh curl wget xsel
 ```bash {"id":"01HXTZEEDD"}
 sudo apt-get install -y emacs cmigemo silversearcher-ag fonts-roboto fonts-noto fonts-ricty-diminished
 
+# Create XDG config directory
+mkdir -p ~/.config/emacs
+
 # Move custom emacs config into place safely
-if [ -L ~/.emacs.d ]; then
-  rm ~/.emacs.d
-elif [ -d ~/.emacs.d ]; then
-  mv ~/.emacs.d ~/.emacs.d.bak
+if [ -L ~/.config/emacs/init.el ]; then
+  rm ~/.config/emacs/init.el
+elif [ -d ~/.config/emacs ]; then
+  mv ~/.config/emacs ~/.config/emacs.bak
 fi
 
-ln -sfb ~/repos/dotfiles/emacs.d ~/.emacs.d
-mkdir -p ~/.emacs.d/backup
+ln -sfb ~/repos/dotfiles/emacs.d ~/.config/emacs
+mkdir -p ~/.config/emacs/backup
 ```
 
 ## 4. Install Mise & Toolchains
@@ -93,9 +96,13 @@ cd ~/repos/dotfiles
 We use zsh with Prezto and Powerlevel10k.
 
 ```bash {"id":"01HXTZHHIJ"}
-# Clone Prezto safely
-if [ ! -e "${ZDOTDIR:-$HOME}/.zprezto" ]; then
-  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+# Define Zsh XDG Base Directory
+export ZDOTDIR="$HOME/.config/zsh"
+mkdir -p "$ZDOTDIR"
+
+# Clone Prezto safely into ZDOTDIR
+if [ ! -e "$ZDOTDIR/.zprezto" ]; then
+  git clone --recursive https://github.com/sorin-ionescu/prezto.git "$ZDOTDIR/.zprezto"
 fi
 
 # Link zsh configurations gracefully
@@ -113,13 +120,17 @@ link_if_needed() {
 }
 
 cd ~/repos/dotfiles
-link_if_needed "${PWD}/zsh.d/zlogin" ~/.zlogin
-link_if_needed "${PWD}/zsh.d/zlogout" ~/.zlogout
-link_if_needed "${PWD}/zsh.d/zpreztorc" ~/.zpreztorc
-link_if_needed "${PWD}/zsh.d/zprofile" ~/.zprofile
+
+# The only file that stays in $HOME is .zshenv to bootstrap XDG
 link_if_needed "${PWD}/zsh.d/zshenv" ~/.zshenv
-link_if_needed "${PWD}/zsh.d/zshrc" ~/.zshrc
-link_if_needed "${PWD}/zsh.d/.p10k.zsh" ~/.p10k.zsh
+
+# Link everything else into ~/.config/zsh/
+link_if_needed "${PWD}/zsh.d/zlogin" "$ZDOTDIR/.zlogin"
+link_if_needed "${PWD}/zsh.d/zlogout" "$ZDOTDIR/.zlogout"
+link_if_needed "${PWD}/zsh.d/zpreztorc" "$ZDOTDIR/.zpreztorc"
+link_if_needed "${PWD}/zsh.d/zprofile" "$ZDOTDIR/.zprofile"
+link_if_needed "${PWD}/zsh.d/zshrc" "$ZDOTDIR/.zshrc"
+link_if_needed "${PWD}/zsh.d/.p10k.zsh" "$ZDOTDIR/.p10k.zsh"
 
 # Change default shell
 sudo chsh -s "$(which zsh)" "$(whoami)"
