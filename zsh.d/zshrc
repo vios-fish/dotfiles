@@ -77,6 +77,7 @@ fi
 # ==============================================================================
 # 3. Zsh Options & History
 # ==============================================================================
+mkdir -p "${XDG_DATA_HOME:-$HOME/.local/share}/zsh"
 HISTFILE=${XDG_DATA_HOME:-$HOME/.local/share}/zsh/zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
@@ -215,6 +216,13 @@ if command -v aws-vault > /dev/null; then
   alias ave='aws-vault exec'
   alias avl='aws-vault login'
 fi
+
+# pnpm
+export PNPM_HOME="/home/makototokunaga/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 
 # ==============================================================================
 # 7. Local Secrets & Theme Generation 

@@ -7,8 +7,9 @@ This document serves as an interactive runbook for setting up the `vios-fish` lo
 First, ensure your base directories are created.
 
 ```bash {"id":"01HXTZ9XYZ"}
-mkdir -p ~/repos
-mkdir -p ~/local
+DOTFILES_DIR="${DOTFILES_DIR:-$HOME/repos/dotfiles}"
+source "$DOTFILES_DIR/lib/setup-lib.sh"
+setup_dirs
 ```
 
 ## 2. Environment Selection
@@ -80,15 +81,10 @@ mkdir -p ~/.config/emacs/backup
 Instead of installing `nvm`, `pyenv`, `goenv`, etc., we use `mise` to manage all toolchains via `mise.toml`.
 
 ```bash {"id":"01HXTZFFGH"}
-# Install mise
-curl https://mise.run | sh
-
-# Ensure mise is momentarily activated so we can run install
-eval "$(~/.local/bin/mise activate bash)"
-
-# Install all tools defined in ~/repos/dotfiles/mise.toml
-cd ~/repos/dotfiles
-~/.local/bin/mise install
+DOTFILES_DIR="${DOTFILES_DIR:-$HOME/repos/dotfiles}"
+source "$DOTFILES_DIR/lib/setup-lib.sh"
+setup_mise
+setup_pnpm
 ```
 
 ## 5. Zsh & Terminal Configuration
@@ -96,42 +92,10 @@ cd ~/repos/dotfiles
 We use zsh with Prezto and Powerlevel10k.
 
 ```bash {"id":"01HXTZHHIJ"}
-# Define Zsh XDG Base Directory
-export ZDOTDIR="$HOME/.config/zsh"
-mkdir -p "$ZDOTDIR"
-
-# Clone Prezto safely into ZDOTDIR
-if [ ! -e "$ZDOTDIR/.zprezto" ]; then
-  git clone --recursive https://github.com/sorin-ionescu/prezto.git "$ZDOTDIR/.zprezto"
-fi
-
-# Link zsh configurations gracefully
-link_if_needed() {
-  src=$1
-  dest=$2
-  
-  if [ -L "$dest" ]; then
-    rm "$dest"
-  elif [ -f "$dest" ]; then
-    mv "$dest" "${dest}.bak"
-  fi
-  
-  ln -sf "$src" "$dest"
-}
-
-cd ~/repos/dotfiles
-
-# The only file that stays in $HOME is .zshenv to bootstrap XDG
-link_if_needed "${PWD}/zsh.d/zshenv" ~/.zshenv
-
-# Link everything else into ~/.config/zsh/
-link_if_needed "${PWD}/zsh.d/zlogin" "$ZDOTDIR/.zlogin"
-link_if_needed "${PWD}/zsh.d/zlogout" "$ZDOTDIR/.zlogout"
-link_if_needed "${PWD}/zsh.d/zpreztorc" "$ZDOTDIR/.zpreztorc"
-link_if_needed "${PWD}/zsh.d/zprofile" "$ZDOTDIR/.zprofile"
-link_if_needed "${PWD}/zsh.d/zshrc" "$ZDOTDIR/.zshrc"
-link_if_needed "${PWD}/zsh.d/.p10k.zsh" "$ZDOTDIR/.p10k.zsh"
-
-# Change default shell
-sudo chsh -s "$(which zsh)" "$(whoami)"
+DOTFILES_DIR="${DOTFILES_DIR:-$HOME/repos/dotfiles}"
+source "$DOTFILES_DIR/lib/setup-lib.sh"
+setup_prezto
+setup_zsh_symlinks
+setup_extra_configs
+setup_shell
 ```
