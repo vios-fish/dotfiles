@@ -4,7 +4,18 @@
 
 # --- Path resolution ---
 # DOTFILES_DIR can be overridden by the caller; otherwise resolve from this file's location.
-DOTFILES_DIR="${DOTFILES_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
+# Bash exposes ${BASH_SOURCE[0]}; zsh exposes %x via prompt expansion. Use eval for the
+# zsh form so bash never tries to parse zsh-only ${(...)} syntax.
+if [ -z "${DOTFILES_DIR:-}" ]; then
+  if [ -n "${BASH_SOURCE[0]:-}" ]; then
+    DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+  elif [ -n "${ZSH_VERSION:-}" ]; then
+    eval 'DOTFILES_DIR="$(cd "$(dirname "${(%):-%x}")/.." && pwd)"'
+  else
+    echo "ERROR: cannot determine DOTFILES_DIR. Set DOTFILES_DIR before sourcing." >&2
+    return 1 2>/dev/null || exit 1
+  fi
+fi
 
 # --- Helpers ---
 
@@ -78,9 +89,27 @@ setup_zsh_symlinks() {
 }
 
 setup_extra_configs() {
-  mkdir -p ~/.peco
-  link_if_needed "$DOTFILES_DIR/.peco/config.json" "$HOME/.peco/config.json"
-  link_if_needed "$DOTFILES_DIR/.tmux.conf" "$HOME/.tmux.conf"
+  local xdg_config="${XDG_CONFIG_HOME:-$HOME/.config}"
+  local xdg_state="${XDG_STATE_HOME:-$HOME/.local/state}"
+
+  mkdir -p "$xdg_config/peco" "$xdg_config/tmux" "$xdg_state/less"
+
+  link_if_needed "$DOTFILES_DIR/.peco/config.json" "$xdg_config/peco/config.json"
+  link_if_needed "$DOTFILES_DIR/tmux/tmux.conf"    "$xdg_config/tmux/tmux.conf"
+
+  # Drop legacy symlinks at $HOME so XDG paths take precedence.
+  # Only symlinks are removed — never user-managed real files.
+  [ -L "$HOME/.tmux.conf" ] && rm "$HOME/.tmux.conf"
+  [ -L "$HOME/.peco/config.json" ] && rm "$HOME/.peco/config.json"
+  [ -d "$HOME/.peco" ] && rmdir "$HOME/.peco" 2>/dev/null || true
+
+  # Move history files into XDG_STATE_HOME (no-op if already migrated).
+  if [ -f "$HOME/.lesshst" ] && [ ! -e "$xdg_state/less/history" ]; then
+    mv "$HOME/.lesshst" "$xdg_state/less/history"
+  fi
+  if [ -f "$HOME/.node_repl_history" ] && [ ! -e "$xdg_state/node_repl_history" ]; then
+    mv "$HOME/.node_repl_history" "$xdg_state/node_repl_history"
+  fi
 }
 
 setup_shell() {

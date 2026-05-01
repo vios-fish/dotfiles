@@ -42,8 +42,8 @@ All zsh files live in `zsh.d/` and are symlinked to `~/.config/zsh/` (XDG-compli
 
 ## Key Conventions
 
-- **XDG Base Directory**: All config goes under `~/.config/`, cache under `~/.cache/`, data under `~/.local/share/`
-- **Symlink pattern**: Setup creates symlinks from dotfiles repo into XDG paths via `link_if_needed()` helper
+- **XDG Base Directory**: All config goes under `~/.config/`, cache under `~/.cache/`, data under `~/.local/share/`, state under `~/.local/state/`. The four `XDG_*_HOME` vars are exported from `zsh.d/zshenv`, alongside per-tool redirections (`LESSHISTFILE`, `NODE_REPL_HISTORY`, `WGETRC`, `INPUTRC`, `RIPGREP_CONFIG_PATH`).
+- **Symlink pattern**: Setup creates symlinks from dotfiles repo into XDG paths via `link_if_needed()` helper. Tool-specific configs live under their own directory in the repo (`zsh.d/`, `tmux/`, `emacs.d/`, `.peco/`) and are symlinked to `~/.config/<tool>/`.
 - **Locale**: `ja_JP.UTF-8` throughout (LANG, LC_ALL in zshrc; locale-gen in Dockerfile)
 - **pnpm is managed via mise**, not corepack or npm global install
 - **GOPRIVATE**: Set to `github.com/tier4` for private Go modules

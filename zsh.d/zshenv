@@ -3,9 +3,17 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
 
 # Pivot zsh configurations into XDG_CONFIG_HOME
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+# Per-tool XDG redirections
+export LESSHISTFILE="$XDG_STATE_HOME/less/history"
+export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_repl_history"
+export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "$ZDOTDIR/.zprofile" ]]; then
   source "$ZDOTDIR/.zprofile"
