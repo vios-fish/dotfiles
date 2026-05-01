@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Global pre-commit hook: runs gitleaks, then chains to repo-local hook if present.
+
+echo "🔍 Running global gitleaks check..."
+if ! gitleaks protect --staged --verbose; then
+  echo "🚨 警告: シークレットが検出されたため、コミットを中断しました。" >&2
+  exit 1
+fi
+
+LOCAL_HOOK=".git/hooks/pre-commit"
+if [ -f "$LOCAL_HOOK" ] && [ -x "$LOCAL_HOOK" ]; then
+  echo "📦 Running repository-specific pre-commit hook..."
+  "$LOCAL_HOOK" "$@" || exit $?
+fi

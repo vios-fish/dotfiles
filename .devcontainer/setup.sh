@@ -12,5 +12,6 @@ setup_zsh_symlinks
 setup_extra_configs
 setup_shell
 setup_claude
+setup_git_hooks
 
 echo "=== devcontainer setup complete ==="

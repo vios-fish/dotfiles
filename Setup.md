@@ -99,3 +99,13 @@ setup_zsh_symlinks
 setup_extra_configs
 setup_shell
 ```
+
+## 6. Global Git Hooks (gitleaks)
+
+Configure an XDG-compliant global pre-commit hook that runs `gitleaks` on every commit and chains through to any repository-local `pre-commit` hook. Requires `gitleaks` to be installed via mise (section 4).
+
+```bash {"id":"01HXTZIIJK"}
+DOTFILES_DIR="${DOTFILES_DIR:-$HOME/repos/dotfiles}"
+source "$DOTFILES_DIR/lib/setup-lib.sh"
+setup_git_hooks
+```

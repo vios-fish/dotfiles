@@ -99,3 +99,11 @@ setup_claude() {
     ~/.local/bin/mise exec -- pnpm install -g @anthropic-ai/claude-code
   fi
 }
+
+setup_git_hooks() {
+  local hooks_dir="${XDG_CONFIG_HOME:-$HOME/.config}/git/hooks"
+  mkdir -p "$hooks_dir"
+  link_if_needed "$DOTFILES_DIR/git/hooks/pre-commit" "$hooks_dir/pre-commit"
+  chmod +x "$DOTFILES_DIR/git/hooks/pre-commit"
+  git config --global core.hooksPath "$hooks_dir"
+}
