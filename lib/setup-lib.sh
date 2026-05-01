@@ -94,8 +94,8 @@ setup_extra_configs() {
 
   mkdir -p "$xdg_config/peco" "$xdg_config/tmux" "$xdg_state/less"
 
-  link_if_needed "$DOTFILES_DIR/.peco/config.json" "$xdg_config/peco/config.json"
-  link_if_needed "$DOTFILES_DIR/tmux/tmux.conf"    "$xdg_config/tmux/tmux.conf"
+  link_if_needed "$DOTFILES_DIR/peco/config.json" "$xdg_config/peco/config.json"
+  link_if_needed "$DOTFILES_DIR/tmux/tmux.conf"   "$xdg_config/tmux/tmux.conf"
 
   # Drop legacy symlinks at $HOME so XDG paths take precedence.
   # Only symlinks are removed — never user-managed real files.
