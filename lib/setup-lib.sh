@@ -49,6 +49,7 @@ setup_mise() {
   eval "$(~/.local/bin/mise activate bash)"
   (
     cd "$DOTFILES_DIR"
+    ~/.local/bin/mise trust --yes || { echo "ERROR: mise trust failed" >&2; exit 1; }
     ~/.local/bin/mise install --yes || { echo "ERROR: mise install failed" >&2; exit 1; }
   ) || return 1
   ~/.local/bin/mise reshim
@@ -124,9 +125,11 @@ setup_shell() {
 }
 
 setup_claude() {
-  if ! command -v claude > /dev/null; then
-    ~/.local/bin/mise exec -- pnpm install -g @anthropic-ai/claude-code
+  if claude --version > /dev/null 2>&1; then
+    return 0
   fi
+  curl -fsSL https://claude.ai/install.sh | bash \
+    || { echo "ERROR: claude installation failed" >&2; return 1; }
 }
 
 setup_git_hooks() {

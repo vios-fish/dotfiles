@@ -25,6 +25,7 @@ typeset -U path fpath manpath infopath
 # Base Paths (Priority from top to bottom)
 path=(
   $HOME/.local/bin
+  ${XDG_DATA_HOME:-$HOME/.local/share}/mise/shims
   $HOME/local/bin
   $HOME/.cargo/bin
   $HOME/go/bin
@@ -217,11 +218,11 @@ if command -v aws-vault > /dev/null; then
   alias avl='aws-vault login'
 fi
 
-# pnpm
+# pnpm (pnpm 11+ stores global bin in $PNPM_HOME/bin)
 export PNPM_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 
 # ==============================================================================
