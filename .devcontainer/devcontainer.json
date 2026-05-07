@@ -1,0 +1,53 @@
+{
+  "name": "vios-fish dev base",
+
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "..",
+    "options": ["--load"]
+  },
+
+  "remoteUser": "vscode",
+  "containerUser": "vscode",
+  "updateRemoteUserUID": true,
+
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "moby": true,
+      "installDockerBuildx": true,
+      "installDockerComposeSwitch": false,
+      "dockerDashComposeVersion": "none"
+    },
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+
+  "mounts": [
+    "source=dotfiles-mise-cache,target=/home/vscode/.cache/mise,type=volume",
+    "source=dotfiles-zsh-state,target=/home/vscode/.local/state/zsh,type=volume",
+    "source=dotfiles-claude,target=/home/vscode/.claude,type=volume"
+  ],
+
+  "containerEnv": {
+    "DOTFILES_DIR": "${containerWorkspaceFolder}",
+    "EDITOR": "vim",
+    "MISE_RUBY_COMPILE": "false"
+  },
+
+  "runArgs": ["--init"],
+
+  "userEnvProbe": "loginInteractiveShell",
+
+  "onCreateCommand": "sudo chown vscode:vscode /home/vscode/.cache /home/vscode/.cache/mise /home/vscode/.local /home/vscode/.local/state /home/vscode/.local/state/zsh /home/vscode/.claude",
+
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+
+  "customizations": {
+    "jetbrains": {
+      "backend": "IntelliJ",
+      "plugins": [
+        "org.intellij.plugins.hcl",
+        "aws.toolkit"
+      ]
+    }
+  }
+}

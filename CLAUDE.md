@@ -38,7 +38,13 @@ All zsh files live in `zsh.d/` and are symlinked to `~/.config/zsh/` (XDG-compli
 
 ### Devcontainer
 
-`.devcontainer/devcontainer.json` uses Ubuntu 24.04 base with Docker-in-Docker and Claude Code features. Mounts mise cache and zsh history as Docker volumes for persistence. AWS credentials are bind-mounted read-only.
+`.devcontainer/` is the personal multi-project base, IntelliJ/JetBrains-flavored (`customizations.vscode.*` is intentionally omitted).
+
+- `Dockerfile` — `mcr.microsoft.com/devcontainers/base:noble` (Ubuntu 24.04) + ja_JP.UTF-8 locale + the apt packages shared with `Setup.md` Option A/B
+- `devcontainer.json` — `customizations.jetbrains.{backend: "IntelliJ", plugins: [...]}`, `docker-in-docker` and `git` features, named volumes for `~/.cache/mise` / `$XDG_STATE_HOME/zsh` / `~/.claude`, `runArgs: ["--init"]`, `userEnvProbe: "loginInteractiveShell"`, and `containerEnv.DOTFILES_DIR=${containerWorkspaceFolder}` so `setup-lib.sh` resolves correctly
+- `setup.sh` — `postCreateCommand` thin wrapper that sources `lib/setup-lib.sh` and runs the same setup functions as Setup.md
+
+To reuse for another repo: copy `.devcontainer/` into the new repo and adjust (1) `name`, (2) the `dotfiles-*` named volume names, (3) `customizations.jetbrains.plugins` for that project's stack, and (4) any host bind mounts (`~/.aws`, `~/.kube`, etc.) needed for that project.
 
 ## Key Conventions
 
