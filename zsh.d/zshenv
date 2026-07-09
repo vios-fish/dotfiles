@@ -22,3 +22,12 @@ fi
 if [ -e $HOME/.cargo/env ]; then
   . "$HOME/.cargo/env"
 fi
+
+# rtk (Rust Token Killer) — installed under ~/.headroom/bin, not mise-managed.
+# Must live here (not zshrc) so it's on PATH for non-interactive shells too,
+# since Claude Code hooks invoke commands non-interactively.
+RTK_HOME="$HOME/.headroom/bin"
+case ":$PATH:" in
+  *":$RTK_HOME:"*) ;;
+  *) export PATH="$RTK_HOME:$PATH" ;;
+esac

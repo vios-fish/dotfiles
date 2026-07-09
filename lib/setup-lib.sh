@@ -78,8 +78,14 @@ setup_prezto() {
 setup_zsh_symlinks() {
   local zdotdir="$HOME/.config/zsh"
 
-  # .zshenv is the only file that stays in $HOME (bootstraps XDG)
+  # zshenv is symlinked at both $HOME (needed for the very first shell in a
+  # process tree, before ZDOTDIR exists) and $zdotdir (needed for any shell
+  # that inherits ZDOTDIR from its parent's environment — zsh looks for
+  # .zshenv under $ZDOTDIR when it's already set, and would otherwise skip
+  # it silently, e.g. for non-interactive child shells like editor/tool
+  # subprocesses).
   link_if_needed "$DOTFILES_DIR/zsh.d/zshenv"    "$HOME/.zshenv"
+  link_if_needed "$DOTFILES_DIR/zsh.d/zshenv"    "$zdotdir/.zshenv"
 
   link_if_needed "$DOTFILES_DIR/zsh.d/zlogin"    "$zdotdir/.zlogin"
   link_if_needed "$DOTFILES_DIR/zsh.d/zlogout"   "$zdotdir/.zlogout"
