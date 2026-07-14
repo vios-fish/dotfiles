@@ -245,3 +245,6 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# headroom bundled rtk
+export PATH="$HOME/.headroom/bin:$PATH"
