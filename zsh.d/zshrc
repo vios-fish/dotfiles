@@ -237,3 +237,11 @@ fi
 
 # Load Powerlevel10k theme configuration at the very end
 [[ ! -f ${ZDOTDIR:-$HOME}/.p10k.zsh ]] || source ${ZDOTDIR:-$HOME}/.p10k.zsh
+
+# pnpm
+export PNPM_HOME="/home/makototokunaga/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
