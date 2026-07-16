@@ -89,7 +89,9 @@ setup_pnpm
 
 ## 5. Zsh & Terminal Configuration
 
-We use zsh with Prezto and Powerlevel10k.
+We use zsh with Prezto and Powerlevel10k. `setup_extra_configs` also symlinks
+the peco, tmux, and herdr configs into their XDG locations. If the herdr server
+is already running, apply the linked config with `herdr server reload-config`.
 
 ```bash {"id":"01HXTZHHIJ"}
 DOTFILES_DIR="${DOTFILES_DIR:-$HOME/repos/dotfiles}"
