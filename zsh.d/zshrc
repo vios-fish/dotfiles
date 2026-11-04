@@ -201,8 +201,9 @@ if command -v peco > /dev/null; then
 fi
 
 # -- Pipenv --
-if command -v pipenv > /dev/null; then
-  eval "$(_PIPENV_COMPLETE=zsh_source pipenv)"
+# register-python-argcomplete lives in pipenv's venv (mise pipx extras = "completion")
+if (( $+commands[pipenv] )) && [[ -x ${commands[pipenv]:A:h}/register-python-argcomplete ]]; then
+  eval "$(${commands[pipenv]:A:h}/register-python-argcomplete pipenv)"
 fi
 
 # -- 1Password --
