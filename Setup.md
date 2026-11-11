@@ -102,9 +102,9 @@ setup_extra_configs
 setup_shell
 ```
 
-## 6. Global Git Hooks (gitleaks)
+## 6. Global Git Hooks (betterleaks)
 
-Configure an XDG-compliant global pre-commit hook that runs `gitleaks` on every commit and chains through to any repository-local `pre-commit` hook. Requires `gitleaks` to be installed via mise (section 4).
+Configure an XDG-compliant global pre-commit hook that runs `betterleaks` on every commit and chains through to any repository-local `pre-commit` hook. Requires `betterleaks` to be installed via mise (section 4).
 
 ```bash {"id":"01HXTZIIJK"}
 DOTFILES_DIR="${DOTFILES_DIR:-$HOME/repos/dotfiles}"
